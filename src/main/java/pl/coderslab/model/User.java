@@ -1,0 +1,160 @@
+package pl.coderslab.model;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 100)
+    @NotBlank
+    private String login;
+
+    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków")
+    @NotBlank
+    private String password;
+
+    @Column(length = 100)
+    @NotBlank
+    private String firstName;
+
+    @Column(length = 100)
+    @NotBlank
+    private String lastName;
+
+    @Column(length = 100)
+    @NotBlank
+    private String city;
+
+    @Column(length = 100)
+    @NotBlank
+    private String street;
+
+    @Column(length = 50,name = "number_of_home")
+    @NotBlank
+    private String homeNumber;
+
+    @Email(message = "Wprowadź prawidłowy adres email")
+    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email")
+    private String email;
+
+@Column(name = "passed")
+    private boolean passedEgzam;
+
+@Column(name = "last_test")
+    private LocalDateTime lastTestTime;
+
+@Column(name = "admin")
+    private boolean superUser;
+
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isPassedEgzam() {
+        return passedEgzam;
+    }
+
+    public void setPassedEgzam(boolean passedEgzam) {
+        this.passedEgzam = passedEgzam;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+
+    public LocalDateTime getLastTestTime() {
+        return lastTestTime;
+    }
+
+    public void setLastTestTime(LocalDateTime lastTestTime) {
+        this.lastTestTime = lastTestTime;
+    }
+
+    public boolean isSuperUser() {
+        return superUser;
+    }
+
+    public void setSuperUser(boolean superUser) {
+        this.superUser = superUser;
+    }
+
+}
