@@ -98,7 +98,7 @@ public class QuestionController {
                 model.addAttribute("points", points);
 
             }
-        }
+           }
 
         if (number < size) {
             model.addAttribute("question", questionService.getNumberQuestionForTest(number));

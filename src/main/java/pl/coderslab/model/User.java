@@ -2,6 +2,8 @@ package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import pl.coderslab.validator.EditValidator;
+import pl.coderslab.validator.RegistrationValidator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -17,35 +19,35 @@ public class User {
     private Long id;
 
     @Column(length = 100)
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class},message = "Podaj tytuł")
     private String login;
 
-    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków")
-    @NotBlank
+    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków",groups = RegistrationValidator.class)
+    @NotBlank(groups = RegistrationValidator.class)
     private String password;
 
     @Column(length = 100)
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
     private String firstName;
 
     @Column(length = 100)
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
     private String lastName;
 
     @Column(length = 100)
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
     private String city;
 
     @Column(length = 100)
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
     private String street;
 
     @Column(length = 50,name = "number_of_home")
-    @NotBlank
+    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
     private String homeNumber;
 
     @Email(message = "Wprowadź prawidłowy adres email")
-    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email")
+    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email",groups = {RegistrationValidator.class, EditValidator.class})
     private String email;
 
 @Column(name = "passed")

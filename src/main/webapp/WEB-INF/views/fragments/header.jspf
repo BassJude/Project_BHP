@@ -1,0 +1,21 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<header>
+
+    <h1 class="logo">Szkolenia BHP</h1>
+
+    <nav id="topnav">
+        <ul class="menu">
+            <li><a href="#">Strona główna</a></li>
+            <li><a href="#">Materiały szkoleniowe</a></li>
+            <li><a href="#">Rejestracja</a></li>
+            <li><a href="#">Logowanie</a></li>
+            <li><a href="#">Kontakt</a></li>
+
+        </ul>
+    </nav>
+
+</header>
+<div id="login">Witaj <c:out value="${loggedUser.firstName}"
+
+                             default="użytkowniku"></c:out>  <a class="nav-link color-header" href="/logout">wyloguj</a></div>

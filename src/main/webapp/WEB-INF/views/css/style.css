@@ -1,7 +1,178 @@
-body {
-    background-color: #349e23;
+body
+{
+    margin: 0;
+    background-color: #2F3336;
+    color: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
 }
 
 .error {
     color:red;
+}
+
+#container
+{
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+h1.logo
+{
+    font-size: 44px;
+    font-weight: 700;
+    /*color: #ddd;*/
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+#login
+{
+    height: 30px;
+}
+
+.menu
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+    min-height: 38px; /*  minimalna wysokosc  */
+    line-height: 200%;    /* wyrowanie w pionie  */
+}
+
+.menu > li   /*  menu ale tylko list item */
+{
+    display: inline-block;   /* kolejne li w jednej lini  */
+    padding-left: 20px;   /*  z lewej */
+    padding-right: 20px;   /*   */
+    border-right: 1px dashed #0a2b42;   /*  pionowy separator, jednopikselowa przerywana linia  */
+}
+
+.menu > li:first-child   /*   dzieki temu bedzie linia rowniez przed napisem strona glowna, to co tu wpiszemy dotyczy tylko pierwszego li na liscie*/
+{
+    border-left: 1px dashed #0a2b42;
+}
+
+#topnav
+{
+    background-color: #1c74b2;
+    text-align: center;
+}
+
+.menu a
+{
+    color: #fff;
+    text-decoration: none;
+}
+.menu a:hover  /* po najechaniu  */
+{
+    color: #0a2b42;
+}
+
+#sidebar
+{
+    /*background-color:#D3D3D3;*/
+
+    float: left;
+    width: 200px;
+    min-height: 600px;
+    padding:20px;
+    background-color: #1c74b2;
+    text-align: center;
+    font-size: 18px;
+    border-right: 2px dotted #666666;
+
+}
+#content
+{
+    float: left;
+    padding: 20px;
+    width: 718px;
+    background-color: #dedede;
+    min-height: 600px;
+    text-align: justify;
+}
+
+.bigtitle
+{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+footer
+{
+    margin-top: 30px;
+}
+
+.socials
+{
+    width:100%;
+    text-align: center;
+    background-color: #191d21;
+}
+
+.socialdivs
+{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.fb
+{
+    width: 250px;
+    height: 100px;
+    float:left;
+}
+
+.fb:hover
+{
+    background-color: #4668b3;
+}
+
+.yt
+{
+    width: 250px;
+    height: 100px;
+    float:left;
+}
+
+.yt:hover
+{
+    background-color: #d94348;
+}
+
+.tw
+{
+    width: 250px;
+    height: 100px;
+    float:left;
+}
+
+.tw:hover
+{
+    background-color: #3095d3;
+}
+
+.gplus
+{
+    width: 250px;
+    height: 100px;
+    float:left;
+}
+
+.gplus:hover
+{
+    background-color: #d95333;
+}
+
+.info
+{
+    text-align: center;
 }
