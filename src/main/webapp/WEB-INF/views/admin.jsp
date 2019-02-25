@@ -7,7 +7,7 @@
 
 <div id="container">
     <%@ include file="fragments/header.jspf" %>
-    <%@ include file="fragments/sidebar.jspf" %>
+    <%@ include file="fragments/sidebarAdmin.jspf" %>
 
     <div id="content">
 <span>
@@ -25,7 +25,7 @@
     </div>
 
     <div style="clear:both;"></div>
-<%@ include file="fragments/footer.jspf" %>
+    <%@ include file="fragments/footer.jspf" %>
 
 </div>
 </body>

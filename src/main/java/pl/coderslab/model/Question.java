@@ -1,8 +1,10 @@
 package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -36,7 +38,8 @@ public class Question {
     private String answer4;
 
     @Column(length = 5)
-    @NotBlank
+    @NotEmpty(message = "Wybierz odpowiedź")
+    @NotNull(message = "Wybierz odpowiedź")
     @Size(max=100, message = "Wybierz jedną odpowiedź")
     private String good_answer;
 

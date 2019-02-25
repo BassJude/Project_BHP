@@ -14,6 +14,7 @@ import pl.coderslab.validator.EditValidator;
 import pl.coderslab.validator.RegistrationValidator;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,27 +35,21 @@ public class AdminController {
         return userService.findAll();
     }
 
+    @RequestMapping("")
+    public String home(Model model) {
+
+        questionService.startSetting(model);
+
+
+        return "/admin";
+    }
+
 
     @RequestMapping("/allUsers")
     public String all() {
         return "admin/allUsers";
     }
 
-    // add user
-    @GetMapping("/addUser")
-    public String editUser(Model model) {
-        model.addAttribute("user", new User());
-        return "/admin/addEditUser";
-    }
-
-    @PostMapping("/addUser")
-    public String addUser(@Validated(RegistrationValidator.class) User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "admin/addEditUser";
-        }
-        userService.save(user);
-        return "redirect:/admin/allUsers";
-    }
 
     //edit user
     @GetMapping("/editUser/{id}")
@@ -74,14 +69,14 @@ public class AdminController {
         user.setPassword(userToSave.getPassword());
 
         userService.save(user);
-        return "redirect:/admin/allUser";
+        return "redirect:/admin/allUsers";
     }
 
     // delete user
     @RequestMapping("deleteUser/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
-        return "redirect:/";
+        return "redirect:/admin/allUsers";
     }
 
 ////////////// questions /////////////////////
@@ -90,6 +85,17 @@ public class AdminController {
     public List<Question> getQuestions(Model model) {
         return questionService.findAll();
     }
+
+    @ModelAttribute("abcd")
+    public List<String> forSelect() {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("A");
+        stringList.add("B");
+        stringList.add("C");
+        stringList.add("D");
+        return stringList;
+    }
+
 
     @RequestMapping("/allQuestions")
     public String allQuestions() {

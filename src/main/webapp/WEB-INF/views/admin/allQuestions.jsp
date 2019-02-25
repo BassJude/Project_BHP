@@ -11,7 +11,7 @@
 <%@ include file="../fragments/head.jspf" %>
 <body>
 <%@ include file="../fragments/header.jspf" %>
-<%@ include file="../fragments/sidebar.jspf" %>
+<%@ include file="../fragments/sidebarAdmin.jspf" %>
 
 <h1>Wszystkie pytania</h1>
 
@@ -41,8 +41,8 @@
             <td>${question.answer4}</td>
             <td>${question.good_answer}</td>
 
-            <td><a href="/questions/edit/${question.id}">Edytuj pytanie</a></td>
-            <td><a href="/questions/delete/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+            <td><a href="/admin/editQuestion/${question.id}">Edytuj pytanie</a></td>
+            <td><a href="/admin/deleteQuestion/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                 pytanie</a></td>
 
 
@@ -55,7 +55,7 @@
 
 </table>
 <br><br>
-<a href="/questions/add">Dodaj pytanie</a>
+<a href="/admin/addQuestion">Dodaj pytanie</a>
 <%@ include file="../fragments/footer.jspf" %>
 
 </body>

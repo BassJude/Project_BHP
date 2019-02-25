@@ -15,7 +15,7 @@ public class HomeController {
     @Autowired
     private QuestionService questionService;
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String home(Model model) {
 
         questionService.startSetting(model);

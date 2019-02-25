@@ -6,11 +6,11 @@
 
     <nav id="topnav">
         <ul class="menu">
-            <li><a href="#">Strona główna</a></li>
-            <li><a href="#">Materiały szkoleniowe</a></li>
-            <li><a href="#">Rejestracja</a></li>
-            <li><a href="#">Logowanie</a></li>
-            <li><a href="#">Kontakt</a></li>
+            <li><a href="/">Strona główna</a></li>
+            <li><a href="">Materiały szkoleniowe</a></li>
+            <li><a href="users/registration">Rejestracja</a></li>
+            <li><a href="">Logowanie</a></li>
+            <li><a href="">Kontakt</a></li>
 
         </ul>
     </nav>

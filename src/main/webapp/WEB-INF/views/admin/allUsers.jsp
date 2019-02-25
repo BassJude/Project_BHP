@@ -7,7 +7,7 @@
 
 <div>
     <%@ include file="../fragments/header.jspf" %>
-    <%@ include file="../fragments/sidebar.jspf" %>
+    <%@ include file="../fragments/sidebarAdmin.jspf" %>
 
 
     <h1>Lista użytkowników</h1>
@@ -49,8 +49,8 @@
                 <td>${user.passedEgzam}</td>
                 <td>${user.superUser}</td>
 
-                <td><a href="/users/edit/${user.id}">Edytuj pytanie</a></td>
-                <td><a href="/users/delete/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+                <td><a href="/admin/editUser/${user.id}">Edytuj pytanie</a></td>
+                <td><a href="/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                     pytanie</a></td>
 
 
@@ -62,8 +62,7 @@
 
 
     </table>
-    <br><br>
-    <a href="/users/add">Dodaj Użytkownika</a>
+
 
 
 

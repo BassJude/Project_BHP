@@ -44,7 +44,7 @@ public class UserController {
         userService.save(user);
         model.addAttribute("changes", true);
         model.addAttribute("message", "Profil zaktualizowany");
-        return "redirect:/";
+        return "/home";
     }
 
        // registration user
@@ -70,7 +70,7 @@ public class UserController {
         userService.save(user);
         model.addAttribute("registration", true);
         model.addAttribute("message", "Dziękujemy za rejestrację. Teraz możesz się zalogować.");
-        return "redirect:/";
+        return "/home";
     }
 
 
