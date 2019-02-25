@@ -3,6 +3,7 @@ package pl.coderslab.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import pl.coderslab.validator.EditValidator;
+import pl.coderslab.validator.NoneValidator;
 import pl.coderslab.validator.RegistrationValidator;
 
 import javax.persistence.*;
@@ -19,12 +20,17 @@ public class User {
     private Long id;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class},message = "Podaj tytuł")
+    @NotBlank(groups={RegistrationValidator.class},message = "Podaj login")
     private String login;
 
     @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków",groups = RegistrationValidator.class)
     @NotBlank(groups = RegistrationValidator.class)
     private String password;
+
+    @Transient
+    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków",groups = RegistrationValidator.class)
+    @NotBlank(groups = RegistrationValidator.class)
+    private String password2;
 
     @Column(length = 100)
     @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
@@ -159,4 +165,11 @@ public class User {
         this.superUser = superUser;
     }
 
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
 }

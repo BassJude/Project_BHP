@@ -10,6 +10,8 @@
 <html>
 <%@ include file="../fragments/head.jspf" %>
 <body>
+<%@ include file="../fragments/header.jspf" %>
+<%@ include file="../fragments/sidebar.jspf" %>
 
 <h1>Dodaj pytanie</h1>
 
@@ -45,7 +47,7 @@
     </form:form>
 
 </div>
-
+<%@ include file="../fragments/footer.jspf" %>
 
 </body>
 </html>

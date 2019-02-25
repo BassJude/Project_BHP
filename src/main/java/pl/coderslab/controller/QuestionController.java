@@ -39,49 +39,6 @@ public class QuestionController {
         return stringList;
     }
 
-    @RequestMapping("/all")
-    public String all() {
-        return "questions/all";
-    }
-
-    // add question
-    @GetMapping("add")
-    public String editQuestion(Model model) {
-        model.addAttribute("question", new Question());
-        return "questions/addEdit";
-    }
-
-    @PostMapping("add")
-    public String addQuestion(@Valid Question question, BindingResult result) {
-        if (result.hasErrors()) {
-            return "questions/addEdit";
-        }
-        questionService.save(question);
-        return "redirect:/questions/all";
-    }
-
-    //edit question
-    @GetMapping("/edit/{id}")
-    public String editQuestion(Model model, @PathVariable Long id) {
-        model.addAttribute("question", questionService.findQuestionById(id));
-        return "questions/addEdit";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String saveQuestion(@Valid Question question, BindingResult result) {
-        if (result.hasErrors()) {
-            return "questions/addEdit";
-        }
-        questionService.update(question);
-        return "redirect:/questions/all";
-    }
-
-    // delete question
-    @RequestMapping("delete/{id}")
-    public String deleteQuestion(@PathVariable Long id) {
-        questionService.deleteQuestionById(id);
-        return "redirect:/questions/all";
-    }
 
     //test
     @RequestMapping("/test/{number}")

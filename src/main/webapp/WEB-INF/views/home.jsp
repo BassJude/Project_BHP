@@ -9,7 +9,13 @@
     <%@ include file="fragments/sidebar.jspf" %>
 
     <div id="content">
-
+<span>
+        <c:if test="${registration==true}">
+            ${message}
+        </c:if></span>
+        <c:if test="${changes==true}">
+            ${message}
+        </c:if>
 
 
     </div>

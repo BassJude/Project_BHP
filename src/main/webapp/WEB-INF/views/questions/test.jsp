@@ -1,37 +1,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: adam
-  Date: 24.02.19
-  Time: 18:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
+
+<!DOCTYPE html>
+<html lang="pl">
+<%@ include file="../fragments/head.jspf" %>
 <body>
 
-<p>Pytanie numer ${number+1}, ilość wszystkich pytań: ${size}.</p>
-<form action="/questions/test/${number+1}" method="post">
+<div id="container">
+    <%@ include file="../fragments/header.jspf" %>
+    <%@ include file="../fragments/sidebar.jspf" %>
+
+    <div id="content">
 
 
-<%--<c:forEach items="question" var="q">--%>
-    <div>${question.question}</div>
-    <div><input type="radio" name="answer" value="A">${question.answer1}</div>
-    <div><input type="radio" name="answer" value="B">${question.answer2}</div>
-    <div><input type="radio" name="answer" value="C">${question.answer3}</div>
-    <div><input type="radio" name="answer" value="D">${question.answer4}</div>
-    <div><input type="submit" value="Zatwiedź"></div>
+        <p>Pytanie numer ${number+1}, ilość wszystkich pytań: ${size}.</p>
+        <form action="/questions/test/${number+1}" method="post">
+
+            <div>${question.question}</div>
+            <div><input type="radio" name="answer" value="A">${question.answer1}</div>
+            <div><input type="radio" name="answer" value="B">${question.answer2}</div>
+            <div><input type="radio" name="answer" value="C">${question.answer3}</div>
+            <div><input type="radio" name="answer" value="D">${question.answer4}</div>
+            <div><input type="submit" value="Zatwiedź"></div>
+
+        </form>
 
 
+    </div>
 
-<%--</c:forEach>--%>
+    <div style="clear:both;"></div>
+    <%@ include file="../fragments/footer.jspf" %>
 
-</form>
-
-
+</div>
 </body>
 </html>

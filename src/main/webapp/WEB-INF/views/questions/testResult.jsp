@@ -1,19 +1,28 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: adam
-  Date: 24.02.19
-  Time: 19:57
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
+<!DOCTYPE html>
+<html lang="pl">
+<%@ include file="../fragments/head.jspf" %>
 <body>
 
-<h1>Wynik Twojego testu</h1>
-<p>Twój wynik : ${points}</p>
+<div id="container">
+    <%@ include file="../fragments/header.jspf" %>
+    <%@ include file="../fragments/sidebar.jspf" %>
 
+    <div id="content">
+
+        <h1>Wyniki testu:</h1>
+        <p>Ilość poprawnych odpowiedzi : ${points}</p>
+        <p>Egzamin  .....</p>
+        <div>-------------------------------------</div>
+        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="/questions/test/0">Zacznij test</a></p>
+
+
+    </div>
+
+    <div style="clear:both;"></div>
+    <%@ include file="../fragments/footer.jspf" %>
+
+</div>
 </body>
 </html>

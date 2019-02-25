@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.User;
 import pl.coderslab.service.UserService;
+import pl.coderslab.validator.EditValidator;
+import pl.coderslab.validator.RegistrationValidator;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,39 +19,12 @@ import java.util.List;
 public class UserController {
 
 
-
     @Autowired
     private UserService userService;
 
-    @ModelAttribute("users")
-    public List<User> getUsers() {
-        return userService.findAll();
-    }
 
 
-
-    @RequestMapping("/all")
-    public String all() {
-        return "users/all";
-    }
-
-    // add user
-    @GetMapping("add")
-    public String editUser(Model model) {
-        model.addAttribute("user", new User());
-        return "users/addEdit";
-    }
-
-    @PostMapping("add")
-    public String addUser(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "users/addEdit";
-        }
-        userService.save(user);
-        return "redirect:/users/all";
-    }
-
-    //edit question
+    //edit user
     @GetMapping("/edit/{id}")
     public String editUser(Model model, @PathVariable Long id) {
         model.addAttribute("user", userService.findUserById(id));
@@ -56,22 +32,46 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String saveUser(@Valid User user, BindingResult result) {
+    public String saveUser(@Validated(EditValidator.class) User user, BindingResult result, @PathVariable Long id,
+                           Model model) {
         if (result.hasErrors()) {
             return "users/addEdit";
         }
+        User userToSave = userService.findUserById(id);
+        user.setLogin(userToSave.getLogin());
+        user.setPassword(userToSave.getPassword());
+
         userService.save(user);
-        return "redirect:/users/all";
+        model.addAttribute("changes", true);
+        model.addAttribute("message", "Profil zaktualizowany");
+        return "redirect:/";
     }
 
-    // delete question
-    @RequestMapping("delete/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        userService.deleteById(id);
-        return "redirect:/users/all";
+       // registration user
+    @GetMapping("/registration")
+    public String registrationUser(Model model) {
+        model.addAttribute("user", new User());
+        return "users/registration";
     }
 
+    @PostMapping("/registration")
+    public String registrationUser(@Validated(RegistrationValidator.class) User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "users/registration";
+        }
+        String check = userService.checkRegistration(user);
+        if (!"OK".equals(check)) {
+            model.addAttribute("invalid", true);
+            model.addAttribute("message", check);
+            return "users/registration";
+        }
 
+
+        userService.save(user);
+        model.addAttribute("registration", true);
+        model.addAttribute("message", "Dziękujemy za rejestrację. Teraz możesz się zalogować.");
+        return "redirect:/";
+    }
 
 
 }

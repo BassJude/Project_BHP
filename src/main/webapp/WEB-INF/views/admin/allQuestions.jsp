@@ -10,6 +10,8 @@
 <html>
 <%@ include file="../fragments/head.jspf" %>
 <body>
+<%@ include file="../fragments/header.jspf" %>
+<%@ include file="../fragments/sidebar.jspf" %>
 
 <h1>Wszystkie pytania</h1>
 
@@ -54,6 +56,7 @@
 </table>
 <br><br>
 <a href="/questions/add">Dodaj pytanie</a>
+<%@ include file="../fragments/footer.jspf" %>
 
 </body>
 </html>

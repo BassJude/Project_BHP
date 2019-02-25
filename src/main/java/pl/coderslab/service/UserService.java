@@ -37,4 +37,16 @@ public class UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    //registration
+    public String checkRegistration(User user) {
+        long value = userRepository.countByLogin(user.getLogin());
+        if (value != 0) {
+            return "Login nie jest unikatowy, podaj inny login !";
+        }
+        if (!user.getPassword().equals(user.getPassword2())) {
+            return "Hasła muszą być takie same";
+        }
+        return "OK";
+    }
 }

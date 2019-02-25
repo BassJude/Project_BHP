@@ -9,6 +9,8 @@ body
 
 .error {
     color:red;
+
+
 }
 
 #container
@@ -96,6 +98,7 @@ h1.logo
     background-color: #dedede;
     min-height: 600px;
     text-align: justify;
+    color: #0a2b42;
 }
 
 .bigtitle
