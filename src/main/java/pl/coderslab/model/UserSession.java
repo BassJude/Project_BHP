@@ -11,17 +11,31 @@ import java.util.ArrayList;
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserSession {
 
+private User userInSession;
 
+private boolean loggedUser;
 
-//    List<CartItem> cartItems =new ArrayList<>();
-//
-//    public void addToCart(CartItem cartItem) {
-//        cartItems.add((cartItem));
-//    }
-//
-//    public List<CartItem> getCartItems() {
-//        return cartItems;
-//    }
+    public User getUserInSession() {
+        return userInSession;
+    }
 
+    public void setUserInSession(User userInSession) {
+        this.userInSession = userInSession;
+    }
 
+    public boolean isLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(boolean loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    @Override
+    public String toString() {
+        return "UserSession{" +
+                "userInSession=" + userInSession +
+                ", loggedUser=" + loggedUser +
+                '}';
+    }
 }

@@ -172,4 +172,23 @@ public class User {
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", password2='" + password2 + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", homeNumber='" + homeNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", passedEgzam=" + passedEgzam +
+                ", lastTestTime=" + lastTestTime +
+                ", superUser=" + superUser +
+                '}';
+    }
 }

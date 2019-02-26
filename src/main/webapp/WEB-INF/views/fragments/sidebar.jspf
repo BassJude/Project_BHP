@@ -6,7 +6,21 @@
     <div class="optionL">3.Wykonaj test</div>
     <div class="optionL">-------------</div>
 
-    <div class="optionL"><a href="/questions/test/0">Zacznij test</a></div>
-    <div class="optionL"><a href="/users/registration">Rejestracja</a></div>
+    <div class="optionL buttonTest"><a href="/questions/test">Zacznij test</a></div>
+    <div style="margin-bottom: 30px" class="optionL"><a href="/users/registration">Rejestracja</a></div>
+    <div style="margin-bottom: 30px" class="optionL">
+        <c:if test="${loggedUser==true}">
+            <a href="/users/edit">Edycja Profilu</a>
+        </c:if>
+
+
+    </div>
+
+    <div class="optionL">
+        <c:if test="${loggedUser==true}">
+            <a href="/users/status">Status kursu</a>
+        </c:if>
+
+    </div>
 
 </div>

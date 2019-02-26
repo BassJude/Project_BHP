@@ -8,14 +8,37 @@
         <ul class="menu">
             <li><a href="/">Strona główna</a></li>
             <li><a href="">Materiały szkoleniowe</a></li>
-            <li><a href="users/registration">Rejestracja</a></li>
-            <li><a href="">Logowanie</a></li>
+            <li><a href="/users/registration">Rejestracja</a></li>
+            <li>
+                <c:choose>
+                    <c:when test="${loggedUser==true}">
+                        <a href="/users/logout">Wyloguj</a>
+                    </c:when>
+
+                    <c:otherwise>
+                        <a href="/users/login">Logowanie</a>
+                    </c:otherwise>
+                </c:choose>
+
+
+            </li>
             <li><a href="">Kontakt</a></li>
 
         </ul>
     </nav>
 
 </header>
-<div id="login">Witaj <c:out value="${loggedUser.firstName}"
+<div id="loginH">Witaj <c:out value="${userSession.userInSession.firstName}"
 
-                             default="użytkowniku"></c:out>  <a class="nav-link color-header" href="/logout">wyloguj</a></div>
+                             default="użytkowniku"></c:out> |
+    <c:choose>
+        <c:when test="${loggedUser==true}">
+            <a style="color: #309125" href="/users/logout">wyloguj</a>
+        </c:when>
+
+        <c:otherwise>
+            <a style="color: #309125" href="/users/login">Logowanie</a>
+        </c:otherwise>
+    </c:choose>
+
+</div>

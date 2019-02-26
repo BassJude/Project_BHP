@@ -63,7 +63,7 @@ public class AdminController {
         if (result.hasErrors()) {
             return "admin/addEditUser";
         }
-        // TODO mozna zmienić, potem....
+
         User userToSave = userService.findUserById(id);
         user.setLogin(userToSave.getLogin());
         user.setPassword(userToSave.getPassword());

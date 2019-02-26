@@ -32,10 +32,12 @@ h1.logo
     margin-top: 50px;
     margin-bottom: 40px;
 }
-#login
+#loginH
 {
     height: 30px;
+    text-align: right;
 }
+
 
 .menu
 {
@@ -88,6 +90,20 @@ h1.logo
     text-align: center;
     font-size: 18px;
     border-right: 2px dotted #666666;
+
+}
+.buttonTest
+{
+    background-color: #139150;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 30px;
+}
+.buttonTest:hover
+{
+    background-color: #309125;
 
 }
 #content

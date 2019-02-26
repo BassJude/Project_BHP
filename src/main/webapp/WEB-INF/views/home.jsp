@@ -10,22 +10,32 @@
     <%@ include file="fragments/sidebar.jspf" %>
 
     <div id="content">
+
 <span>
-        <c:if test="${registration==true}">
-            ${message}
-        </c:if>
-            <span>
 
-        <c:if test="${changes==true}">
-            ${message}
-        </c:if></span>
+            <c:choose>
+                <c:when test="${registration==true}">
+                    ${message}
+                </c:when>
 
+                <c:when test="${changes==true}">
+                    ${message}
+                </c:when>
+                <c:otherwise>
+                    <h1>Witamy na kursie online</h1>
+                    <p>Zapraszamy do zapoznania się z instrukcjami dotyczącymi zaliczenia kursu.</p>
+                </c:otherwise>
+            </c:choose>
+
+
+
+            </span>
 
 
     </div>
 
     <div style="clear:both;"></div>
-<%@ include file="fragments/footer.jspf" %>
+    <%@ include file="fragments/footer.jspf" %>
 
 </div>
 </body>

@@ -13,9 +13,10 @@
 
         <h1>Wyniki testu:</h1>
         <p>Ilość poprawnych odpowiedzi : ${points}</p>
-        <p>Egzamin  .....</p>
+        <p>Ilość wszystkich pytań : ${size}</p>
+        <p>Egzamin  ${evaluation}</p>
         <div>-------------------------------------</div>
-        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="/questions/test/0">Zacznij test</a></p>
+        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="/questions/test">Zacznij test</a></p>
 
 
     </div>

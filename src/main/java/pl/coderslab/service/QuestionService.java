@@ -5,16 +5,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.model.Question;
+import pl.coderslab.model.User;
+import pl.coderslab.model.UserSession;
 import pl.coderslab.repository.QuestionRepository;
+import pl.coderslab.repository.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@SessionAttributes({"questionNumber", "size","points","goodAnswers"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers"})
 public class QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserSession userSession;
 
     public void save(Question question) {
         questionRepository.save(question);
@@ -45,24 +53,37 @@ public class QuestionService {
         return questionList.get(number);
     }
 
-// starting settings
-    public void startSetting(Model model){
+    // starting settings
+    public void startSetting(Model model) {
         // how many questions we have
         List<Question> questionList = questionRepository.findAll();
-        int size =questionList.size();
-        model.addAttribute("size",size);
+        int size = questionList.size();
+        model.addAttribute("size", size);
 
         // table of answers
         String[] goodAnswer = new String[size];
-        for(int i=0; i<size; i++) {
-            goodAnswer[i]=questionList.get(i).getGood_answer();
+        for (int i = 0; i < size; i++) {
+            goodAnswer[i] = questionList.get(i).getGood_answer();
         }
         model.addAttribute("goodAnswers", goodAnswer);
-        int points=0;
+        int points = 0;
         model.addAttribute("points", points);
     }
 
+    public String evaluation(int points, int numberOfQuestions) {
 
+        if (points < (numberOfQuestions / 2)) {
+            return "niezaliczony";
+        } else {
+            LocalDateTime date = LocalDateTime.now();
+            userSession.getUserInSession().setLastTestTime(date);
+            userSession.getUserInSession().setPassedEgzam(true);
+            User userToSave = userSession.getUserInSession();
+            userRepository.save(userToSave);
+
+            return "zaliczony";
+        }
+    }
 
 
 }
