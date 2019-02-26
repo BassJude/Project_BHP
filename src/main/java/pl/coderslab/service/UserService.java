@@ -51,12 +51,12 @@ public class UserService {
         if (value != 0) {
             return "Login nie jest unikatowy, podaj inny login !";
         }
-        if (!user.getPassword().equals(user.getPassword2())) {
-            return "Hasła muszą być takie same";
-        }
         String login = user.getLogin();
         if (login.length() != login.replaceAll(" ", "").length()) {
             return "Login nie może mieć spacji";
+        }
+        if (!user.getPassword().equals(user.getPassword2())) {
+            return "Hasła muszą być takie same";
         }
         return "registrationSucces";
     }
@@ -95,10 +95,8 @@ public class UserService {
 
     // save user in session
     public void sessionStart(String login) {
-//        UserSession userSession = new UserSession();
         userSession.setUserInSession(userRepository.findUserByLogin(login));
 // TODO testy
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+userRepository.findUserByLogin(login));
         userSession.setLoggedUser(true);
     }
     // edit in session
@@ -107,11 +105,6 @@ public class UserService {
     }
 
 
-    public String dateToString(LocalDateTime date) {
-
-        return "";
-
-    }
 
 
 }

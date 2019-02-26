@@ -73,7 +73,7 @@ public class AdminController {
     }
 
     // delete user
-    @RequestMapping("deleteUser/{id}")
+    @RequestMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         return "redirect:/admin/allUsers";
@@ -103,13 +103,13 @@ public class AdminController {
     }
 
     // add question
-    @GetMapping("addQuestion")
+    @GetMapping("/addQuestion")
     public String editQuestion(Model model) {
         model.addAttribute("question", new Question());
         return "admin/addEditQuestion";
     }
 
-    @PostMapping("addQuestion")
+    @PostMapping("/addQuestion")
     public String addQuestion(@Valid Question question, BindingResult result) {
         if (result.hasErrors()) {
             return "admin/addEditQuestion";
@@ -136,7 +136,7 @@ public class AdminController {
     }
 
     // delete question
-    @RequestMapping("deleteQuestion/{id}")
+    @RequestMapping("/deleteQuestion/{id}")
     public String deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestionById(id);
         return "redirect:/admin/allQuestions";

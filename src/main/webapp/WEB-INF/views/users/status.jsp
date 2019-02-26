@@ -11,19 +11,19 @@
 
     <div id="content">
 <h1>Status egzaminu</h1>
-        <p>Czy kurs został zaliczony ->
+        <p>
             <c:choose>
                 <c:when test="${status==true}">
-                    Kurs zaliczony.
+                  Egzamin zaliczony.
                 </c:when>
 
 
                 <c:otherwise>
-                Kurs niezaliczony.
+               Egzamin niezaliczony
                 </c:otherwise>
             </c:choose>
         </p>
-<p>Data zaliczenia kursu -> <c:out value="${time}" default="brak" /> </p>
+<p>Data zaliczenia egzaminu -> <c:out value="${time}" default="brak" /> </p>
 
 
     </div>

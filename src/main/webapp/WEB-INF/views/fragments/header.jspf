@@ -7,7 +7,7 @@
     <nav id="topnav">
         <ul class="menu">
             <li><a href="/">Strona główna</a></li>
-            <li><a href="">Materiały szkoleniowe</a></li>
+            <li><a href="/course/1">Materiały szkoleniowe</a></li>
             <li><a href="/users/registration">Rejestracja</a></li>
             <li>
                 <c:choose>

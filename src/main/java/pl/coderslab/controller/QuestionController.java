@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/questions")
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers","loggedUser"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser"})
 public class QuestionController {
 
 
@@ -40,15 +40,13 @@ public class QuestionController {
     }
 
 
-
-
     //test
 
     // points = 0
     @RequestMapping("/test")
     public String zeroPoints(HttpSession session, Model model) {
-        int points = (int)session.getAttribute("points");
-        points=0;
+        // int points = (int)session.getAttribute("points");
+        int points = 0;
         model.addAttribute("points", points);
         return "redirect:/questions/test/0";
     }
@@ -69,10 +67,10 @@ public class QuestionController {
                 model.addAttribute("points", points);
 
             }
-           }
+        }
 
         if (number < size) {
-            model.addAttribute("question", questionService.getNumberQuestionForTest(number));
+            model.addAttribute("question", questionService.getNumberQuestionForTest(number)); // lista pytan jest od index 0
             model.addAttribute("questionNumber", number);
 
 
@@ -83,16 +81,14 @@ public class QuestionController {
     }
 
     @RequestMapping("/testResult")
-    public String finishTest( HttpSession session,Model model){
-        int points =(int) session.getAttribute("points");
+    public String finishTest(HttpSession session, Model model) {
+        int points = (int) session.getAttribute("points");
         int size = (int) session.getAttribute("size");
         String evaluation = questionService.evaluation(points, size);
-        model.addAttribute("evaluation",evaluation);
+        model.addAttribute("evaluation", evaluation);
 
         return "/questions/testResult";
     }
-
-
 
 
 }

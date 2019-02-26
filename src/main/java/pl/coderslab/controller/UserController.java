@@ -89,17 +89,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(Model model, HttpServletRequest request, HttpSession session) {
+    public String login(Model model, HttpServletRequest request) {
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
         String check = userService.checkLogin(login, pass, model);
         if (!"loginSucces".equals(check)) {
-            request.setAttribute("login", login);
+            request.setAttribute("login", login); //, by nie musieć wpisywać znowu
             request.setAttribute("pass", pass);
             return "users/login";
         }
         model.addAttribute("loggedUser", true);
-        userService.sessionStart(login);
+        userService.sessionStart(login); /////
         model.addAttribute("registration", true);
         model.addAttribute("message", "Zalogowałeś się. Zapoznaj się z materiałami szkoleniowymi, wykonaj test.");
         return "/home";

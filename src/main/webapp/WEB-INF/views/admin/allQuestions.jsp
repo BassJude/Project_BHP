@@ -41,8 +41,8 @@
             <td>${question.answer4}</td>
             <td>${question.good_answer}</td>
 
-            <td><a href="/admin/editQuestion/${question.id}">Edytuj pytanie</a></td>
-            <td><a href="/admin/deleteQuestion/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+            <td><a style="color: #309125" href="/admin/editQuestion/${question.id}">Edytuj pytanie</a></td>
+            <td><a style="color: #309125" href="/admin/deleteQuestion/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                 pytanie</a></td>
 
 
@@ -55,7 +55,7 @@
 
 </table>
 <br><br>
-<a href="/admin/addQuestion">Dodaj pytanie</a>
+<a style="color: #309125" href="/admin/addQuestion">Dodaj pytanie</a>
 <%@ include file="../fragments/footer.jspf" %>
 
 </body>

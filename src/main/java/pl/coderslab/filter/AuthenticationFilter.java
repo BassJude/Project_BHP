@@ -16,18 +16,18 @@ public class AuthenticationFilter implements Filter {
         chain.doFilter(req, resp);
 
 
-
+//
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
+//
+//        HttpSession session= request.getSession(false);
+//        boolean check=(boolean) session.getAttribute("loggedUser");
+//        if(check!=true) {
+//            response.sendRedirect(request.getContextPath() + "/users/login");
+//
+//        }
 
-        HttpSession session= request.getSession(false);
-        boolean check=(boolean) session.getAttribute("loggedUser");
-        if(check!=true) {
-            response.sendRedirect(request.getContextPath() + "/users/login");
-
-        }
-
-        //        HttpSession session = request.getSession(false);
+//                HttpSession session = request.getSession(false);
 //        if (session == null || session.getAttribute("loggedUser") == null) {
 //            response.sendRedirect(request.getContextPath() + "/users/login");
 //        } else chain.doFilter(request, response);

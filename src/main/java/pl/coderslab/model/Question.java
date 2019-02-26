@@ -20,27 +20,27 @@ public class Question {
     @Size(max=255, message = "Treść pytania nie moze mieć więcej niż 255 znaków")
     private String question;
 
-    @Column(length = 100)
+    @Column(length = 255)
     @NotBlank
-    @Size(max=100, message = "Treść odpowiedzi nie moze mieć więcej niż 100 znaków")
+    @Size(max=255, message = "Treść odpowiedzi nie moze mieć więcej niż 255 znaków")
     private String answer1;
-    @Column(length = 100)
+    @Column(length = 255)
     @NotBlank
-    @Size(max=100, message = "Treść odpowiedzi nie moze mieć więcej niż 100 znaków")
+    @Size(max=255, message = "Treść odpowiedzi nie moze mieć więcej niż 255 znaków")
     private String answer2;
-    @Column(length = 100)
+    @Column(length = 300)
     @NotBlank
-    @Size(max=100, message = "Treść odpowiedzi nie moze mieć więcej niż 100 znaków")
+    @Size(max=300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer3;
-    @Column(length = 100)
+    @Column(length = 300)
     @NotBlank
-    @Size(max=100, message = "Treść odpowiedzi nie moze mieć więcej niż 100 znaków")
+    @Size(max=300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer4;
 
     @Column(length = 5)
     @NotEmpty(message = "Wybierz odpowiedź")
     @NotNull(message = "Wybierz odpowiedź")
-    @Size(max=100, message = "Wybierz jedną odpowiedź")
+    @Size(max=5, message = "Wybierz jedną odpowiedź")
     private String good_answer;
 
     public Long getId() {
@@ -98,6 +98,7 @@ public class Question {
     public void setGood_answer(String good_answer) {
         this.good_answer = good_answer;
     }
+
 
     @Override
     public String toString() {

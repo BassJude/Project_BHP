@@ -49,8 +49,8 @@
                 <td>${user.passedEgzam}</td>
                 <td>${user.superUser}</td>
 
-                <td><a href="/admin/editUser/${user.id}">Edytuj pytanie</a></td>
-                <td><a href="/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+                <td><a style="color: #309125" href="/admin/editUser/${user.id}">Edytuj pytanie</a></td>
+                <td><a style="color: #309125" href="/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                     pytanie</a></td>
 
 
