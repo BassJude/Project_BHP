@@ -85,5 +85,11 @@ public class QuestionService {
         }
     }
 
+    // search
+    public List<Question> searchQuestion(String search) {
+        return questionRepository.findAllByQuestionContaining(search);
+    }
+
+
 
 }

@@ -8,15 +8,15 @@
         <ul class="menu">
             <li><a href="/">Strona główna</a></li>
             <li><a href="/course/1">Materiały szkoleniowe</a></li>
-            <li><a href="/users/registration">Rejestracja</a></li>
+            <li><a href="/registration">Rejestracja</a></li>
             <li>
                 <c:choose>
                     <c:when test="${loggedUser==true}">
-                        <a href="/users/logout">Wyloguj</a>
+                        <a href="/logout">Wyloguj</a>
                     </c:when>
 
                     <c:otherwise>
-                        <a href="/users/login">Logowanie</a>
+                        <a href="/login">Logowanie</a>
                     </c:otherwise>
                 </c:choose>
 
@@ -28,16 +28,17 @@
     </nav>
 
 </header>
-<div id="loginH">Witaj <c:out value="${userSession.userInSession.firstName}"
+
+<div id="loginH">Witaj <c:out value="${firstName}"
 
                              default="użytkowniku"></c:out> |
     <c:choose>
         <c:when test="${loggedUser==true}">
-            <a style="color: #309125" href="/users/logout">wyloguj</a>
+            <a style="color: #309125" href="/logout">wyloguj</a>
         </c:when>
 
         <c:otherwise>
-            <a style="color: #309125" href="/users/login">Logowanie</a>
+            <a style="color: #309125" href="/login">Logowanie</a>
         </c:otherwise>
     </c:choose>
 

@@ -8,17 +8,19 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Question;
 import pl.coderslab.model.User;
+import pl.coderslab.model.UserSession;
 import pl.coderslab.service.QuestionService;
 import pl.coderslab.service.UserService;
 import pl.coderslab.validator.EditValidator;
-import pl.coderslab.validator.RegistrationValidator;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping(path = "/admin")
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName"})
 public class AdminController {
 
 
@@ -28,17 +30,21 @@ public class AdminController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private UserSession userSession;
+
     /////////////////// users///////////////////
 
-    @ModelAttribute("users")
-    public List<User> getUsers() {
-        return userService.findAll();
-    }
+//    @ModelAttribute("users")
+//    public List<User> getUsers() {
+//        return userService.findAll();
+//    }
 
     @RequestMapping("")
     public String home(Model model) {
 
         questionService.startSetting(model);
+        model.addAttribute("userSession", userSession);
 
 
         return "/admin";
@@ -46,7 +52,11 @@ public class AdminController {
 
 
     @RequestMapping("/allUsers")
-    public String all() {
+    public String all(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users",users);
+
+        //model.addAttribute("userSession", userSession);
         return "admin/allUsers";
     }
 
@@ -79,12 +89,22 @@ public class AdminController {
         return "redirect:/admin/allUsers";
     }
 
+    // search user
+    @RequestMapping("/search")
+    public String search( @RequestParam(name="search") String search, Model model) {
+
+        List<User> users = userService.searchUser(search);
+        model.addAttribute("users",users);
+        return "admin/allUsers";
+
+    }
+
 ////////////// questions /////////////////////
 
-    @ModelAttribute("questions")
-    public List<Question> getQuestions(Model model) {
-        return questionService.findAll();
-    }
+//    @ModelAttribute("questions")
+//    public List<Question> getQuestions(Model model) {
+//        return questionService.findAll();
+//    }
 
     @ModelAttribute("abcd")
     public List<String> forSelect() {
@@ -98,7 +118,9 @@ public class AdminController {
 
 
     @RequestMapping("/allQuestions")
-    public String allQuestions() {
+    public String allQuestions(Model model) {
+        List<Question> questions = questionService.findAll();
+        model.addAttribute("questions", questions);
         return "admin/allQuestions";
     }
 
@@ -140,6 +162,14 @@ public class AdminController {
     public String deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestionById(id);
         return "redirect:/admin/allQuestions";
+    }
+
+    // search question
+    @RequestMapping("/searchQuestion")
+    public String searchQuestion(Model model,@RequestParam(name="search") String search) {
+        List<Question> questions = questionService.searchQuestion(search);
+        model.addAttribute("questions", questions);
+        return "admin/allQuestions";
     }
 
 

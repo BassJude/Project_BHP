@@ -14,7 +14,7 @@
 <p>
     <a href="/course/${numberImage-1}">Poprzedni</a><span>---------</span><a href="/course/${numberImage+1}">Następny</a>
 </p>
-        <img src="img/${numberImage}.png">
+        <img src="/img/${numberImage}.png">
         
 
 

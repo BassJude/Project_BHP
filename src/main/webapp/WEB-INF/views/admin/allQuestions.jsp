@@ -15,6 +15,12 @@
 
 <h1>Wszystkie pytania</h1>
 
+<h3>Wyszukiwarka pytań</h3>
+<form action="/admin/searchQuestion" method="get">
+    Wpisz szukaną frazę: <input type="text" name="search" placeholder="szukaj">
+    <input type="submit" value="szukaj" >
+</form>
+
 <table border="1">
     <thead>
     <tr>

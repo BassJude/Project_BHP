@@ -7,8 +7,8 @@
     <div class="optionL">-------------</div>
     <div class="optionL"><a href="/admin/allQuestions">Wszystkie pytania</a></div>
     <div class="optionL"><a href="/admin/addQuestion">Dodaj pytanie</a></div>
-
     <div class="optionL"><a href="/admin/allUsers">Wszyscy użytkownicy</a></div>
-
+    <%--optionL--%>
+    <%--sidebar--%>
 
 </div>

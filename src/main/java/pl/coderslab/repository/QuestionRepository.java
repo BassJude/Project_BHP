@@ -13,4 +13,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query("select question from Question question where question.question like %?1 or question.answer1 like %?1")
     List<Question> searchAllLike(String title);
 
+    List<Question> findAllByQuestionContaining(String search);
+
 }

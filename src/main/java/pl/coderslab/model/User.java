@@ -2,8 +2,8 @@ package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import pl.coderslab.utils.BCrypt;
 import pl.coderslab.validator.EditValidator;
-import pl.coderslab.validator.NoneValidator;
 import pl.coderslab.validator.RegistrationValidator;
 
 import javax.persistence.*;
@@ -20,60 +20,61 @@ public class User {
     private Long id;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class},message = "Podaj login")
-    @Size(max =100, message = "Maksymalnie 100 znaków",groups={RegistrationValidator.class})
+    @NotBlank(groups = {RegistrationValidator.class}, message = "Podaj login")
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class})
     private String login;
 
-    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków",groups = RegistrationValidator.class)
+    @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
     @NotBlank(groups = RegistrationValidator.class)
     private String password;
 
     @Transient
-    @Size(min=5, max=30, message = "Hasło musi miec od 5 do 30 znaków",groups = RegistrationValidator.class)
+    @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
     @NotBlank(groups = RegistrationValidator.class)
     private String password2;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
-    @Size(max = 100, message = "Maksymalnie 100 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String firstName;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
-    @Size(max = 100, message = "Maksymalnie 100 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String lastName;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
-    @Size(max = 100, message = "Maksymalnie 100 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String city;
 
     @Column(length = 100)
-    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
-    @Size(max = 100, message = "Maksymalnie 100 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String street;
 
-    @Column(length = 50,name = "number_of_home")
-    @NotBlank(groups={RegistrationValidator.class, EditValidator.class})
-    @Size(max = 50, message = "Maksymalnie 50 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @Column(length = 50, name = "number_of_home")
+    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 50, message = "Maksymalnie 50 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String homeNumber;
 
     @Email(message = "Wprowadź prawidłowy adres email")
-    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email",groups = {RegistrationValidator.class, EditValidator.class})
-    @Size(max = 100, message = "Maksymalnie 100 znaków", groups={RegistrationValidator.class, EditValidator.class})
+    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email", groups = {RegistrationValidator.class, EditValidator.class})
+    @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String email;
 
-@Column(name = "passed")
+    @Column(name = "passed")
     private boolean passedEgzam;
 
-@Column(name = "last_test")
+    @Column(name = "last_test")
     private LocalDateTime lastTestTime;
 
-@Column(name = "admin")
+    @Column(name = "admin")
     private boolean superUser;
 
-
-
+        public void setPasswordHash(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 
     public Long getId() {
         return id;
@@ -186,7 +187,7 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", password2='" + password2 + '\'' +
+
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +

@@ -12,6 +12,12 @@
 
     <h1>Lista użytkowników</h1>
 
+    <h3>Wyszukiwarka użytkowników po nazwiskach</h3>
+    <form action="/admin/search" method="get">
+        Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+        <input type="submit" value="szukaj" >
+    </form>
+
 
     <table border="1">
         <thead>
@@ -67,7 +73,7 @@
 
 
 
-    <div style="clear:both;"></div>
+    <%--<div style="clear:both;"></div>--%>
     <%@ include file="../fragments/footer.jspf" %>
 
 </div>

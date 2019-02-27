@@ -21,7 +21,7 @@
 
             <div style="margin-bottom: 30px">${question.question}</div>
             <c:if test="${number+1==12}">
-                <img width="130" height="129" src="../fragments/piktogram.png">
+                <img width="130" height="129" src="/img/piktogram.png">
 
             </c:if>
 

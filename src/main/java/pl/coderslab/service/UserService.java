@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserSession;
 import pl.coderslab.repository.UserRepository;
+import pl.coderslab.utils.BCrypt;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -85,11 +86,18 @@ public class UserService {
         }
 
         User user = userRepository.findUserByLogin(login);
-        if (!user.getPassword().equals(password)) {
+        if (!BCrypt.checkpw(password, user.getPassword())) {
             model.addAttribute("passInvalid", true);
             model.addAttribute("messagePass", "Podaj prawidłowe hasło");
             return "Podaj prawidłowe hasło";
+
         }
+
+//        if (!user.getPassword().equals(password)) {
+//            model.addAttribute("passInvalid", true);
+//            model.addAttribute("messagePass", "Podaj prawidłowe hasło");
+//            return "Podaj prawidłowe hasło";
+//        }
         return "loginSucces";
     }
 
@@ -102,6 +110,11 @@ public class UserService {
     // edit in session
     public User getUserSession(){
         return userSession.getUserInSession();
+    }
+
+    // search
+    public List<User> searchUser(String search) {
+        return userRepository.findUserByLastNameContaining(search);
     }
 
 
