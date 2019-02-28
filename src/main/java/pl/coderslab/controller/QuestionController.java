@@ -3,53 +3,30 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import pl.coderslab.model.Question;
 import pl.coderslab.service.QuestionService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping(path = "/questions")
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName","admin"})
 public class QuestionController {
 
 
     @Autowired
     private QuestionService questionService;
 
+    @GetMapping("/test")
+    public String beforeStartTest(Model model) {
 
-    @ModelAttribute("/questions")
-    public List<Question> getQuestions(Model model) {
-        return questionService.findAll();
-    }
+        questionService.startSetting(model);
 
-    @ModelAttribute("abcd")
-    public List<String> forSelect() {
-        List<String> stringList = new ArrayList<>();
-        stringList.add("A");
-        stringList.add("B");
-        stringList.add("C");
-        stringList.add("D");
-        return stringList;
-    }
-
-
-    //test
-
-    // points = 0
-    @RequestMapping("/test")
-    public String zeroPoints(HttpSession session, Model model) {
-        // int points = (int)session.getAttribute("points");
-        int points = 0;
-        model.addAttribute("points", points);
-        return "redirect:/questions/test/0";
+        return "forward:/questions/test/0";
     }
 
     @RequestMapping("/test/{number}")
@@ -57,7 +34,7 @@ public class QuestionController {
                             HttpSession session, HttpServletRequest request) {
 
 
-        String answer = request.getParameter("answer");
+        String answer = request.getParameter("answer");  // przy pierwszym wejsciu null
         String[] goodAnswer = (String[]) session.getAttribute("goodAnswers");
         int size = (int) session.getAttribute("size");
 
@@ -71,13 +48,12 @@ public class QuestionController {
         }
 
         if (number < size) {
-            model.addAttribute("question", questionService.getNumberQuestionForTest(number)); // lista pytan jest od index 0
+            model.addAttribute("question", questionService.getNumberQuestionForTest(number)); // , wysylam pytanie, lista pytan jest od index 0
             model.addAttribute("questionNumber", number);
-
 
             return "questions/test";
         } else {
-            return "redirect:/questions/testResult";
+            return "forward:/questions/testResult";
         }
     }
 

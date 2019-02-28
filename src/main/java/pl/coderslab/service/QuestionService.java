@@ -3,7 +3,6 @@ package pl.coderslab.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.coderslab.model.Question;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserSession;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers"})
 public class QuestionService {
 
     @Autowired
@@ -89,7 +87,6 @@ public class QuestionService {
     public List<Question> searchQuestion(String search) {
         return questionRepository.findAllByQuestionContaining(search);
     }
-
 
 
 }

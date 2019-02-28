@@ -8,11 +8,14 @@ import pl.coderslab.model.UserSession;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.utils.BCrypt;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
+
+    private final static String REGEX = "\\W+";
 
     @Autowired
     private UserRepository userRepository;
@@ -20,8 +23,6 @@ public class UserService {
     @Autowired
     private UserSession userSession;
 
-
-    // zapis
     public void save(User user) {
         userRepository.save(user);
     }
@@ -56,6 +57,13 @@ public class UserService {
         if (login.length() != login.replaceAll(" ", "").length()) {
             return "Login nie może mieć spacji";
         }
+        //regex login
+        Pattern pattern = Pattern.compile(REGEX);
+        Matcher matcher = pattern.matcher(login);
+        if (matcher.find() == true) {
+            return "Login może zawierać tylko małe i duże litery, podkreślnik oraz cyfry.";
+        }
+
         if (!user.getPassword().equals(user.getPassword2())) {
             return "Hasła muszą być takie same";
         }
@@ -77,7 +85,7 @@ public class UserService {
         if (userRepository.countByLogin(login) == 0) {
             model.addAttribute("loginInvalid", true);
             model.addAttribute("messageLogin", "Błąd logowania, zły login lub hasło");
-            return "Login niepoprawny lub nie istnieje";
+            return "Błąd logowania, zły login lub hasło";
         }
         if (userRepository.countByLogin(login) > 1) {
             model.addAttribute("loginInvalid", true);
@@ -93,22 +101,17 @@ public class UserService {
 
         }
 
-//        if (!user.getPassword().equals(password)) {
-//            model.addAttribute("passInvalid", true);
-//            model.addAttribute("messagePass", "Podaj prawidłowe hasło");
-//            return "Podaj prawidłowe hasło";
-//        }
         return "loginSucces";
     }
 
     // save user in session
     public void sessionStart(String login) {
         userSession.setUserInSession(userRepository.findUserByLogin(login));
-// TODO testy
         userSession.setLoggedUser(true);
     }
+
     // edit in session
-    public User getUserSession(){
+    public User getUserSession() {
         return userSession.getUserInSession();
     }
 
@@ -116,8 +119,6 @@ public class UserService {
     public List<User> searchUser(String search) {
         return userRepository.findUserByLastNameContaining(search);
     }
-
-
 
 
 }

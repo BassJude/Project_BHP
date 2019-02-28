@@ -72,7 +72,7 @@ public class User {
     @Column(name = "admin")
     private boolean superUser;
 
-        public void setPasswordHash(String password) {
+    public void setPasswordHash(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 

@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter({"/questions/*", "/users/*"})
-public class AuthenticationFilter implements Filter {
+@WebFilter("/admin/*")
+public class AuthenticationFilterAdmin implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-
 
         HttpServletRequest request = (HttpServletRequest) req;
 
@@ -22,7 +21,7 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = request.getSession(false);
 
 
-        boolean loggedIn = (session != null) && (session.getAttribute("loggedUser") != null) && (boolean) session.getAttribute("loggedUser");
+        boolean loggedIn = (session != null) && (session.getAttribute("loggedUser") != null) && (boolean) session.getAttribute("loggedUser") && (session.getAttribute("admin") != null) && (boolean) session.getAttribute("admin");
 
         if (loggedIn) {
             chain.doFilter(request, response);
@@ -30,7 +29,6 @@ public class AuthenticationFilter implements Filter {
             response.sendRedirect("/login");
         }
     }
-
 
     public void init(FilterConfig config) throws ServletException {
 

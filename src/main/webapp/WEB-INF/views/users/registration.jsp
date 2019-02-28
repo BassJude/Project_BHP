@@ -19,10 +19,10 @@
             <div><label class="formAddQuestion"> Podaj login<form:input path="login"/></label>
                 <form:errors path="login" cssClass="error"/></div>
 
-            <div><label class="formAddQuestion"> Podaj hasło: <form:input path="password"/></label>
+            <div><label class="formAddQuestion"> Podaj hasło: <form:password path="password"/></label>
                 <form:errors path="password" cssClass="error"/></div>
 
-            <div><label class="formAddQuestion"> Powtórz hasło<form:input path="password2"/></label>
+            <div><label class="formAddQuestion"> Powtórz hasło<form:password path="password2"/></label>
                 <form:errors path="password2" cssClass="error"/></div>
 
             <div><label class="formAddQuestion">Imię: <form:input path="firstName"/></label>

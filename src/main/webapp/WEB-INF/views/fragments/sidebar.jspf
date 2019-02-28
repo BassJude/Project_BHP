@@ -7,20 +7,20 @@
     <div class="optionL">-------------</div>
 
     <div class="optionL buttonTest"><a href="/questions/test">Start test</a></div>
-    <div style="margin-bottom: 30px" class="optionL"><a href="/users/registration">Rejestracja</a></div>
-    <div style="margin-bottom: 30px" class="optionL">
-        <c:if test="${loggedUser==true}">
+    <div style="margin-bottom: 30px" class="optionL buttonTest"><a href="/registration">Rejestracja</a></div>
+
+    <c:if test="${loggedUser==true}">
+        <div style="margin-bottom: 30px" class="optionL buttonTest">
             <a href="/users/edit">Edycja Profilu</a>
-        </c:if>
+        </div>
+    </c:if>
 
 
-    </div>
-
-    <div class="optionL">
-        <c:if test="${loggedUser==true}">
+    <c:if test="${loggedUser==true}">
+        <div class="optionL buttonTest">
             <a href="/users/status">Status kursu</a>
-        </c:if>
+        </div>
+    </c:if>
 
-    </div>
 
 </div>

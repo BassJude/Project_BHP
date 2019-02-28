@@ -20,29 +20,31 @@
 
     <form:form method="post" modelAttribute="question">
 
-        <div><label class="formAddQuestion"> Wpisz pytanie: <form:textarea rows="5" cols="20" path="question"/></label>
-        <form:errors path="question" cssClass="error" /></div>
-
-        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:input path="answer1"/></label>
-        <form:errors path="answer1" cssClass="error" /></div>
-
-        <div><label class="formAddQuestion">Wpisz odpowiedź B: <form:input path="answer2"/></label>
-        <form:errors path="answer2" cssClass="error" /></div>
-
-        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:input path="answer3"/></label>
-        <form:errors path="answer3" cssClass="error" /></div>
-
-        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:input path="answer4"/></label>
-        <form:errors path="answer4" cssClass="error" /></div>
-
         <div><label class="formAddQuestion">Wybierz prawidłową odpowiedź:
             <form:select path="good_answer"  >
-            <%--<form:option value="0" label="--Wybierz odpowiedź--"/>--%>
-            <form:options items="${abcd}"/>
+                <%--<form:option value="0" label="--Wybierz odpowiedź--"/>--%>
+                <form:options items="${abcd}"/>
             </form:select></label>
-        <form:errors path="good_answer" cssClass="error" /></div>
+            <form:errors path="good_answer" cssClass="error" /> <input type="submit" value="Zapisz"></div>
 
-        <input type="submit" value="Zapisz">
+        <div><label class="formAddQuestion"> Wpisz pytanie: <form:textarea rows="5" cols="80" path="question"/></label>
+        <form:errors path="question" cssClass="error" /></div>
+
+        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:textarea rows="5" cols="80" path="answer1"/></label>
+        <form:errors path="answer1" cssClass="error" /></div>
+
+        <div><label class="formAddQuestion">Wpisz odpowiedź B: <form:textarea rows="5" cols="80" path="answer2"/></label>
+        <form:errors path="answer2" cssClass="error" /></div>
+
+        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:textarea rows="5" cols="80" path="answer3"/></label>
+        <form:errors path="answer3" cssClass="error" /></div>
+
+        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:textarea rows="5" cols="80" path="answer4"/></label>
+        <form:errors path="answer4" cssClass="error" /></div>
+
+
+
+
 
 
     </form:form>

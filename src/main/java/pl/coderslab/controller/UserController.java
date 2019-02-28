@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping(path = "/users")
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class UserController {
 
 
@@ -59,65 +59,7 @@ public class UserController {
         return "/home";
     }
 
-    // registration user
-//    @GetMapping("/registration")
-//    public String registrationUser(Model model) {
-//        model.addAttribute("user", new User());
-//        return "users/registration";
-//    }
-//
-//    @PostMapping("/registration")
-//    public String registrationUser(@Validated(RegistrationValidator.class) User user, BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            return "users/registration";
-//        }
-//        String check = userService.checkRegistration(user);
-//        if (!"registrationSucces".equals(check)) {
-//            model.addAttribute("invalid", true);
-//            model.addAttribute("message", check);
-//            return "users/registration";
-//        }
-//
-//        userService.save(user);
-//        model.addAttribute("registration", true);
-//        model.addAttribute("message", "Dziękujemy za rejestrację. Teraz możesz się zalogować.");
-//        return "/home";
-//    }
-
-//    // login
-//    @GetMapping("/login")
-//    public String login() {
-//        return "/login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String login(Model model, HttpServletRequest request) {
-//        String login = request.getParameter("login");
-//        String pass = request.getParameter("pass");
-//        String check = userService.checkLogin(login, pass, model);
-//        if (!"loginSucces".equals(check)) {
-//            request.setAttribute("login", login); //, by nie musieć wpisywać znowu
-//            request.setAttribute("pass", pass);
-//            return "/login";
-//        }
-//        model.addAttribute("loggedUser", true);
-//        userService.sessionStart(login); /////
-//        model.addAttribute("firstName", userSession.getUserInSession().getFirstName());
-//        model.addAttribute("registration", true);
-//        model.addAttribute("message", "Zalogowałeś się. Zapoznaj się z materiałami szkoleniowymi, wykonaj test.");
-//        return "/home";
-//
-//    }
-
-//    @RequestMapping("/logout")
-//    public String logout(Model model) {
-//        model.addAttribute("loggedUser", false);
-//
-//        userSession.setLoggedUser(false);
-//        userSession.setUserInSession(null);
-//        return "/home";
-//    }
-
+    // status
     @RequestMapping("/status")
     public String status(Model model) {
         User user = userSession.getUserInSession();

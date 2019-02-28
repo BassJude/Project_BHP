@@ -5,15 +5,13 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.ArrayList;
-
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserSession {
 
-private User userInSession;
+    private User userInSession;
 
-private boolean loggedUser;
+    private boolean loggedUser;
 
     public User getUserInSession() {
         return userInSession;

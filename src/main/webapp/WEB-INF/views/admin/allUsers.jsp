@@ -12,9 +12,10 @@
 
     <h1>Lista użytkowników</h1>
 
-    <h3>Wyszukiwarka użytkowników po nazwiskach</h3>
+    <h3>Wyszukiwarka użytkowników</h3>
     <form action="/admin/search" method="get">
         Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+
         <input type="submit" value="szukaj" >
     </form>
 
@@ -55,9 +56,9 @@
                 <td>${user.passedEgzam}</td>
                 <td>${user.superUser}</td>
 
-                <td><a style="color: #309125" href="/admin/editUser/${user.id}">Edytuj pytanie</a></td>
+                <td><a style="color: #309125" href="/admin/editUser/${user.id}">Edytuj użytkownika</a></td>
                 <td><a style="color: #309125" href="/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
-                    pytanie</a></td>
+                    użytkownika</a></td>
 
 
             </tr>

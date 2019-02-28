@@ -9,33 +9,23 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserSession;
-import pl.coderslab.service.QuestionService;
 import pl.coderslab.service.UserService;
-import pl.coderslab.utils.BCrypt;
 import pl.coderslab.validator.RegistrationValidator;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class HomeController {
 
     @Autowired
-    private QuestionService questionService;
-
-    @Autowired
     private UserService userService;
-
 
     @Autowired
     private UserSession userSession;
 
     @RequestMapping("")
-    public String home(Model model) {
-
-        questionService.startSetting(model);
-        model.addAttribute("userSession", userSession);
-
+    public String home() {
 
         return "home";
     }
@@ -49,9 +39,13 @@ public class HomeController {
             number = 37;
         }
         model.addAttribute("numberImage", number);
-        model.addAttribute("userSession", userSession);
 
         return "/course";
+    }
+
+    @RequestMapping("/aboutUs")
+    public String aboutUs() {
+        return "/aboutUs";
     }
 
     // registration user
@@ -73,7 +67,7 @@ public class HomeController {
             return "/users/registration";
         }
         String passToHash = user.getPassword(); // hash password
-        user.setPassword(BCrypt.hashpw(passToHash, BCrypt.gensalt()));
+        user.setPasswordHash(passToHash);
 
         userService.save(user);
         model.addAttribute("registration", true);
@@ -100,6 +94,12 @@ public class HomeController {
         }
         model.addAttribute("loggedUser", true);
         userService.sessionStart(login); /////
+
+        if (userSession.getUserInSession().isSuperUser() == true) {
+            model.addAttribute("admin", true);
+
+        }
+
         model.addAttribute("firstName", userSession.getUserInSession().getFirstName());
         model.addAttribute("registration", true);
         model.addAttribute("message", "Zalogowałeś się. Zapoznaj się z materiałami szkoleniowymi, wykonaj test.");
@@ -110,6 +110,7 @@ public class HomeController {
     @RequestMapping("/logout")
     public String logout(Model model) {
         model.addAttribute("loggedUser", false);
+        model.addAttribute("admin", false);
 
         userSession.setLoggedUser(false);
         userSession.setUserInSession(null);
