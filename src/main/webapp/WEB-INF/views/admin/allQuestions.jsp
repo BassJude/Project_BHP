@@ -16,7 +16,7 @@
 <h1>Wszystkie pytania</h1>
 
 <h3>Wyszukiwarka pytań</h3>
-<form action="/admin/searchQuestion" method="get">
+<form action="${pageContext.request.contextPath}/admin/searchQuestion" method="get">
     Wpisz szukaną frazę: <input type="text" name="search" placeholder="szukaj">
     <input type="submit" value="szukaj" >
 </form>
@@ -47,8 +47,8 @@
             <td>${question.answer4}</td>
             <td>${question.good_answer}</td>
 
-            <td><a style="color: #309125" href="/admin/editQuestion/${question.id}">Edytuj pytanie</a></td>
-            <td><a style="color: #309125" href="/admin/deleteQuestion/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+            <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/editQuestion/${question.id}">Edytuj pytanie</a></td>
+            <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/deleteQuestion/${question.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                 pytanie</a></td>
 
 
@@ -61,7 +61,7 @@
 
 </table>
 <br><br>
-<a style="color: #309125" href="/admin/addQuestion">Dodaj pytanie</a>
+<a style="color: #309125" href="${pageContext.request.contextPath}/admin/addQuestion">Dodaj pytanie</a>
 <%@ include file="../fragments/footer.jspf" %>
 
 </body>

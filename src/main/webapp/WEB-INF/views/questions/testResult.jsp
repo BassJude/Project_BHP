@@ -16,7 +16,7 @@
         <p>Ilość wszystkich pytań : ${size}</p>
         <p>Egzamin  ${evaluation}</p>
         <div>-------------------------------------</div>
-        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="/questions/test">Zacznij test</a></p>
+        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="${pageContext.request.contextPath}/questions/test">Zacznij test</a></p>
 
 
     </div>

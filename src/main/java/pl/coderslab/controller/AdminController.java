@@ -64,7 +64,7 @@ public class AdminController {
         User userToSave = userService.findUserById(id);
         user.setLogin(userToSave.getLogin());
         user.setPassword(userToSave.getPassword());
-        model.addAttribute("admin", user.isSuperUser()); // zeby po zmianie od razu wylogowało ze astrony administracyjnej
+//        model.addAttribute("admin", user.isSuperUser()); // zeby po zmianie od razu wylogowało ze astrony administracyjnej, ale to wywala ze strony admina !!!
 
         userService.save(user);
         return "forward:/admin/allUsers";
@@ -86,6 +86,17 @@ public class AdminController {
         model.addAttribute("users", users);
         return "admin/allUsers";
 
+    }
+    // not passed
+    @RequestMapping("/notPassedEgzam")
+    public String notPassed(Model model, @RequestParam(defaultValue = "false",name="passed") boolean passed) {
+
+
+        model.addAttribute("users",userService.passedEgzam(passed));
+
+
+
+        return "admin/allUsers";
     }
 
 ////////////// questions /////////////////////

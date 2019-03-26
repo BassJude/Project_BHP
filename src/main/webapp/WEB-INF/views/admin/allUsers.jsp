@@ -13,11 +13,20 @@
     <h1>Lista użytkowników</h1>
 
     <h3>Wyszukiwarka użytkowników</h3>
-    <form action="/admin/search" method="get">
+    <form action="${pageContext.request.contextPath}/admin/search" method="get">
         Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
 
         <input type="submit" value="szukaj" >
     </form>
+
+    <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="get">
+        zaliczony egzamin: <input type="checkbox" name="passed" >
+
+        <input type="submit" value="szukaj" >
+    </form>
+    <%--<a href="/admin/notPassedEgzam" >Niezaliczone</a>--%>
+
+
 
 
     <table border="1">
@@ -32,7 +41,7 @@
             <td>Ulica</td>
             <td>Numer domu</td>
             <td>email</td>
-            <td>Data ostatniego testu</td>
+            <td>Data zaliczenia egzaminu</td>
             <td>Zaliczony test</td>
             <td>Admin</td>
             <td>Edytuj</td>
@@ -53,11 +62,25 @@
                 <td>${user.homeNumber}</td>
                 <td>${user.email}</td>
                 <td>${user.lastTestTime}</td>
-                <td>${user.passedEgzam}</td>
+                <td>
+
+                    <c:choose>
+                        <c:when test="${user.passedEgzam==true}">
+                            <span style="color:green;font-weight: bold;" >Zaliczony</span>
+                        </c:when>
+
+                        <c:otherwise>
+                            <span style="color:red;font-weight: bold;" >Niezaliczony</span>
+                        </c:otherwise>
+                    </c:choose>
+
+                        <%--${user.passedEgzam}--%>
+
+                </td>
                 <td>${user.superUser}</td>
 
-                <td><a style="color: #309125" href="/admin/editUser/${user.id}">Edytuj użytkownika</a></td>
-                <td><a style="color: #309125" href="/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj użytkownika</a></td>
+                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
                     użytkownika</a></td>
 
 

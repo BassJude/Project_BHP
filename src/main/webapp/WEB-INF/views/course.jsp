@@ -12,7 +12,7 @@
     <div id="content">
 <p>Slajd numer ${numberImage} / 37</p>
 <p>
-    <a href="/course/${numberImage-1}">Poprzedni</a><span>---------</span><a href="/course/${numberImage+1}">Następny</a>
+    <a href="${pageContext.request.contextPath}/course/${numberImage-1}">Poprzedni</a><span>---------</span><a href="${pageContext.request.contextPath}/course/${numberImage+1}">Następny</a>
 </p>
         <img width="700" height="500" src="/img/Slajd${numberImage}.PNG">
         

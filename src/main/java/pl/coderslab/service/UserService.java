@@ -51,7 +51,7 @@ public class UserService {
     public String checkRegistration(User user) {
         long value = userRepository.countByLogin(user.getLogin());
         if (value != 0) {
-            return "Login nie jest unikatowy, podaj inny login !";
+            return "Login o podanej nazwie już istnieje, podaj inny login !";
         }
         String login = user.getLogin();
         if (login.length() != login.replaceAll(" ", "").length()) {
@@ -118,6 +118,15 @@ public class UserService {
     // search
     public List<User> searchUser(String search) {
         return userRepository.findUserByLastNameContaining(search);
+    }
+
+    // passed egzam
+    public List<User> passedEgzam(Boolean passed) {
+        return userRepository.findUserByPassedEgzam(passed);
+    }
+    // second function passed egzam by users
+    public List<User> passedEgzam2(List<User> userList){
+        return userRepository.findUsersByPassedEgzam(userList);
     }
 
 

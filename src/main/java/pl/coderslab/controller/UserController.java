@@ -44,13 +44,14 @@ public class UserController {
         if (result.hasErrors()) {
             return "users/addEdit";
         }
+        // TODO potestuj  co sie stanie jak nie zaktualizuje niektorych ponizszych danych
         User userToSave = userService.findUserById(user.getId());
         user.setLogin(userToSave.getLogin());
         user.setPassword(userToSave.getPassword());
         user.setLastTestTime(userToSave.getLastTestTime());
         user.setPassedEgzam(userToSave.isPassedEgzam());
         user.setSuperUser(userToSave.isSuperUser());
-
+//
         userService.save(user);
         userSession.setUserInSession(user);// zaktualizowanie
         model.addAttribute("changes", true);

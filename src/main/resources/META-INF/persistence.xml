@@ -6,9 +6,9 @@
     <persistence-unit name="bookstorePersistenceUnit">
         <properties>
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/bhp" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="coderslab" />
+                      value="jdbc:mysql://localhost:3306/bassjude_bhp" />
+            <property name="javax.persistence.jdbc.user" value="bassjude_bhp" />
+            <property name="javax.persistence.jdbc.password" value="wer234WER@#$" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.schema-generation.database.action"
                       value="update"/>

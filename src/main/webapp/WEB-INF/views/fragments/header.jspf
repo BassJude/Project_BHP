@@ -6,23 +6,23 @@
 
     <nav id="topnav">
         <ul class="menu">
-            <li><a href="/">Strona główna</a></li>
-            <li><a href="/course/1">Materiały szkoleniowe</a></li>
-            <li><a href="/registration">Rejestracja</a></li>
+            <li><a href="${pageContext.request.contextPath}/">Strona główna</a></li>
+            <li><a href="${pageContext.request.contextPath}/course/1">Materiały szkoleniowe</a></li>
+            <li><a href="${pageContext.request.contextPath}/registration">Rejestracja</a></li>
             <li>
                 <c:choose>
                     <c:when test="${loggedUser==true}">
-                        <a href="/logout">Wyloguj</a>
+                        <a href="${pageContext.request.contextPath}/logout">Wyloguj</a>
                     </c:when>
 
                     <c:otherwise>
-                        <a href="/login">Logowanie</a>
+                        <a href="${pageContext.request.contextPath}/login">Logowanie</a>
                     </c:otherwise>
                 </c:choose>
 
 
             </li>
-            <li><a href="/aboutUs">Kontakt</a></li>
+            <li><a href="${pageContext.request.contextPath}/aboutUs">Kontakt</a></li>
 
         </ul>
     </nav>
@@ -34,11 +34,11 @@
                              default="użytkowniku"></c:out> |
     <c:choose>
         <c:when test="${loggedUser==true}">
-            <a style="color: #309125" href="/logout">wyloguj</a>
+            <a style="color: #309125" href="${pageContext.request.contextPath}/logout">wyloguj</a>
         </c:when>
 
         <c:otherwise>
-            <a style="color: #309125" href="/login">Logowanie</a>
+            <a style="color: #309125" href="${pageContext.request.contextPath}/login">Logowanie</a>
         </c:otherwise>
     </c:choose>
 

@@ -11,7 +11,7 @@
 
     <div id="content">
 
-        <form action="/login" method="post">
+        <form action="${pageContext.request.contextPath}/login" method="post">
 
             <div>Podaj login: <input type="text" name="login" placeholder="login" value="${login}">
             <span class="error"><c:if test="${loginInvalid==true}">${messageLogin}</c:if></span></div>

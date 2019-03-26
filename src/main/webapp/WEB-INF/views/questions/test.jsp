@@ -17,7 +17,7 @@
         <p style="border-bottom: 1px solid #4d83e7;"></p>
 
 
-        <form action="/questions/test/${number+1}" method="post">
+        <form action="${pageContext.request.contextPath}/questions/test/${number+1}" method="post">
 
             <div style="margin-bottom: 30px">${question.question}</div>
             <c:if test="${number+1==12}">
