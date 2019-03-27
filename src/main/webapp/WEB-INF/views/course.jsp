@@ -14,7 +14,7 @@
 <p>
     <a href="${pageContext.request.contextPath}/course/${numberImage-1}">Poprzedni</a><span>---------</span><a href="${pageContext.request.contextPath}/course/${numberImage+1}">Następny</a>
 </p>
-        <img width="700" height="500" src="/img/Slajd${numberImage}.PNG">
+        <img width="700" height="500" src="${pageContext.request.contextPath}/img/Slajd${numberImage}.PNG">
         
 
 
