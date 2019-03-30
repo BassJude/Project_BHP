@@ -36,10 +36,10 @@
         <div><label class="formAddQuestion">Wpisz odpowiedź B: <form:textarea rows="5" cols="80" path="answer2"/></label>
         <form:errors path="answer2" cssClass="error" /></div>
 
-        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:textarea rows="5" cols="80" path="answer3"/></label>
+        <div><label class="formAddQuestion">Wpisz odpowiedź C: <form:textarea rows="5" cols="80" path="answer3"/></label>
         <form:errors path="answer3" cssClass="error" /></div>
 
-        <div><label class="formAddQuestion">Wpisz odpowiedź A: <form:textarea rows="5" cols="80" path="answer4"/></label>
+        <div><label class="formAddQuestion">Wpisz odpowiedź D: <form:textarea rows="5" cols="80" path="answer4"/></label>
         <form:errors path="answer4" cssClass="error" /></div>
 
 
