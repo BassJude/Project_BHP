@@ -11,7 +11,7 @@
             <property name="javax.persistence.jdbc.password" value="wer234WER@#$" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.schema-generation.database.action"
-                      value="update"/>
+                      value="none"/>
 
 
             <property name="hibernate.dialect"
@@ -19,12 +19,13 @@
             <property name="hibernate.connection.useUnicode" value="true" />
             <property name="hibernate.connection.characterEncoding" value="utf8" />
             <property name="hibernate.connection.CharSet" value="utf8" />
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <!--<property name="hibernate.show_sql" value="true"/>-->
+            <!--<property name="hibernate.format_sql" value="true"/>-->
 
             <property name="hibernate.c3p0.min_size" value="5" />
             <property name="hibernate.c3p0.max_size" value="20" />
-            <property name="hibernate.c3p0.timeout" value="1800" />
+            <property name="hibernate.c3p0.timeout" value="300" />
+
 
 
 
