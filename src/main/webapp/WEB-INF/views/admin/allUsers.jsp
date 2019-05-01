@@ -34,7 +34,7 @@
         <tr>
             <td>Id</td>
             <td>Login</td>
-            <td>Hasło</td>
+            <%--<td>Hasło</td>--%>
             <td>Imię</td>
             <td>Nazwisko</td>
             <td>Miasto</td>
@@ -54,7 +54,7 @@
             <tr>
                 <td>${user.id}</td>
                 <td>${user.login}</td>
-                <td>${user.password}</td>
+                <%--<td>${user.password}</td>--%>
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.city}</td>
