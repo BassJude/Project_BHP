@@ -111,6 +111,7 @@ public class HomeController {
     public String logout(Model model) {
         model.addAttribute("loggedUser", false);
         model.addAttribute("admin", false);
+        model.addAttribute("firstName", "użytkowniku");
 
         userSession.setLoggedUser(false);
         userSession.setUserInSession(null);
