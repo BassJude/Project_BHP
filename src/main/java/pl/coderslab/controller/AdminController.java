@@ -61,9 +61,12 @@ public class AdminController {
             return "admin/addEditUser";
         }
 
-        User userToSave = userService.findUserById(id);
-        user.setLogin(userToSave.getLogin());
-        user.setPassword(userToSave.getPassword());
+        // user, ktorego chcemy zaktualizować nie ma loginu, hasla i daty zaliczenia testu
+        // dlatego musimy uzupełnić te dane
+        User userFromDB = userService.findUserById(id);
+        user.setLogin(userFromDB.getLogin());
+        user.setPassword(userFromDB.getPassword());
+        user.setLastTestTime(userFromDB.getLastTestTime());
 //        model.addAttribute("admin", user.isSuperUser()); // zeby po zmianie od razu wylogowało ze astrony administracyjnej, ale to wywala ze strony admina !!!
 
         userService.save(user);
@@ -87,13 +90,13 @@ public class AdminController {
         return "admin/allUsers";
 
     }
+
     // not passed
     @RequestMapping("/notPassedEgzam")
-    public String notPassed(Model model, @RequestParam(defaultValue = "false",name="passed") boolean passed) {
+    public String notPassed(Model model, @RequestParam(defaultValue = "false", name = "passed") boolean passed) {
 
 
-        model.addAttribute("users",userService.passedEgzam(passed));
-
+        model.addAttribute("users", userService.passedEgzam(passed));
 
 
         return "admin/allUsers";
