@@ -6,100 +6,76 @@
 <body>
 
 <div>
-    <%@ include file="../fragments/header.jspf" %>
-    <%@ include file="../fragments/sidebarAdmin.jspf" %>
+    <div id="container">
+        <%@ include file="../fragments/header.jspf" %>
+        <%@ include file="../fragments/sidebarAdmin.jspf" %>
+        <div id="content">
 
 
-    <h1>Lista użytkowników</h1>
+            <h1>Lista użytkowników</h1>
 
-    <h3>Wyszukiwarka użytkowników</h3>
-    <form action="${pageContext.request.contextPath}/admin/search" method="get">
-        Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+            <h3>Wyszukiwarka użytkowników</h3>
+            <form action="${pageContext.request.contextPath}/admin/search" method="get">
+                Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
 
-        <input type="submit" value="szukaj" >
-    </form>
+                <input type="submit" value="szukaj">
+            </form>
 
-    <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="get">
-        zaliczony egzamin: <input type="checkbox" name="passed" >
+            <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="get">
+                zaliczony egzamin: <input type="checkbox" name="passed">
 
-        <input type="submit" value="szukaj" >
-    </form>
-    <%--<a href="/admin/notPassedEgzam" >Niezaliczone</a>--%>
-
-
+                <input type="submit" value="szukaj">
+            </form>
+            <%--<a href="/admin/notPassedEgzam" >Niezaliczone</a>--%>
 
 
-    <table border="1">
-        <thead>
-        <tr>
-            <td>Id</td>
-            <td>Login</td>
-            <%--<td>Hasło</td>--%>
-            <td>Imię</td>
-            <td>Nazwisko</td>
-            <td>Miasto</td>
-            <td>Ulica</td>
-            <td>Numer domu</td>
-            <td>email</td>
-            <td>Data zaliczenia egzaminu</td>
-            <td>Zaliczony test</td>
-            <td>Admin</td>
-            <td>Edytuj</td>
-            <td>Usuń</td>
-        </tr>
+            <c:forEach items="${users}" var="user">
+                <div class="border"></div>
+                <span>Id: ${user.id} | </span>
+                <span>Login: ${user.login} | </span>
+                <div class="borderUsers"></div>
+                <span>Hash: ${user.password}</span>
+                <div class="borderUsers"></div>
+                <span>Imię: ${user.firstName} | </span>
+                <span>Nazwisko: ${user.lastName} | </span>
+                <div class="borderUsers"></div>
+                <span>Miasto: ${user.city} | </span>
+                <span>Ulica: ${user.street} | </span>
+                <td>Numer domu: ${user.homeNumber}</td>
+                <div class="borderUsers"></div>
+                <span>E-mail: ${user.email} | </span>
+                <span>Ostatni test: ${user.lastTestTime}</span>
+                <div class="borderUsers"></div>
 
-        </thead>
-        <tbody>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.login}</td>
-                <%--<td>${user.password}</td>--%>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.city}</td>
-                <td>${user.street}</td>
-                <td>${user.homeNumber}</td>
-                <td>${user.email}</td>
-                <td>${user.lastTestTime}</td>
-                <td>
-
+                <span>Zaliczony test:
                     <c:choose>
                         <c:when test="${user.passedEgzam==true}">
-                            <span style="color:green;font-weight: bold;" >Zaliczony</span>
+                            <span style="color:green;font-weight: bold;">Zaliczony</span>
                         </c:when>
 
                         <c:otherwise>
-                            <span style="color:red;font-weight: bold;" >Niezaliczony</span>
+                            <span style="color:red;font-weight: bold;">Niezaliczony</span>
                         </c:otherwise>
                     </c:choose>
+                </span>
+                <div class="borderUsers"></div>
+                <span>Admin: ${user.superUser}</span>
+                <div class="borderUsers"></div>
 
-                        <%--${user.passedEgzam}--%>
+                <span><a style="color: #309125"
+                         href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj
+                    użytkownika</a></span>
+                <span> | </span>
+                <span><a style="color: #309125"
+                         href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}"
+                         onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+                    użytkownika</a></span>
 
-                </td>
-                <td>${user.superUser}</td>
+            </c:forEach>
+        </div>
+        <%@ include file="../fragments/footer.jspf" %>
 
-                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj użytkownika</a></td>
-                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
-                    użytkownika</a></td>
-
-
-            </tr>
-
-        </c:forEach>
-
-        </tbody>
-
-
-    </table>
-
-
-
-
-
-    <%--<div style="clear:both;"></div>--%>
-    <%@ include file="../fragments/footer.jspf" %>
-
+    </div>
 </div>
 </body>
 </html>
