@@ -21,12 +21,14 @@ import java.time.LocalDateTime;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class UserController {
 
-
-    @Autowired
     private UserService userService;
+    private UserSession userSession;
 
     @Autowired
-    private UserSession userSession;
+    public UserController(UserService userService, UserSession userSession) {
+        this.userService = userService;
+        this.userSession = userSession;
+    }
 
 
     //edit user
@@ -69,12 +71,20 @@ public class UserController {
         LocalDateTime date = user.getLastTestTime();
         if (date != null) {
 
-            String lastTime = date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth() + "|" + date.getHour() + ":" + date.getMinute();
+            String lastTime = date.getYear() + "-"
+                    + getCorrectFormat(date.getMonthValue()) + "-"
+                    + getCorrectFormat(date.getDayOfMonth()) + " godzina: "
+                    + getCorrectFormat(date.getHour()) + ":"
+                    + getCorrectFormat(date.getMinute());
+
             model.addAttribute("time", lastTime);
         }
 
         return "/users/status";
+    }
 
+    private String getCorrectFormat(int value) {
+        return value < 10 ? "0" + value : String.valueOf(value);
     }
 
 
