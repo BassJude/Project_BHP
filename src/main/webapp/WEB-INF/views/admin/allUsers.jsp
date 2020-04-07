@@ -30,11 +30,14 @@
             </c:choose>
 
 
-            <h1>Lista użytkowników</h1>
+            <h1>Lista użytkowników (<c:if test="${users!=null}">${users.size()}</c:if>)</h1>
 
             <h3>Wyszukiwarka użytkowników</h3>
             <form action="${pageContext.request.contextPath}/admin/search" method="post">
-                Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+                <p><label>Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko" value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
+                <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all" <c:if test="${examResult=='all'}">checked</c:if>> | </label>
+                <label>Zaliczony egzamin<input type="radio" name="examResult" value="passed" <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
+                <label>Niezaliczony egzamin<input type="radio" name="examResult" value="fail" <c:if test="${examResult=='fail'}">checked</c:if>></label>
 
                 <input type="submit" value="szukaj">
             </form>

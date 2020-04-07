@@ -119,11 +119,41 @@ public class AdminController {
 
     // search user
     @RequestMapping("/search")
-    public String search(@RequestParam(name = "search") String search, Model model) {
+    public String search(@RequestParam(name = "search") String search,
+                         @RequestParam(name = "examResult", defaultValue = "all") String examResult,
+                         Model model) {
+        List<User> users = null;
+        // trim() bo do inputa dodawana jest spacja po każdym wyszukaniu ... nie wiem dlaczego
+        if (search.trim().length() == 0) {
+            users = userService.findAll();
+        } else {
+            users = userService.searchUser(search.trim());
+        }
 
-        List<User> users = userService.searchUser(search);
+        List<User> result = new ArrayList<>();
+        switch (examResult) {
+            case "passed":
+                for (User u : users) {
+                    if (u.isPassedEgzam()) {
+                        result.add(u);
+                    }
+                }
+                break;
+            case "fail":
+                for (User u : users) {
+                    if (!u.isPassedEgzam()) {
+                        result.add(u);
+                    }
+                }
+                break;
+            case "all":
+                result.addAll(users);
+                break;
+        }
 
-        model.addAttribute("users", users);
+        model.addAttribute("users", result);
+        model.addAttribute("search", search.trim());
+        model.addAttribute("examResult", examResult);
         return "admin/allUsers";
 
     }
