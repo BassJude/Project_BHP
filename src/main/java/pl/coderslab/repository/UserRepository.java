@@ -9,6 +9,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     long countByLogin(String login);
 
+    long countBySuperUser(boolean check);
+
     User findUserByLogin(String login);
 
     List<User> findUserByLastNameContaining(String search);

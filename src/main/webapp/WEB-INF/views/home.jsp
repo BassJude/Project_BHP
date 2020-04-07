@@ -22,8 +22,8 @@
                     ${message}
                 </c:when>
                 <c:otherwise>
-                    <h1>Witamy na kursie online</h1>
-                    <p>Zapraszamy do zapoznania się z instrukcjami dotyczącymi zaliczenia kursu.</p>
+                    <h1>Witamy na stronie szkoleniowej</h1>
+                    <p>Zapraszamy do rejestracji konta.</p>
                 </c:otherwise>
             </c:choose>
 

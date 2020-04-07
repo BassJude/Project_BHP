@@ -10,18 +10,22 @@
     <%@ include file="fragments/sidebarAdmin.jspf" %>
 
     <div id="content">
-<span>
-        <c:if test="${registration==true}">
-            ${message}
-        </c:if>
-            <span>
+        <c:choose>
+            <c:when test="${registration==true}">
+                <span>${message}</span>
+            </c:when>
 
-        <c:if test="${changes==true}">
-            ${message}
-        </c:if></span>
+            <c:when test="${changes==true}">
+                <span>${message}</span>
+            </c:when>
 
-
-
+            <c:otherwise>
+                <h1>Panel Administratora</h1>
+                <p>Ilość użytkowników: <c:if test="${numberOfUsers!=null}">${numberOfUsers}</c:if></p>
+                <p>Ilość pytań: <c:if test="${numberOfQuestions!=null}">${numberOfQuestions}</c:if></p>
+                <p>Procent użytkowników z zaliczonym egzaminem: <c:if test="${percentageOfPassedExams!=null}">${percentageOfPassedExams}</c:if> %</p>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div style="clear:both;"></div>

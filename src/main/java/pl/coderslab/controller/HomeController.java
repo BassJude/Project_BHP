@@ -57,15 +57,17 @@ public class HomeController {
 
     @PostMapping("/registration")
     public String registrationUser(@Validated(RegistrationValidator.class) User user, BindingResult result, Model model) {
+
+        String message = userService.checkLoginAndPassword(user);
+        if (!"registrationSuccess".equals(message)) {
+            model.addAttribute("invalid", true);
+            model.addAttribute("message", message);
+            return "/users/registration";
+        }
         if (result.hasErrors()) {
             return "/users/registration";
         }
-        String check = userService.checkRegistration(user);
-        if (!"registrationSucces".equals(check)) {
-            model.addAttribute("invalid", true);
-            model.addAttribute("message", check);
-            return "/users/registration";
-        }
+
         String passToHash = user.getPassword(); // hash password
         user.setPasswordHash(passToHash);
 

@@ -29,9 +29,7 @@
 
 </header>
 
-<div id="loginH">Witaj <c:out value="${firstName}"
-
-                             default="użytkowniku"></c:out> |
+<div id="loginH">Witaj <c:out value="${firstName}" default="użytkowniku"></c:out> |
     <c:choose>
         <c:when test="${loggedUser==true}">
             <a style="color: #309125" href="${pageContext.request.contextPath}/logout">wyloguj</a>

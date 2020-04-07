@@ -8,6 +8,7 @@ import pl.coderslab.model.UserSession;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.utils.BCrypt;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,10 +49,11 @@ public class UserService {
     }
 
     //registration
-    public String checkRegistration(User user) {
+    public String checkLoginAndPassword(User user) {
         long value = userRepository.countByLogin(user.getLogin());
         if (value != 0) {
-            return "Login o podanej nazwie już istnieje, podaj inny login !";
+            generateUniqueLoginForUser(user);
+            return "Login o podanej nazwie już istnieje, podaj inny login lub wykorzystaj zasugerowany login: " + user.getLogin();
         }
         String login = user.getLogin();
         if (login.length() != login.replaceAll(" ", "").length()) {
@@ -67,7 +69,17 @@ public class UserService {
         if (!user.getPassword().equals(user.getPassword2())) {
             return "Hasła muszą być takie same";
         }
-        return "registrationSucces";
+        return "registrationSuccess";
+    }
+
+    private String generateUniqueLoginForUser(User user) {
+        String login = user.getLogin();
+        int counter = 1;
+        while (userRepository.countByLogin(login + counter) > 0) {
+            counter++;
+        }
+        user.setLogin(login + counter);
+        return login + counter;
     }
 
     // login
@@ -124,10 +136,19 @@ public class UserService {
     public List<User> passedEgzam(Boolean passed) {
         return userRepository.findUserByPassedEgzam(passed);
     }
+
     // second function passed egzam by users
-    public List<User> passedEgzam2(List<User> userList){
+    public List<User> passedEgzam2(List<User> userList) {
         return userRepository.findUsersByPassedEgzam(userList);
     }
 
+    public String percentageOfPassedExams() {
+        float result = (passedEgzam(true).size() / (float) findAll().size()) * 100f;
+        return new DecimalFormat("##.00").format(result);
+    }
+
+    public long quantitySuperUsers() {
+        return userRepository.countBySuperUser(true);
+    }
 
 }

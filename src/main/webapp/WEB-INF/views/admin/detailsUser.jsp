@@ -10,27 +10,9 @@
         <%@ include file="../fragments/header.jspf" %>
         <%@ include file="../fragments/sidebarAdmin.jspf" %>
         <div id="content">
-            <c:choose>
-                <c:when test="${userDelete==true}">
-
-                    <p class="error">Usunąłeś uzytkownika!</p>
-                    <p class="error">Id: ${user.id}, email: ${user.email}, imię: ${user.firstName},
-                        nazwisko: ${user.lastName}</p>
-                </c:when>
-
-                <c:when test="${AdminInvalid==true}">
-                    <p class="error">Nie możesz usunąć użytkownika, który aktualnie jest jedynym administratorem</p>
-                    <p class="error">Zawsze jeden użytkownik musi być administratorem</p>
-                    <p class="error">Nie możesz usunąć samego siebie, będąc zalogowanym</p>
-                </c:when>
-
-                <c:otherwise>
-
-                </c:otherwise>
-            </c:choose>
 
 
-            <h1>Lista użytkowników</h1>
+            <h1>Szczegółowe dane użytkownika</h1>
 
             <h3>Wyszukiwarka użytkowników</h3>
             <form action="${pageContext.request.contextPath}/admin/search" method="post">
@@ -49,11 +31,20 @@
                 <div class="border"></div>
                 <span>Id: ${user.id} | </span>
                 <span>Login: ${user.login} | </span>
+                <div class="borderUsers"></div>
+                <span>Hash: ${user.password}</span>
+                <div class="borderUsers"></div>
                 <span>Imię: ${user.firstName} | </span>
                 <span>Nazwisko: ${user.lastName} | </span>
-                <span>Miasto: ${user.city}</span>
+                <div class="borderUsers"></div>
+                <span>Miasto: ${user.city} | </span>
+                <span>Ulica: ${user.street} | </span>
+                <td>Numer domu: ${user.homeNumber}</td>
                 <div class="borderUsers"></div>
                 <span>E-mail: ${user.email} | </span>
+                <span>Ostatni test: ${user.lastTestTime}</span>
+                <div class="borderUsers"></div>
+
                 <span>Zaliczony test:
                     <c:choose>
                         <c:when test="${user.passedEgzam==true}">
@@ -65,12 +56,10 @@
                         </c:otherwise>
                     </c:choose>
                 </span>
-                <span><c:if test="${user.superUser==true}"> | Admin</c:if></span>
                 <div class="borderUsers"></div>
-                <span><a style="color: #309125"
-                         href="${pageContext.request.contextPath}/admin/detailsUser/${user.id}">Szczegóły
-                    użytkownika</a></span>
-                <span> | </span>
+                <span>Admin: ${user.superUser}</span>
+                <div class="borderUsers"></div>
+
                 <span><a style="color: #309125"
                          href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj
                     użytkownika</a></span>

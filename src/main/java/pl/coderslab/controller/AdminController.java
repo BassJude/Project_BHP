@@ -35,8 +35,10 @@ public class AdminController {
     /////////////////// users///////////////////
 
     @RequestMapping("")
-    public String home() {
-
+    public String home(Model model) {
+        model.addAttribute("numberOfUsers", userService.findAll().size());
+        model.addAttribute("numberOfQuestions", questionService.findAll().size());
+        model.addAttribute("percentageOfPassedExams", userService.percentageOfPassedExams());
         return "/admin";
     }
 
@@ -46,6 +48,16 @@ public class AdminController {
         model.addAttribute("users", users);
 
         return "admin/allUsers";
+    }
+
+    //details user
+    @GetMapping("/detailsUser/{id}")
+    public String detailsUser(Model model, @PathVariable Long id) {
+        User userById = userService.findUserById(id);
+        List<User> userList = new ArrayList<>();
+        userList.add(userById);
+        model.addAttribute("users", userList);
+        return "admin/detailsUser";
     }
 
     //edit user
@@ -61,21 +73,46 @@ public class AdminController {
             return "admin/addEditUser";
         }
 
+        // Nie usuwamy ostatniego admina
+        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(id).isSuperUser())) {
+            model.addAttribute("AdminInvalid", true);
+            user.setSuperUser(true);
+        }
+
         // user, ktorego chcemy zaktualizować nie ma loginu, hasla i daty zaliczenia testu
         // dlatego musimy uzupełnić te dane
         User userFromDB = userService.findUserById(id);
         user.setLogin(userFromDB.getLogin());
         user.setPassword(userFromDB.getPassword());
         user.setLastTestTime(userFromDB.getLastTestTime());
-//        model.addAttribute("admin", user.isSuperUser()); // zeby po zmianie od razu wylogowało ze astrony administracyjnej, ale to wywala ze strony admina !!!
 
+        // zaktualizowanie usera w sesji
+        if (user.getId().equals(userSession.getUserInSession().getId())) {
+            userSession.setUserInSession(user);
+            model.addAttribute("firstName", user.getFirstName());
+        }
         userService.save(user);
         return "forward:/admin/allUsers";
     }
 
     // delete user
     @RequestMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable Long id) {
+    public String deleteUser(Model model, @PathVariable Long id) {
+        // nie kasujemy ostatniego admina
+        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(id).isSuperUser())) {
+            model.addAttribute("AdminInvalid", true);
+            return "forward:/admin/allUsers";
+        }
+
+        User user = userService.findUserById(id);
+
+        // nie kasujemy samego siebie
+        if (user.getId().equals(userSession.getUserInSession().getId())) {
+            model.addAttribute("AdminInvalid", true);
+            return "forward:/admin/allUsers";
+        }
+        model.addAttribute("userDelete", true);
+        model.addAttribute("user", user);
         userService.deleteById(id);
         return "forward:/admin/allUsers";
     }
@@ -95,10 +132,8 @@ public class AdminController {
     @RequestMapping("/notPassedEgzam")
     public String notPassed(Model model, @RequestParam(defaultValue = "false", name = "passed") boolean passed) {
 
-
         model.addAttribute("users", userService.passedEgzam(passed));
-
-
+        model.addAttribute("status", passed ? "checked" : "");
         return "admin/allUsers";
     }
 
