@@ -68,20 +68,20 @@ public class AdminController {
     }
 
     @PostMapping("/editUser/{id}")
-    public String saveUser(@Validated(EditValidator.class) User user, BindingResult result, @PathVariable Long id, Model model) {
+    public String saveUser(@Validated(EditValidator.class) User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "admin/addEditUser";
         }
 
-        // Nie usuwamy ostatniego admina
-        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(id).isSuperUser())) {
+        // Zawsze jeden użytkownik musi być adminem
+        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(user.getId()).isSuperUser())) {
             model.addAttribute("AdminInvalid", true);
             user.setSuperUser(true);
         }
 
         // user, ktorego chcemy zaktualizować nie ma loginu, hasla i daty zaliczenia testu
         // dlatego musimy uzupełnić te dane
-        User userFromDB = userService.findUserById(id);
+        User userFromDB = userService.findUserById(user.getId());
         user.setLogin(userFromDB.getLogin());
         user.setPassword(userFromDB.getPassword());
         user.setLastTestTime(userFromDB.getLastTestTime());
