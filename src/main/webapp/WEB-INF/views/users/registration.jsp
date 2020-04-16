@@ -10,7 +10,8 @@
     <%@ include file="../fragments/sidebar.jspf" %>
 
     <div id="content">
-<span class="error">
+        <h1>Rejestracja konta</h1>
+        <span class="error">
         <c:if test="${invalid==true}">
             ${message}
         </c:if></span>

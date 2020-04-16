@@ -8,7 +8,7 @@
 <div>
     <div id="container">
         <%@ include file="../fragments/header.jspf" %>
-        <%@ include file="../fragments/sidebar.jspf" %>
+        <%@ include file="../fragments/sidebarAdmin.jspf" %>
         <div id="content">
 
             <h1>Dodaj lub edytuj użytkownika</h1>
@@ -35,7 +35,7 @@
                 <div><label class="formAddQuestion">Email: <form:input path="email"/></label>
                     <form:errors path="email" cssClass="error"/></div>
 
-                <div><label class="formAddQuestion">Czy zdany egzamin: <form:checkbox path="passedEgzam"/></label>
+                <div><label class="formAddQuestion">Czy zaliczony egzamin: <form:checkbox path="passedEgzam"/></label>
                     <form:errors path="passedEgzam" cssClass="error"/></div>
 
                 <div><label class="formAddQuestion">Czy jest superUserem <form:checkbox path="superUser"/></label>

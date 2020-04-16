@@ -31,22 +31,26 @@
 
 
             <h1>Lista użytkowników (<c:if test="${users!=null}">${users.size()}</c:if>)</h1>
+            <div class="search">
+                <h3>Wyszukiwarka użytkowników</h3>
+                <form action="${pageContext.request.contextPath}/admin/search" method="post">
+                    <p><label>Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko"
+                                                     value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
+                    <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all"
+                                                     <c:if test="${examResult=='all'}">checked</c:if>> | </label>
+                    <label>Zaliczony egzamin<input type="radio" name="examResult" value="passed"
+                                                   <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
+                    <label>Niezaliczony egzamin<input type="radio" name="examResult" value="fail"
+                                                      <c:if test="${examResult=='fail'}">checked</c:if>></label>
 
-            <h3>Wyszukiwarka użytkowników</h3>
-            <form action="${pageContext.request.contextPath}/admin/search" method="post">
-                <p><label>Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko" value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
-                <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all" <c:if test="${examResult=='all'}">checked</c:if>> | </label>
-                <label>Zaliczony egzamin<input type="radio" name="examResult" value="passed" <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
-                <label>Niezaliczony egzamin<input type="radio" name="examResult" value="fail" <c:if test="${examResult=='fail'}">checked</c:if>></label>
+                    <p class="button"><input type="submit" value="szukaj"></p>
+                </form>
+            </div>
+            <%--            <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="post">--%>
+            <%--                zaliczony egzamin: <input type="checkbox" name="passed" ${status}>--%>
 
-                <input type="submit" value="szukaj">
-            </form>
-
-            <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="post">
-                zaliczony egzamin: <input type="checkbox" name="passed" ${status}>
-
-                <input type="submit" value="szukaj">
-            </form>
+            <%--                <input type="submit" value="szukaj">--%>
+            <%--            </form>--%>
 
             <c:forEach items="${users}" var="user">
                 <div class="border"></div>
@@ -80,7 +84,7 @@
                 <span> | </span>
                 <span><a style="color: #309125"
                          href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}"
-                         onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
+                         onclick="return confirm('Czy na pewno skasować użytkownika?')">Usuń
                     użytkownika</a></span>
 
             </c:forEach>

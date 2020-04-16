@@ -15,18 +15,18 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255)
+    @Column(length = 300)
     @NotBlank
-    @Size(max = 255, message = "Treść pytania nie moze mieć więcej niż 255 znaków")
+    @Size(max = 300, message = "Treść pytania nie moze mieć więcej niż 300 znaków")
     private String question;
 
-    @Column(length = 255)
+    @Column(length = 300)
     @NotBlank
-    @Size(max = 255, message = "Treść odpowiedzi nie moze mieć więcej niż 255 znaków")
+    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer1;
-    @Column(length = 255)
+    @Column(length = 300)
     @NotBlank
-    @Size(max = 255, message = "Treść odpowiedzi nie moze mieć więcej niż 255 znaków")
+    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer2;
     @Column(length = 300)
     @NotBlank

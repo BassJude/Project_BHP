@@ -14,18 +14,21 @@
 
             <h1>Szczegółowe dane użytkownika</h1>
 
-            <h3>Wyszukiwarka użytkowników</h3>
-            <form action="${pageContext.request.contextPath}/admin/search" method="post">
-                Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+            <div class="search">
+                <h3>Wyszukiwarka użytkowników</h3>
+                <form action="${pageContext.request.contextPath}/admin/search" method="post">
+                    <p><label>Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko"
+                                                     value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
+                    <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all"
+                                                     <c:if test="${examResult=='all'}">checked</c:if>> | </label>
+                    <label>Zaliczony egzamin<input type="radio" name="examResult" value="passed"
+                                                   <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
+                    <label>Niezaliczony egzamin<input type="radio" name="examResult" value="fail"
+                                                      <c:if test="${examResult=='fail'}">checked</c:if>></label>
 
-                <input type="submit" value="szukaj">
-            </form>
-
-            <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="post">
-                zaliczony egzamin: <input type="checkbox" name="passed" ${status}>
-
-                <input type="submit" value="szukaj">
-            </form>
+                    <p class="button"><input type="submit" value="szukaj"></p>
+                </form>
+            </div>
 
             <c:forEach items="${users}" var="user">
                 <div class="border"></div>
