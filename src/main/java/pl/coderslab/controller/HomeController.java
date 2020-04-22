@@ -89,7 +89,7 @@ public class HomeController {
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
         String check = userService.checkLogin(login, pass, model);
-        if (!"loginSucces".equals(check)) {
+        if (!"loginSuccess".equals(check)) {
             request.setAttribute("login", login); //, by nie musieć wpisywać znowu
             request.setAttribute("pass", pass);
             return "/login";
