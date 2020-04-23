@@ -107,13 +107,13 @@ public class UserService {
 
         User user = userRepository.findUserByLogin(login);
         if (!BCrypt.checkpw(password, user.getPassword())) {
-            model.addAttribute("passInvalid", true);
-            model.addAttribute("messagePass", "Podaj prawidłowe hasło");
+            model.addAttribute("loginInvalid", true);
+            model.addAttribute("messageLogin", "Błąd logowania, zły login lub hasło");
             return "Podaj prawidłowe hasło";
 
         }
 
-        return "loginSucces";
+        return "loginSuccess";
     }
 
     // save user in session
