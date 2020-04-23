@@ -150,3 +150,7 @@ footer {
 h1 {
     text-align: center;
 }
+
+.formAddQuestion {
+    font-size: 15px;
+}

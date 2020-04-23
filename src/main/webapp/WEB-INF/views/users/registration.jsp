@@ -17,35 +17,62 @@
         </c:if></span>
         <form:form method="post" modelAttribute="user">
 
-            <div><label class="formAddQuestion"> Podaj login<form:input path="login"/></label>
-                <form:errors path="login" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Podaj login</div>
+                <div><form:input path="login"/>
+                    <form:errors path="login" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion"> Podaj hasło: <form:password path="password"/></label>
-                <form:errors path="password" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Podaj hasło:</div>
+                <div><form:password path="password"/>
+                    <form:errors path="password" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion"> Powtórz hasło<form:password path="password2"/></label>
-                <form:errors path="password2" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Powtórz hasło</div>
+                <div><form:password path="password2"/>
+                    <form:errors path="password2" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Imię: <form:input path="firstName"/></label>
-                <form:errors path="firstName" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Imię:</div>
+                <div><form:input path="firstName"/>
+                    <form:errors path="firstName" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Nazwisko: <form:input path="lastName"/></label>
-                <form:errors path="lastName" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Nazwisko:</div>
+                <div><form:input path="lastName"/>
+                    <form:errors path="lastName" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Miasto: <form:input path="city"/></label>
-                <form:errors path="city" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Miasto:</div>
+                <div><form:input path="city"/>
+                    <form:errors path="city" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Ulica: <form:input path="street"/></label>
-                <form:errors path="street" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Ulica:</div>
+                <div><form:input path="street"/>
+                    <form:errors path="street" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Numer domu: <form:input path="homeNumber"/></label>
-                <form:errors path="homeNumber" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Numer domu:</div>
+                <div><form:input path="homeNumber"/>
+                    <form:errors path="homeNumber" cssClass="error"/></div>
+            </label></div>
 
-            <div><label class="formAddQuestion">Email: <form:input path="email"/></label>
-                <form:errors path="email" cssClass="error"/></div>
+            <div><label class="formAddQuestion">
+                <div>Email:</div>
+                <div><form:input path="email"/>
+                    <form:errors path="email" cssClass="error"/></div>
+            </label></div>
 
 
-            <input type="submit" value="Zapisz">
+            <input type="submit" value="Zarejestruj się">
 
 
         </form:form>
