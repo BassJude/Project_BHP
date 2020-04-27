@@ -39,7 +39,7 @@
             <div class="search">
                 <h3>Wyszukiwarka użytkowników</h3>
                 <form action="${pageContext.request.contextPath}/admin/search" method="post">
-                    <p><label>Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko"
+                    <p><label>Wpisz nazwisko, imię, login: <input type="text" name="search" placeholder="nazwisko"
                                                      value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
                     <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all"
                                                      <c:if test="${examResult=='all'}">checked</c:if>> | </label>

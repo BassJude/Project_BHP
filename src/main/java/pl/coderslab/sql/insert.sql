@@ -102,11 +102,11 @@ INSERT INTO questions (answer1,answer2,answer3,answer4,good_answer,question) VAL
 
 
 INSERT INTO users (login,password,firstName,lastName,city, street,number_of_home,email,last_test,passed,admin) VALUES
-("sowa","$2a$10$i7g/groj108JXj0qrTVpGO/FdPFBCO4i98fUhnsD0n7bFHafVsHWe","Adam","Pierzchała","Warszawa","Czapelska","40/20","email@email.pl",now(),false,false ),
-("krowa","$2a$10$i7g/groj108JXj0qrTVpGO/FdPFBCO4i98fUhnsD0n7bFHafVsHWe","Michał","Kowalski","Kraków","Wiktorska","10/95","michal@email.pl",null,false ,true ),
-("kogut","$2a$10$i7g/groj108JXj0qrTVpGO/FdPFBCO4i98fUhnsD0n7bFHafVsHWe","Amelka","Nowak","Wrocław","Grenadierów","225/65","amelka@email.pl",null,false,false ),
-("kot","$2a$10$i7g/groj108JXj0qrTVpGO/FdPFBCO4i98fUhnsD0n7bFHafVsHWe","Paulina","Podsiadło","Gdańsk","Mysia","335/8","paulina.paulina@email.pl",null,false ,false ),
-("pies","$2a$10$i7g/groj108JXj0qrTVpGO/FdPFBCO4i98fUhnsD0n7bFHafVsHWe","Aneta","Wierzbicka","Szczecin","Krypska","30/2","aneta@email.pl",null,false,false );
+("kruk","123123","Adam","Pierzchała","Warszawa","Czapelska","40/20","email@email.pl",now(),false,false ),
+("krowa","123123","Michał","Kowalski","Kraków","Wiktorska","10/95","michal@email.pl",null,false ,true ),
+("kogut","123123","Amelka","Nowak","Wrocław","Grenadierów","225/65","amelka@email.pl",null,false,false ),
+("kot","123123","Paulina","Podsiadło","Gdańsk","Mysia","335/8","paulina.paulina@email.pl",null,false ,false ),
+("pies","123123","Aneta","Wierzbicka","Szczecin","Krypska","30/2","aneta@email.pl",null,false,false );
 
 /*
 INSERT INTO `plan` (`id`, `name`, `description`, `created`, `admin_id`) VALUES

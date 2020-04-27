@@ -129,7 +129,7 @@ public class UserService {
 
     // search
     public List<User> searchUser(String search) {
-        return userRepository.findUserByLastNameContaining(search);
+        return userRepository.findUserByLastNameContainingOrFirstNameContainingOrLoginContaining(search, search, search);
     }
 
     // passed egzam

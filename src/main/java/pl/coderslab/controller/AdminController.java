@@ -243,5 +243,20 @@ public class AdminController {
         return "admin/allQuestions";
     }
 
+    // potem do wywalenia TODO
+    @GetMapping("/hash")
+    @ResponseBody
+    public String hashPasswordIfNotHash() {
+        List<User> userList = userService.findAll();
+        for (User u : userList) {
+            if (u.getPassword().length() != 60) {
+                String password = u.getPassword();
+                u.setPasswordHash(password);
+                userService.save(u);
+            }
+        }
+        return "All passwords hashed";
+    }
+
 
 }

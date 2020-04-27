@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUserByPassedEgzam(Boolean passed);
 
     List<User> findUsersByPassedEgzam(List<User> userList);
+
+    List<User> findUserByLastNameContainingOrFirstNameContainingOrLoginContaining(String lastName, String firstName, String login);
 }
