@@ -11,6 +11,11 @@
         <%@ include file="../fragments/sidebarAdmin.jspf" %>
         <div id="content">
             <c:choose>
+                <c:when test="${lackOfUserInDB==true}">
+
+                    <p class="error">Nie możesz usunąć użytkownika, którego nie ma w bazie danych.</p>
+                    <p class="error">Brak użytkownika od Id: ${ID}.</p>
+                </c:when>
                 <c:when test="${userDelete==true}">
 
                     <p class="error">Usunąłeś uzytkownika!</p>

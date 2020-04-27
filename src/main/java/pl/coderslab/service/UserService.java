@@ -151,4 +151,13 @@ public class UserService {
         return userRepository.countBySuperUser(true);
     }
 
+    public void setSlideNumberInLoggedUser(int slideNumber) {
+        if (userSession.isLoggedUser()) {
+            User userInSession = userSession.getUserInSession();
+            User userFromDB = findUserById(userInSession.getId());
+            userFromDB.setLastSlide(slideNumber);
+            save(userFromDB);
+        }
+    }
+
 }

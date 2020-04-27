@@ -98,6 +98,14 @@ public class AdminController {
     // delete user
     @RequestMapping("/deleteUser/{id}")
     public String deleteUser(Model model, @PathVariable Long id) {
+        // sprawdzamy, czy taki user istnieje, bo mógł chwilę temu zostać usunięty, kiedy ktoś dał w przeglądarce
+        // wstecz, a potem dalej i wtedy mamy java.lang.NullPointerException
+        if (userService.findUserById(id) == null) {
+            model.addAttribute("lackOfUserInDB", true);
+            model.addAttribute("ID", id);
+            return "forward:/admin/allUsers";
+        }
+
         // nie kasujemy ostatniego admina
         if (userService.quantitySuperUsers() == 1 && (userService.findUserById(id).isSuperUser())) {
             model.addAttribute("AdminInvalid", true);

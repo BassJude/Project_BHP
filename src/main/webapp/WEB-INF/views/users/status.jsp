@@ -10,7 +10,7 @@
     <%@ include file="../fragments/sidebar.jspf" %>
 
     <div id="content">
-<h1>Status egzaminu</h1>
+<h1>Status testu</h1>
         <p>
             <c:choose>
                 <c:when test="${status==true}">

@@ -69,6 +69,9 @@ public class User {
     @Column(name = "last_test")
     private LocalDateTime lastTestTime;
 
+    @Column(name = "last_slide", columnDefinition = "INT NOT NULL DEFAULT '1'")
+    private int lastSlide;
+
     @Column(name = "admin")
     private boolean superUser;
 
@@ -163,6 +166,14 @@ public class User {
 
     public void setLastTestTime(LocalDateTime lastTestTime) {
         this.lastTestTime = lastTestTime;
+    }
+
+    public int getLastSlide() {
+        return lastSlide;
+    }
+
+    public void setLastSlide(int lastSlide) {
+        this.lastSlide = lastSlide;
     }
 
     public boolean isSuperUser() {

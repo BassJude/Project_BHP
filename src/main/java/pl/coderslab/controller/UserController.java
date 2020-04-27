@@ -87,5 +87,14 @@ public class UserController {
         return value < 10 ? "0" + value : String.valueOf(value);
     }
 
+    // powrót do ostatniego slajdu szkolenia
+    @GetMapping("/continueTraining")
+    public String getLastSlide(Model model) {
+        if (userSession.isLoggedUser()) {
+            model.addAttribute("numberImage", userService.findUserById(userSession.getUserInSession().getId()).getLastSlide());
+        }
+        return "/course";
+    }
+
 
 }

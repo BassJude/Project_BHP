@@ -38,6 +38,7 @@ public class HomeController {
         if (number > 37) {
             number = 37;
         }
+        userService.setSlideNumberInLoggedUser(number);
         model.addAttribute("numberImage", number);
 
         return "/course";
@@ -70,6 +71,7 @@ public class HomeController {
 
         String passToHash = user.getPassword(); // hash password
         user.setPasswordHash(passToHash);
+        user.setLastSlide(1);
 
         userService.save(user);
         model.addAttribute("registration", true);
