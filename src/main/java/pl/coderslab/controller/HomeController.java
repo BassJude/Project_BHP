@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserSession;
+import pl.coderslab.service.HomeService;
 import pl.coderslab.service.UserService;
 import pl.coderslab.validator.RegistrationValidator;
 
@@ -18,11 +19,21 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class HomeController {
 
-    @Autowired
+    private static final String PATH_TO_SLIDES = "src/main/webapp/slides";
+
+
     private UserService userService;
+    private UserSession userSession;
+    private HomeService homeService;
 
     @Autowired
-    private UserSession userSession;
+    public HomeController(UserService userService,
+                          UserSession userSession,
+                          HomeService homeService) {
+        this.userService = userService;
+        this.userSession = userSession;
+        this.homeService = homeService;
+    }
 
     @RequestMapping("")
     public String home() {
@@ -30,17 +41,15 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("/course/{number}")
+    @GetMapping("/course/{number}")
     public String course(@PathVariable int number, Model model) {
-        if (number < 1) {
-            number = 1;
-        }
-        if (number > 37) {
-            number = 37;
-        }
-        userService.setSlideNumberInLoggedUser(number);
-        model.addAttribute("numberImage", number);
+        homeService.setSlide(number, model);
+        return "/course";
+    }
 
+    @PostMapping("/course/number")
+    public String getSlide(@RequestParam int number, Model model) {
+        homeService.setSlide(number, model);
         return "/course";
     }
 

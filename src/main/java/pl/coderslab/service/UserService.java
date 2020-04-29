@@ -144,6 +144,9 @@ public class UserService {
 
     public String percentageOfPassedExams() {
         float result = (passedEgzam(true).size() / (float) findAll().size()) * 100f;
+        if (result == 0) {
+            return "0.00";
+        }
         return new DecimalFormat("##.00").format(result);
     }
 

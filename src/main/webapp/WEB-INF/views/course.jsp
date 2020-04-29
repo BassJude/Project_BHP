@@ -10,12 +10,17 @@
     <%@ include file="fragments/sidebar.jspf" %>
 
     <div id="content">
-<p>Slajd numer ${numberImage} / 37</p>
-<p>
-    <a href="${pageContext.request.contextPath}/course/${numberImage-1}">Poprzedni</a><span>---------</span><a href="${pageContext.request.contextPath}/course/${numberImage+1}">Następny</a>
-</p>
-        <img width="700" height="500" src="${pageContext.request.contextPath}/img/Slajd${numberImage}.PNG">
-        
+        <form style="text-align: center" action="${pageContext.request.contextPath}/course/number" method="post">
+            <input style="width: 40px; text-align: right; font-size: 15px;" min="1" max="${images}" type="number"
+                   name="number" value="${numberImage}"> / ${images}
+            <input type="submit" value="Wczytaj slajd">
+        </form>
+
+        <p style="text-align: center">
+            <a href="${pageContext.request.contextPath}/course/${numberImage-1}">Poprzedni</a><span>---------</span><a
+                href="${pageContext.request.contextPath}/course/${numberImage+1}">Następny</a>
+        </p>
+        <img width="700" height="500" src="${pageContext.request.contextPath}/slides/Slajd${numberImage}.PNG">
 
 
     </div>

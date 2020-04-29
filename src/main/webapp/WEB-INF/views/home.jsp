@@ -21,6 +21,10 @@
                 <c:when test="${changes==true}">
                     ${message}
                 </c:when>
+                <c:when test="${loggedUser==true}">
+                    <h1>Witamy na stronie szkoleniowej</h1>
+                    <p>Zapoznaj się z materiałami szkoleniowymi, wykonaj test.</p>
+                </c:when>
                 <c:otherwise>
                     <h1>Witamy na stronie szkoleniowej</h1>
                     <p>Zapraszamy do rejestracji konta.</p>
