@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class HomeController {
 
-    private static final String PATH_TO_SLIDES = "src/main/webapp/slides";
-
-
     private UserService userService;
     private UserSession userSession;
     private HomeService homeService;

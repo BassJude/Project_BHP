@@ -73,12 +73,10 @@ public class QuestionService {
         if (points < (numberOfQuestions / 2)) {
             return "niezaliczony";
         } else {
-            LocalDateTime date = LocalDateTime.now();
-            userSession.getUserInSession().setLastTestTime(date);
-            userSession.getUserInSession().setPassedEgzam(true);
-            User userToSave = userSession.getUserInSession();
-            userRepository.save(userToSave);
-
+            User userInSession = userSession.getUserInSession();
+            userInSession.setLastTestTime(LocalDateTime.now());
+            userInSession.setPassedEgzam(true);
+            userRepository.save(userInSession);
             return "zaliczony";
         }
     }

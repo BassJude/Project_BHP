@@ -10,6 +10,7 @@ import java.util.Objects;
 @Service
 public class HomeService {
 
+    private static final String PATH_TO_SLIDES = "src/main/webapp/slides";
     private UserService userService;
 
     @Autowired
@@ -23,15 +24,15 @@ public class HomeService {
     }
 
     public void setSlide(int number, Model model) {
-        //        int numberOfFiles = homeService.getNumberOfFiles(new File(PATH_TO_SLIDES));
+        int numberOfSlides = getNumberOfFiles(new File(PATH_TO_SLIDES));
         if (number < 1) {
             number = 1;
         }
-        if (number > 37) {
-            number = 37;
+        if (number > numberOfSlides) {
+            number = numberOfSlides;
         }
         userService.setSlideNumberInLoggedUser(number);
         model.addAttribute("numberImage", number);
-        model.addAttribute("images", 37);
+        model.addAttribute("images", numberOfSlides);
     }
 }
