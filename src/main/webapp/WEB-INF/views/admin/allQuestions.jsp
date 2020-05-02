@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
 <%@ include file="../fragments/head.jspf" %>
@@ -9,11 +9,21 @@
     <%@ include file="../fragments/sidebarAdmin.jspf" %>
 
     <div id="content">
-        <h1>Wszystkie pytania</h1>
+        <c:choose>
+            <c:when test="${searching==true}">
+                <h1>Lista wyszukanych pytań (<c:if test="${questions!=null}">${questions.size()}</c:if>)</h1>
+            </c:when>
+
+            <c:otherwise>
+                <h1>Wszystkie pytania (<c:if test="${questions!=null}">${questions.size()}</c:if>)</h1>
+            </c:otherwise>
+        </c:choose>
+
 
         <h3>Wyszukiwarka pytań</h3>
-        <form action="${pageContext.request.contextPath}/admin/searchQuestion" method="get">
-            Wpisz szukaną frazę: <input type="text" name="search" placeholder="szukaj">
+        <form action="${pageContext.request.contextPath}/admin/searchQuestion" method="post">
+            Wpisz szukaną frazę: <input type="text" name="search" placeholder="szukaj"
+                                        value="<c:if test="${search!=null}">${search}</c:if> ">
             <input type="submit" value="szukaj">
         </form>
         <div class="border"></div>

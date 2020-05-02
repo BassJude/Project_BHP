@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.File;
-import java.util.Objects;
 
 @Service
 public class HomeService {
@@ -19,12 +18,12 @@ public class HomeService {
     }
 
     // ilość slajdów
-    public int getNumberOfFiles(File folder) {
-        return Objects.requireNonNull(folder.listFiles()).length;
+    public Integer getNumberOfFiles(File folder) {
+        return folder.listFiles().length;
     }
 
     public void setSlide(int number, Model model) {
-        int numberOfSlides = getNumberOfFiles(new File(PATH_TO_SLIDES));
+        Integer numberOfSlides = getNumberOfFiles(new File(PATH_TO_SLIDES));
         if (number < 1) {
             number = 1;
         }

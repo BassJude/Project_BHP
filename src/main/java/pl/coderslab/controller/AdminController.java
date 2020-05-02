@@ -237,9 +237,11 @@ public class AdminController {
 
     // search question
     @RequestMapping("/searchQuestion")
-    public String searchQuestion(Model model, @RequestParam(name = "search") String search) {
-        List<Question> questions = questionService.searchQuestion(search);
+    public String searchQuestion(@RequestParam(name = "search") String search, Model model) {
+        List<Question> questions = questionService.searchQuestion(search.trim());
         model.addAttribute("questions", questions);
+        model.addAttribute("search", search.trim());
+        model.addAttribute("searching", true);
         return "admin/allQuestions";
     }
 
