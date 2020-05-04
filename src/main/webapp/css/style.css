@@ -154,3 +154,11 @@ h1 {
 .formAddQuestion {
     font-size: 15px;
 }
+
+.red {
+    color: #c71616;
+}
+
+.green {
+    color: #309125;
+}

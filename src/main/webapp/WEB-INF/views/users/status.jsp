@@ -14,16 +14,16 @@
         <p>
             <c:choose>
                 <c:when test="${status==true}">
-                  Egzamin zaliczony.
+                    <span class="green">Test zaliczony</span>
                 </c:when>
 
 
                 <c:otherwise>
-               Egzamin niezaliczony
+                    <span class="red">Test niezaliczony </span>
                 </c:otherwise>
             </c:choose>
         </p>
-<p>Data zaliczenia egzaminu -> <c:out value="${time}" default="brak" /> </p>
+<p>Data zaliczenia testu -> <c:out value="${time}" default="brak" /> </p>
 
 
     </div>

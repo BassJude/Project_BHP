@@ -18,17 +18,22 @@
     </properties>
 
     <dependencies>
-        <dependency><groupId>org.springframework</groupId>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework.version}</version></dependency>
-        <dependency><groupId>javax.servlet</groupId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-            <scope>provided</scope> </dependency>
-        <dependency><groupId>javax.servlet</groupId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version></dependency>
-
+            <version>1.2</version>
+        </dependency>
 
 
         <dependency>
@@ -71,7 +76,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
 
 
     </dependencies>
