@@ -1,13 +1,13 @@
-package pl.coderslab.service;
+package pl.pierzchala.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import pl.coderslab.model.Question;
-import pl.coderslab.model.User;
-import pl.coderslab.model.UserSession;
-import pl.coderslab.repository.QuestionRepository;
-import pl.coderslab.repository.UserRepository;
+import pl.pierzchala.model.Question;
+import pl.pierzchala.model.User;
+import pl.pierzchala.model.UserSession;
+import pl.pierzchala.repository.QuestionRepository;
+import pl.pierzchala.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

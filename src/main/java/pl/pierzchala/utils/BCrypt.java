@@ -1,4 +1,4 @@
-package pl.coderslab.utils;
+package pl.pierzchala.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;

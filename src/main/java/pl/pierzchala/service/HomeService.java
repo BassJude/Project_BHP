@@ -1,4 +1,4 @@
-package pl.coderslab.service;
+package pl.pierzchala.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,12 @@ public class HomeService {
 
     // ilość slajdów
     public Integer getNumberOfFiles(File folder) {
-        return folder.listFiles().length;
+        try {
+            return folder.listFiles().length;
+        } catch (Exception e) {
+            System.out.println("!!!!!!!");
+           return 37; // TODO do sprawdzenia bo listFiles() nie dziala
+        }
     }
 
     public void setSlide(int number, Model model) {

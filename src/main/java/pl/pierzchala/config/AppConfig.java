@@ -1,4 +1,4 @@
-package pl.coderslab.config;
+package pl.pierzchala.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,9 +22,9 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("pl.coderslab")
+@ComponentScan("pl.pierzchala")
 @EnableTransactionManagement
-@EnableJpaRepositories("pl.coderslab.repository")
+@EnableJpaRepositories("pl.pierzchala.repository")
 public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {

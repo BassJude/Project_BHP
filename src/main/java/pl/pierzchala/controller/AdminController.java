@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.pierzchala.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.Question;
-import pl.coderslab.model.User;
-import pl.coderslab.model.UserSession;
-import pl.coderslab.service.QuestionService;
-import pl.coderslab.service.UserService;
-import pl.coderslab.validator.EditValidator;
+import pl.pierzchala.model.Question;
+import pl.pierzchala.model.User;
+import pl.pierzchala.model.UserSession;
+import pl.pierzchala.service.QuestionService;
+import pl.pierzchala.service.UserService;
+import pl.pierzchala.validator.EditValidator;
 
 import javax.validation.Valid;
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
-package pl.coderslab.model;
+package pl.pierzchala.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import pl.coderslab.utils.BCrypt;
-import pl.coderslab.validator.EditValidator;
-import pl.coderslab.validator.RegistrationValidator;
+import pl.pierzchala.utils.BCrypt;
+import pl.pierzchala.validator.EditValidator;
+import pl.pierzchala.validator.RegistrationValidator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;

@@ -16,6 +16,8 @@
 
         <%@ include file="/css/style.css"%>
     </style>
+<%--TODO do sprawdzenia załączanie CSS--%>
+<%--    <link href='<c:url value="/dist/css/sb-admin-2.css" />' rel="stylesheet">--%>
 
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />--%>
 

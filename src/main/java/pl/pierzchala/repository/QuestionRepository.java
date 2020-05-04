@@ -1,8 +1,8 @@
-package pl.coderslab.repository;
+package pl.pierzchala.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.coderslab.model.Question;
+import pl.pierzchala.model.Question;
 
 import java.util.List;
 
