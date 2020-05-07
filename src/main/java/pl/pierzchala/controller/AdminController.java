@@ -8,13 +8,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.pierzchala.model.Question;
 import pl.pierzchala.model.User;
-import pl.pierzchala.model.UserSession;
+import pl.pierzchala.service.AdminService;
 import pl.pierzchala.service.QuestionService;
 import pl.pierzchala.service.UserService;
 import pl.pierzchala.validator.EditValidator;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -22,171 +22,68 @@ import java.util.List;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class AdminController {
 
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private QuestionService questionService;
+    private AdminService adminService;
 
     @Autowired
-    private UserSession userSession;
+    public AdminController(UserService userService, QuestionService questionService, AdminService adminService) {
+        this.userService = userService;
+        this.questionService = questionService;
+        this.adminService = adminService;
+    }
 
     /////////////////// users///////////////////
 
     @RequestMapping("")
-    public String home(Model model) {
-        model.addAttribute("numberOfUsers", userService.findAll().size());
-        model.addAttribute("numberOfQuestions", questionService.findAll().size());
-        model.addAttribute("percentageOfPassedExams", userService.percentageOfPassedExams());
-        return "/admin";
+    public String homeAdmin(Model model) {
+        return adminService.homeAdmin(model);
     }
 
     @RequestMapping("/allUsers")
-    public String all(Model model) {
-        List<User> users = userService.findAll();
-        model.addAttribute("users", users);
-
-        return "admin/allUsers";
+    public String allUsers(Model model) {
+        return adminService.allUsers(model);
     }
 
     //details user
     @GetMapping("/detailsUser/{id}")
     public String detailsUser(Model model, @PathVariable Long id) {
-        User userById = userService.findUserById(id);
-        List<User> userList = new ArrayList<>();
-        userList.add(userById);
-        model.addAttribute("users", userList);
-        return "admin/detailsUser";
+        return adminService.detailsUser(model, id);
     }
 
     //edit user
     @GetMapping("/editUser/{id}")
-    public String editUser(Model model, @PathVariable Long id) {
+    public String getEditUser(Model model, @PathVariable Long id) {
         model.addAttribute("user", userService.findUserById(id));
         return "admin/addEditUser";
     }
 
     @PostMapping("/editUser/{id}")
-    public String saveUser(@Validated(EditValidator.class) User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "admin/addEditUser";
-        }
-
-        // Zawsze jeden użytkownik musi być adminem
-        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(user.getId()).isSuperUser())) {
-            model.addAttribute("AdminInvalid", true);
-            user.setSuperUser(true);
-        }
-
-        // user, ktorego chcemy zaktualizować nie ma loginu, hasla i daty zaliczenia testu
-        // dlatego musimy uzupełnić te dane
-        User userFromDB = userService.findUserById(user.getId());
-        user.setLogin(userFromDB.getLogin());
-        user.setPassword(userFromDB.getPassword());
-        user.setLastTestTime(userFromDB.getLastTestTime());
-
-        // zaktualizowanie usera w sesji
-        if (user.getId().equals(userSession.getUserInSession().getId())) {
-            userSession.setUserInSession(user);
-            model.addAttribute("firstName", user.getFirstName());
-        }
-        userService.save(user);
-        return "forward:/admin/allUsers";
+    public String saveEditUser(@Validated(EditValidator.class) User user, BindingResult result, Model model) {
+        return adminService.saveEditUser(user, result, model);
     }
 
     // delete user
     @RequestMapping("/deleteUser/{id}")
     public String deleteUser(Model model, @PathVariable Long id) {
-        // sprawdzamy, czy taki user istnieje, bo mógł chwilę temu zostać usunięty, kiedy ktoś dał w przeglądarce
-        // wstecz, a potem dalej i wtedy mamy java.lang.NullPointerException
-        if (userService.findUserById(id) == null) {
-            model.addAttribute("lackOfUserInDB", true);
-            model.addAttribute("ID", id);
-            return "forward:/admin/allUsers";
-        }
-
-        // nie kasujemy ostatniego admina
-        if (userService.quantitySuperUsers() == 1 && (userService.findUserById(id).isSuperUser())) {
-            model.addAttribute("AdminInvalid", true);
-            return "forward:/admin/allUsers";
-        }
-
-        User user = userService.findUserById(id);
-
-        // nie kasujemy samego siebie
-        if (user.getId().equals(userSession.getUserInSession().getId())) {
-            model.addAttribute("AdminInvalid", true);
-            return "forward:/admin/allUsers";
-        }
-        model.addAttribute("userDelete", true);
-        model.addAttribute("user", user);
-        userService.deleteById(id);
-        return "forward:/admin/allUsers";
+        return adminService.deleteUser(model, id);
     }
 
     // search user
     @RequestMapping("/search")
-    public String search(@RequestParam(name = "search") String search,
-                         @RequestParam(name = "examResult", defaultValue = "all") String examResult,
-                         Model model) {
-        List<User> users = null;
-        // trim() bo do inputa dodawana jest spacja po każdym wyszukaniu ... nie wiem dlaczego
-        if (search.trim().length() == 0) {
-            users = userService.findAll();
-        } else {
-            users = userService.searchUser(search.trim());
-        }
+    public String searchUser(@RequestParam(name = "search") String search,
+                             @RequestParam(name = "examResult", defaultValue = "all") String examResult,
+                             Model model) {
 
-        List<User> result = new ArrayList<>();
-        switch (examResult) {
-            case "passed":
-                for (User u : users) {
-                    if (u.isPassedEgzam()) {
-                        result.add(u);
-                    }
-                }
-                break;
-            case "fail":
-                for (User u : users) {
-                    if (!u.isPassedEgzam()) {
-                        result.add(u);
-                    }
-                }
-                break;
-            case "all":
-                result.addAll(users);
-                break;
-        }
-
-        model.addAttribute("users", result);
-        model.addAttribute("search", search.trim());
-        model.addAttribute("examResult", examResult);
-        return "admin/allUsers";
-
-    }
-
-    // not passed
-    @RequestMapping("/notPassedEgzam")
-    public String notPassed(Model model, @RequestParam(defaultValue = "false", name = "passed") boolean passed) {
-
-        model.addAttribute("users", userService.passedEgzam(passed));
-        model.addAttribute("status", passed ? "checked" : "");
-        return "admin/allUsers";
+        return adminService.searchUser(search, examResult, model);
     }
 
 ////////////// questions /////////////////////
 
     @ModelAttribute("abcd")
     public List<String> forSelect() {
-        List<String> stringList = new ArrayList<>();
-        stringList.add("A");
-        stringList.add("B");
-        stringList.add("C");
-        stringList.add("D");
-        return stringList;
+        return Arrays.asList("A", "B", "C", "D");
     }
-
 
     @RequestMapping("/allQuestions")
     public String allQuestions(Model model) {
@@ -238,11 +135,7 @@ public class AdminController {
     // search question
     @RequestMapping("/searchQuestion")
     public String searchQuestion(@RequestParam(name = "search") String search, Model model) {
-        List<Question> questions = questionService.searchQuestion(search.trim());
-        model.addAttribute("questions", questions);
-        model.addAttribute("search", search.trim());
-        model.addAttribute("searching", true);
-        return "admin/allQuestions";
+        return adminService.searchQuestion(search, model);
     }
 
     // potem do wywalenia TODO

@@ -51,11 +51,6 @@
                     <p class="button"><input type="submit" value="szukaj"></p>
                 </form>
             </div>
-            <%--            <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="post">--%>
-            <%--                zaliczony egzamin: <input type="checkbox" name="passed" ${status}>--%>
-
-            <%--                <input type="submit" value="szukaj">--%>
-            <%--            </form>--%>
 
             <c:forEach items="${users}" var="user">
                 <div class="border"></div>

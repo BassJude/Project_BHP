@@ -14,8 +14,6 @@ import pl.pierzchala.model.UserSession;
 import pl.pierzchala.service.UserService;
 import pl.pierzchala.validator.EditValidator;
 
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping(path = "/users")
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
@@ -30,61 +28,24 @@ public class UserController {
         this.userSession = userSession;
     }
 
-
     //edit user
     @GetMapping("/edit")
     public String editUser(Model model) {
         User user = userService.getUserSession();
         model.addAttribute("user", user);
-
         return "users/addEdit";
     }
 
     @PostMapping("/edit")
-    public String saveUser(@Validated(EditValidator.class) User user, BindingResult result,
-                           Model model) {
-        if (result.hasErrors()) {
-            return "users/addEdit";
-        }
-        // aktualizuje danem bo user nie ma loginu, hasla ...
-        User userFromDB = userService.findUserById(user.getId());
-        user.setLogin(userFromDB.getLogin());
-        user.setPassword(userFromDB.getPassword());
-        user.setLastTestTime(userFromDB.getLastTestTime());
-        user.setPassedEgzam(userFromDB.isPassedEgzam());
-        user.setSuperUser(userFromDB.isSuperUser());
-
-        userService.save(user);
-        userSession.setUserInSession(user);// zaktualizowanie
-        model.addAttribute("changes", true);
-        model.addAttribute("firstName", user.getFirstName());
-        model.addAttribute("message", "Profil zaktualizowany");
-        return "/home";
+    public String saveEditUser(@Validated(EditValidator.class) User user, BindingResult result,
+                               Model model) {
+        return userService.saveEditUser(user, result, model);
     }
 
     // status
     @RequestMapping("/status")
     public String status(Model model) {
-        User user = userSession.getUserInSession();
-        model.addAttribute("status", user.isPassedEgzam());
-
-        LocalDateTime date = user.getLastTestTime();
-        if (date != null) {
-
-            String lastTime = date.getYear() + "-"
-                    + getCorrectFormat(date.getMonthValue()) + "-"
-                    + getCorrectFormat(date.getDayOfMonth()) + " godzina: "
-                    + getCorrectFormat(date.getHour()) + ":"
-                    + getCorrectFormat(date.getMinute());
-
-            model.addAttribute("time", lastTime);
-        }
-
-        return "/users/status";
-    }
-
-    private String getCorrectFormat(int value) {
-        return value < 10 ? "0" + value : String.valueOf(value);
+        return userService.status(model);
     }
 
     // powrót do ostatniego slajdu szkolenia
@@ -95,6 +56,4 @@ public class UserController {
         }
         return "/course";
     }
-
-
 }

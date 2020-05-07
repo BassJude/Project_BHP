@@ -8,9 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.pierzchala.model.User;
-import pl.pierzchala.model.UserSession;
 import pl.pierzchala.service.HomeService;
-import pl.pierzchala.service.UserService;
 import pl.pierzchala.validator.RegistrationValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,22 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class HomeController {
 
-    private UserService userService;
-    private UserSession userSession;
     private HomeService homeService;
 
     @Autowired
-    public HomeController(UserService userService,
-                          UserSession userSession,
-                          HomeService homeService) {
-        this.userService = userService;
-        this.userSession = userSession;
+    public HomeController(HomeService homeService) {
         this.homeService = homeService;
     }
 
     @RequestMapping("")
     public String home() {
-
         return "home";
     }
 
@@ -64,68 +55,24 @@ public class HomeController {
 
     @PostMapping("/registration")
     public String registrationUser(@Validated(RegistrationValidator.class) User user, BindingResult result, Model model) {
-
-        String message = userService.checkLoginAndPassword(user);
-        if (!"registrationSuccess".equals(message)) {
-            model.addAttribute("invalid", true);
-            model.addAttribute("message", message);
-            return "/users/registration";
-        }
-        if (result.hasErrors()) {
-            return "/users/registration";
-        }
-
-        String passToHash = user.getPassword(); // hash password
-        user.setPasswordHash(passToHash);
-        user.setLastSlide(1);
-
-        userService.save(user);
-        model.addAttribute("registration", true);
-        model.addAttribute("message", "Dziękujemy za rejestrację. Teraz możesz się zalogować.");
-        return "/home";
+        return homeService.registrationUser(user, result, model);
     }
 
     // login
     @GetMapping("/login")
     public String login() {
-
         return "/login";
     }
 
     @PostMapping("/login")
     public String login(Model model, HttpServletRequest request) {
-        String login = request.getParameter("login");
-        String pass = request.getParameter("pass");
-        String check = userService.checkLogin(login, pass, model);
-        if (!"loginSuccess".equals(check)) {
-            request.setAttribute("login", login); //, by nie musieć wpisywać znowu
-            request.setAttribute("pass", pass);
-            return "/login";
-        }
-        model.addAttribute("loggedUser", true);
-        userService.sessionStart(login); /////
-
-        if (userSession.getUserInSession().isSuperUser() == true) {
-            model.addAttribute("admin", true);
-
-        }
-
-        model.addAttribute("firstName", userSession.getUserInSession().getFirstName());
-        model.addAttribute("registration", true);
-        model.addAttribute("message", "Zalogowałeś się. Zapoznaj się z materiałami szkoleniowymi, wykonaj test.");
-        return "/home";
+        return homeService.loginPost(model, request);
 
     }
 
     @RequestMapping("/logout")
     public String logout(Model model) {
-        model.addAttribute("loggedUser", false);
-        model.addAttribute("admin", false);
-        model.addAttribute("firstName", "użytkowniku");
-
-        userSession.setLoggedUser(false);
-        userSession.setUserInSession(null);
-        return "/home";
+        return homeService.logout(model);
     }
 
 }

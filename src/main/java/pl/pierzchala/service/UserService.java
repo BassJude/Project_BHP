@@ -3,41 +3,40 @@ package pl.pierzchala.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pl.pierzchala.model.User;
 import pl.pierzchala.model.UserSession;
 import pl.pierzchala.repository.UserRepository;
 import pl.pierzchala.utils.BCrypt;
 
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class UserService {
 
     private final static String REGEX = "\\W+";
 
-    @Autowired
     private UserRepository userRepository;
+    private UserSession userSession;
 
     @Autowired
-    private UserSession userSession;
+    public UserService(UserRepository userRepository, UserSession userSession) {
+        this.userRepository = userRepository;
+        this.userSession = userSession;
+    }
 
     public void save(User user) {
         userRepository.save(user);
     }
 
-    public void update(User user) {
-        userRepository.save(user);
-    }
-
     public void deleteById(Long id) {
         userRepository.delete(id);
-    }
-
-    public void deleteUser(User user) {
-        userRepository.delete(user);
     }
 
     public User findUserById(Long id) {
@@ -137,11 +136,6 @@ public class UserService {
         return userRepository.findUserByPassedEgzam(passed);
     }
 
-    // second function passed egzam by users
-    public List<User> passedEgzam2(List<User> userList) {
-        return userRepository.findUsersByPassedEgzam(userList);
-    }
-
     public String percentageOfPassedExams() {
         float result = (passedEgzam(true).size() / (float) findAll().size()) * 100f;
         if (result == 0) {
@@ -163,4 +157,45 @@ public class UserService {
         }
     }
 
+    public String saveEditUser(User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "users/addEdit";
+        }
+        // aktualizuje danem bo user nie ma loginu, hasla ...
+        User userFromDB = findUserById(user.getId());
+        user.setLogin(userFromDB.getLogin());
+        user.setPassword(userFromDB.getPassword());
+        user.setLastTestTime(userFromDB.getLastTestTime());
+        user.setPassedEgzam(userFromDB.isPassedEgzam());
+        user.setSuperUser(userFromDB.isSuperUser());
+
+        save(user);
+        userSession.setUserInSession(user);// zaktualizowanie
+        model.addAttribute("changes", true);
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("message", "Profil zaktualizowany");
+        return "/home";
+    }
+
+    public String status(Model model) {
+        User user = userSession.getUserInSession();
+        model.addAttribute("status", user.isPassedEgzam());
+
+        LocalDateTime date = user.getLastTestTime();
+        if (date != null) {
+
+            String lastTime = date.getYear() + "-"
+                    + getCorrectFormat(date.getMonthValue()) + "-"
+                    + getCorrectFormat(date.getDayOfMonth()) + " godzina: "
+                    + getCorrectFormat(date.getHour()) + ":"
+                    + getCorrectFormat(date.getMinute());
+
+            model.addAttribute("time", lastTime);
+        }
+        return "/users/status";
+    }
+
+    private String getCorrectFormat(int value) {
+        return value < 10 ? "0" + value : String.valueOf(value);
+    }
 }

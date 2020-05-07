@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(path = "/questions")
-@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName","admin"})
+@SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class QuestionController {
 
 
@@ -23,47 +23,19 @@ public class QuestionController {
 
     @GetMapping("/test")
     public String beforeStartTest(Model model) {
-
-        questionService.startSetting(model);
-
+        questionService.settingsBeforeStartTest(model);
         return "forward:/questions/test/0";
     }
 
     @RequestMapping("/test/{number}")
-    public String startTest(Model model, @PathVariable int number,
-                            HttpSession session, HttpServletRequest request) {
-
-
-        String answer = request.getParameter("answer");  // przy pierwszym wejsciu null
-        String[] goodAnswer = (String[]) session.getAttribute("goodAnswers");
-        int size = (int) session.getAttribute("size");
-
-        if (answer != null) {
-            if (goodAnswer[number - 1].equals(answer)) { // -1, bo pierwsze wejscie ma number=0 i nie wchodzi do ifa, bo answer jest nullem
-                int points = (int) session.getAttribute("points");
-                points++;
-                model.addAttribute("points", points);
-
-            }
-        }
-
-        if (number < size) {
-            model.addAttribute("question", questionService.getNumberQuestionForTest(number)); // , wysylam pytanie, lista pytan jest od index 0
-            model.addAttribute("questionNumber", number);
-
-            return "questions/test";
-        } else {
-            return "forward:/questions/testResult";
-        }
+    public String test(Model model, @PathVariable int number,
+                       HttpSession session, HttpServletRequest request) {
+        return questionService.test(model, number, session, request);
     }
 
     @RequestMapping("/testResult")
     public String finishTest(HttpSession session, Model model) {
-        int points = (int) session.getAttribute("points");
-        int size = (int) session.getAttribute("size");
-        String evaluation = questionService.evaluation(points, size);
-        model.addAttribute("evaluation", evaluation);
-
+        questionService.finishTest(session, model);
         return "/questions/testResult";
     }
 
