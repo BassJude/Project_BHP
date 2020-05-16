@@ -15,29 +15,32 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 300)
+    @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank
     @Size(max = 300, message = "Treść pytania nie moze mieć więcej niż 300 znaków")
     private String question;
 
-    @Column(length = 300)
+    @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer1;
-    @Column(length = 300)
+
+    @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer2;
-    @Column(length = 300)
+
+    @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer3;
-    @Column(length = 300)
+
+    @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer4;
 
-    @Column(length = 5)
+    @Column(length = 5, nullable = false, columnDefinition = "VARCHAR(5) NOT NULL")
     @NotEmpty(message = "Wybierz odpowiedź")
     @NotNull(message = "Wybierz odpowiedź")
     @Size(max = 5, message = "Wybierz jedną odpowiedź")

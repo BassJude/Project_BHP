@@ -10,9 +10,7 @@
     <%@ include file="fragments/sidebar.jspf" %>
 
     <div id="content">
-
-<span>
-
+        <span>
             <c:choose>
                 <c:when test="${registration==true}">
                     ${message}
@@ -30,11 +28,7 @@
                     <p>Zapraszamy do rejestracji konta.</p>
                 </c:otherwise>
             </c:choose>
-
-
-
-            </span>
-
+        </span>
 
     </div>
 

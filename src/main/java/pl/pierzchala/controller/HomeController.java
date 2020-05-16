@@ -24,7 +24,7 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public String home() {
         return "home";
     }
