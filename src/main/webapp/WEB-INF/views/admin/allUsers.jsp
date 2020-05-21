@@ -63,7 +63,7 @@
                 <span>E-mail: ${user.email} | </span>
                 <span>Zaliczony test:
                     <c:choose>
-                        <c:when test="${user.passedEgzam==true}">
+                        <c:when test="${user.examPassed==true}">
                             <span style="color:green;font-weight: bold;">Zaliczony</span>
                         </c:when>
 

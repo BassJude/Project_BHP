@@ -34,14 +34,16 @@ public class User {
     @NotBlank(groups = RegistrationValidator.class)
     private String password2;
 
-    @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
+    @Column(name = "first_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
     @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
+    @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Imię musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String firstName;
 
-    @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
+    @Column(name = "last_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
     @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
+    @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Nazwisko musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String lastName;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
@@ -54,19 +56,19 @@ public class User {
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String street;
 
-    @Column(length = 50, name = "number_of_home", nullable = false, columnDefinition = "VARCHAR(50) NOT NULL")
+    @Column(length = 50, name = "home_number", nullable = false, columnDefinition = "VARCHAR(50) NOT NULL")
     @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 50, message = "Maksymalnie 50 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String homeNumber;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
     @Email(message = "Wprowadź prawidłowy adres email")
-    @Pattern(regexp = "^[a-zA-Z0-9]+[._-]*[a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email", groups = {RegistrationValidator.class, EditValidator.class})
+    @Pattern(regexp = "^[a-zA-Z0-9]+[._\\-a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email", groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String email;
 
     @Column(name = "passed")
-    private boolean passedEgzam;
+    private boolean examPassed;
 
     @Column(name = "last_test")
     private LocalDateTime lastTestTime;
@@ -145,12 +147,12 @@ public class User {
         this.email = email;
     }
 
-    public boolean isPassedEgzam() {
-        return passedEgzam;
+    public boolean isExamPassed() {
+        return examPassed;
     }
 
-    public void setPassedEgzam(boolean passedEgzam) {
-        this.passedEgzam = passedEgzam;
+    public void setExamPassed(boolean examPassed) {
+        this.examPassed = examPassed;
     }
 
     public String getCity() {
@@ -207,7 +209,7 @@ public class User {
                 ", street='" + street + '\'' +
                 ", homeNumber='" + homeNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", passedEgzam=" + passedEgzam +
+                ", examPassed=" + examPassed +
                 ", lastTestTime=" + lastTestTime +
                 ", superUser=" + superUser +
                 '}';

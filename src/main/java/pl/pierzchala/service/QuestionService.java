@@ -114,7 +114,7 @@ public class QuestionService {
         } else {
             User userInSession = userSession.getUserInSession();
             userInSession.setLastTestTime(LocalDateTime.now());
-            userInSession.setPassedEgzam(true);
+            userInSession.setExamPassed(true);
             userRepository.save(userInSession);
             return "zaliczony";
         }

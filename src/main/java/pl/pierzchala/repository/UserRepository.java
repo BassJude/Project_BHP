@@ -15,11 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserByLogin(String login);
 
-    List<User> findUserByLastNameContaining(String search);
-
-    List<User> findUserByPassedEgzam(Boolean passed);
-
-    List<User> findUsersByPassedEgzam(List<User> userList);
+    List<User> findUserByExamPassed(Boolean passed);
 
     List<User> findUserByLastNameContainingOrFirstNameContainingOrLoginContaining(String lastName, String firstName, String login);
 }

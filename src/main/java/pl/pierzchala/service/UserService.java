@@ -131,13 +131,13 @@ public class UserService {
         return userRepository.findUserByLastNameContainingOrFirstNameContainingOrLoginContaining(search, search, search);
     }
 
-    // passed egzam
-    public List<User> passedEgzam(Boolean passed) {
-        return userRepository.findUserByPassedEgzam(passed);
+    // exam passed
+    public List<User> examPassed(Boolean passed) {
+        return userRepository.findUserByExamPassed(passed);
     }
 
     public String percentageOfPassedExams() {
-        float result = (passedEgzam(true).size() / (float) findAll().size()) * 100f;
+        float result = (examPassed(true).size() / (float) findAll().size()) * 100f;
         if (result == 0) {
             return "0.00";
         }
@@ -166,7 +166,7 @@ public class UserService {
         user.setLogin(userFromDB.getLogin());
         user.setPassword(userFromDB.getPassword());
         user.setLastTestTime(userFromDB.getLastTestTime());
-        user.setPassedEgzam(userFromDB.isPassedEgzam());
+        user.setExamPassed(userFromDB.isExamPassed());
         user.setSuperUser(userFromDB.isSuperUser());
 
         save(user);
@@ -179,7 +179,7 @@ public class UserService {
 
     public String status(Model model) {
         User user = userSession.getUserInSession();
-        model.addAttribute("status", user.isPassedEgzam());
+        model.addAttribute("status", user.isExamPassed());
 
         LocalDateTime date = user.getLastTestTime();
         if (date != null) {

@@ -127,14 +127,14 @@ public class AdminService {
         switch (examResult) {
             case "passed":
                 for (User u : users) {
-                    if (u.isPassedEgzam()) {
+                    if (u.isExamPassed()) {
                         result.add(u);
                     }
                 }
                 break;
             case "fail":
                 for (User u : users) {
-                    if (!u.isPassedEgzam()) {
+                    if (!u.isExamPassed()) {
                         result.add(u);
                     }
                 }
