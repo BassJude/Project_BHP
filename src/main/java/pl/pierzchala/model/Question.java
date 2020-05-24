@@ -1,7 +1,6 @@
 package pl.pierzchala.model;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,39 +10,41 @@ import javax.validation.constraints.Size;
 @Table(name = "questions")
 public class Question {
 
+    private static final String MESSAGE_NOT_BLANK = "Pole nie może być puste";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank
+    @NotBlank(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = "Treść pytania nie moze mieć więcej niż 300 znaków")
     private String question;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank
+    @NotBlank(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer1;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank
+    @NotBlank(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer2;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank
+    @NotBlank(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer3;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank
+    @NotBlank(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
     private String answer4;
 
-    @Column(length = 5, nullable = false, columnDefinition = "VARCHAR(5) NOT NULL")
-    @NotEmpty(message = "Wybierz odpowiedź")
+    @Column(length = 1, nullable = false, columnDefinition = "VARCHAR(1) NOT NULL")
+    @NotBlank(message = "Wybierz odpowiedź")
     @NotNull(message = "Wybierz odpowiedź")
-    @Size(max = 5, message = "Wybierz jedną odpowiedź")
+    @Size(max = 1, message = "Wybierz jedną odpowiedź")
     private String good_answer;
 
     public Long getId() {

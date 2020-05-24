@@ -23,11 +23,11 @@
             <form:form method="post" modelAttribute="question">
 
                 <div><label class="formAddQuestion">Wybierz prawidłową odpowiedź:
-                    <form:select path="good_answer">
+                    <form:select path="good_answer" class="defaultSelectSettings">
                         <%--<form:option value="0" label="--Wybierz odpowiedź--"/>--%>
                         <form:options items="${abcd}"/>
                     </form:select></label>
-                    <form:errors path="good_answer" cssClass="error"/> <input type="submit" value="Zapisz"></div>
+                    <form:errors path="good_answer" cssClass="error"/> <input class="defaultSubmitSettings" type="submit" value="Zapisz"></div>
 
                 <div>Wpisz pytanie:</div>
                 <div><label class="formAddQuestion"> <form:textarea rows="5" cols="80"

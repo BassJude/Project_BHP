@@ -70,7 +70,7 @@ public class User {
     @Column(name = "passed")
     private boolean examPassed;
 
-    @Column(name = "last_test")
+    @Column(name = "last_test_passed")
     private LocalDateTime lastTestTime;
 
     @Column(name = "last_slide", columnDefinition = "INT NOT NULL DEFAULT '1'")
