@@ -101,12 +101,12 @@ INSERT INTO questions (answer1,answer2,answer3,answer4,good_answer,question) VAL
 
 
 
-INSERT INTO users (login,password,firstName,lastName,city, street,number_of_home,email,last_test,passed,admin) VALUES
-("kruk","123123","Adam","Pierzchała","Warszawa","Czapelska","40/20","email@email.pl",now(),false,false ),
-("krowa","123123","Michał","Kowalski","Kraków","Wiktorska","10/95","michal@email.pl",null,false ,true ),
-("kogut","123123","Amelka","Nowak","Wrocław","Grenadierów","225/65","amelka@email.pl",null,false,false ),
-("kot","123123","Paulina","Podsiadło","Gdańsk","Mysia","335/8","paulina.paulina@email.pl",null,false ,false ),
-("pies","123123","Aneta","Wierzbicka","Szczecin","Krypska","30/2","aneta@email.pl",null,false,false );
+INSERT INTO users (login,password,first_name,last_name,city, street,home_number,email,last_test_passed,passed,admin) VALUES
+("kruk","$2a$10$RidbazUhkAO.4y.DpNjD8.2tJBqTJHwvDmtMb8UFCt/rRU6MmKnBq","Adam","Pierzchała","Warszawa","Czapelska","40/20","email@email.pl",now(),false,false ),
+("krowa","$2a$10$RidbazUhkAO.4y.DpNjD8.2tJBqTJHwvDmtMb8UFCt/rRU6MmKnBq","Michał","Kowalski","Kraków","Wiktorska","10/95","michal@email.pl",null,false ,true ),
+("kogut","$2a$10$b4btD12d.UtjuTMTUqQKV.6o6FNACZEsksGBvpyI6RswwOT/UxTtG","Amelka","Nowak","Wrocław","Grenadierów","225/65","amelka@email.pl",null,false,false ),
+("kot","$2a$10$b4btD12d.UtjuTMTUqQKV.6o6FNACZEsksGBvpyI6RswwOT/UxTtG","Paulina","Podsiadło","Gdańsk","Mysia","335/8","paulina.paulina@email.pl",null,false ,false ),
+("pies","$2a$10$b4btD12d.UtjuTMTUqQKV.6o6FNACZEsksGBvpyI6RswwOT/UxTtG","Aneta","Wierzbicka","Szczecin","Krypska","30/2","aneta@email.pl",null,false,false );
 
 /*
 INSERT INTO `plan` (`id`, `name`, `description`, `created`, `admin_id`) VALUES

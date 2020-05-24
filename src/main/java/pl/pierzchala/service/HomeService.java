@@ -11,13 +11,12 @@ import pl.pierzchala.model.UserSession;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Objects;
+import java.util.Properties;
 
 @Service
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class HomeService {
 
-    //    private static final String PATH_TO_SLIDES = "src/main/webapp/slides";
-    private static final String PATH_TO_SLIDES = "src/main/webapp/slides/";
     private UserService userService;
     private UserSession userSession;
 
@@ -29,7 +28,7 @@ public class HomeService {
 
 
     public void setSlide(int number, Model model) {
-        Integer numberOfSlides = getNumberOfFiles(new File(PATH_TO_SLIDES));
+        Integer numberOfSlides = getNumberOfSlides();
         if (number < 1) {
             number = 1;
         }
@@ -42,15 +41,18 @@ public class HomeService {
     }
 
     // ilość slajdów
-    private Integer getNumberOfFiles(File folder) {
+    private Integer getNumberOfSlides() {
+        File folder = null;
         try {
-            File[] files = folder.listFiles();
-            int value = files.length;
-            System.out.print("OK");
+            Properties properties = System.getProperties();
+            String property = properties.getProperty("sun.desktop");
+            if ("windows".equals(property)) {
+                folder = new File("./tomcat/webapps/bhp/slides");
+            }
             return Objects.requireNonNull(folder.listFiles()).length;
         } catch (Exception e) {
             System.out.print("e");
-            return 37; // TODO do sprawdzenia bo listFiles() nie dziala
+            return 37;
         }
     }
 

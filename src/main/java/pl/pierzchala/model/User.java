@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 public class User {
 
+    private static final String MESSAGE_NOT_BLANK = "Pole nie może być puste";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,38 +28,38 @@ public class User {
 
     @Column(length = 30, nullable = false, columnDefinition = "VARCHAR(255) NOT NULL")
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
-    @NotBlank(groups = RegistrationValidator.class)
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password;
 
     @Transient
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
-    @NotBlank(groups = RegistrationValidator.class)
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password2;
 
     @Column(name = "first_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Imię musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String firstName;
 
     @Column(name = "last_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Nazwisko musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String lastName;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String city;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String street;
 
     @Column(length = 50, name = "home_number", nullable = false, columnDefinition = "VARCHAR(50) NOT NULL")
-    @NotBlank(groups = {RegistrationValidator.class, EditValidator.class})
+    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 50, message = "Maksymalnie 50 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String homeNumber;
 
