@@ -47,7 +47,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    //registration
+    //rejestracja
     public String checkLoginAndPassword(User user) {
         long value = userRepository.countByLogin(user.getLogin());
         if (value != 0) {
@@ -115,23 +115,21 @@ public class UserService {
         return "loginSuccess";
     }
 
-    // save user in session
+    // zapis użytkownika do sesji
     public void sessionStart(String login) {
         userSession.setUserInSession(userRepository.findUserByLogin(login));
         userSession.setLoggedUser(true);
     }
 
-    // edit in session
     public User getUserSession() {
         return userSession.getUserInSession();
     }
 
-    // search
+    // szukanie użytkownika
     public List<User> searchUser(String search) {
         return userRepository.findUserByLastNameContainingOrFirstNameContainingOrLoginContaining(search, search, search);
     }
 
-    // exam passed
     public List<User> examPassed(Boolean passed) {
         return userRepository.findUserByExamPassed(passed);
     }
@@ -161,7 +159,7 @@ public class UserService {
         if (result.hasErrors()) {
             return "users/addEdit";
         }
-        // aktualizuje danem bo user nie ma loginu, hasla ...
+        // uzupełnienie pozostałych danych
         User userFromDB = findUserById(user.getId());
         user.setLogin(userFromDB.getLogin());
         user.setPassword(userFromDB.getPassword());

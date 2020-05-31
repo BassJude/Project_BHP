@@ -23,7 +23,7 @@
                 <h1>Panel Administratora</h1>
                 <p>Ilość użytkowników: <c:if test="${numberOfUsers!=null}">${numberOfUsers}</c:if></p>
                 <p>Ilość pytań: <c:if test="${numberOfQuestions!=null}">${numberOfQuestions}</c:if></p>
-                <p>Procent użytkowników z zaliczonym egzaminem: <c:if test="${percentageOfPassedExams!=null}">${percentageOfPassedExams}</c:if> %</p>
+                <p>Procent użytkowników z zaliczonym testem: <c:if test="${percentageOfPassedExams!=null}">${percentageOfPassedExams}</c:if> %</p>
             </c:otherwise>
         </c:choose>
     </div>

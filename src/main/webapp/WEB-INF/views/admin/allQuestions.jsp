@@ -34,7 +34,7 @@
             <div>${question.question}</div>
             <div>a) ${question.answer1}</div>
             <div>b) ${question.answer2}</div>
-            <div>c)${question.answer3}</div>
+            <div>c) ${question.answer3}</div>
             <div>d) ${question.answer4}</div>
             <div>Prawidłowa odpowiedź to: ${question.good_answer}</div>
 

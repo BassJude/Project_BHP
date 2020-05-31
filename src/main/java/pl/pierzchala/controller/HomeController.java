@@ -46,7 +46,6 @@ public class HomeController {
         return "/aboutUs";
     }
 
-    // registration user
     @GetMapping("/registration")
     public String registrationUser(Model model) {
         model.addAttribute("user", new User());
@@ -58,7 +57,6 @@ public class HomeController {
         return homeService.registrationUser(user, result, model);
     }
 
-    // login
     @GetMapping("/login")
     public String login() {
         return "/login";
@@ -74,5 +72,4 @@ public class HomeController {
     public String logout(Model model) {
         return homeService.logout(model);
     }
-
 }

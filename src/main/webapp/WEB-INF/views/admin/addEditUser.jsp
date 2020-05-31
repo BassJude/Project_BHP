@@ -35,7 +35,7 @@
                 <div><label class="formAddQuestion">Email: <form:input path="email"/></label>
                     <form:errors path="email" cssClass="error"/></div>
 
-                <div><label class="formAddQuestion">Czy zaliczony egzamin: <form:checkbox path="examPassed"/></label>
+                <div><label class="formAddQuestion">Czy zaliczony test: <form:checkbox path="examPassed"/></label>
                     <form:errors path="examPassed" cssClass="error"/></div>
 
                 <div><label class="formAddQuestion">Czy jest superUserem <form:checkbox path="superUser"/></label>

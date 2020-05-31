@@ -28,12 +28,4 @@ public class UserSession {
     public void setLoggedUser(boolean loggedUser) {
         this.loggedUser = loggedUser;
     }
-
-    @Override
-    public String toString() {
-        return "UserSession{" +
-                "userInSession=" + userInSession +
-                ", loggedUser=" + loggedUser +
-                '}';
-    }
 }

@@ -29,12 +29,10 @@
                 </c:otherwise>
             </c:choose>
         </span>
-
     </div>
 
     <div style="clear:both;"></div>
     <%@ include file="fragments/footer.jspf" %>
-
 </div>
 </body>
 </html>

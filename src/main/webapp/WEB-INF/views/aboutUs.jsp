@@ -11,8 +11,12 @@
 
     <div id="content">
 
-<h1>Informacje o nas:</h1>
-
+        <h1>Informacje o nas:</h1>
+        <h2>Jan Kowalski</h2>
+        <h3>ul. Dobra 38</h3>
+        <h3>04-081 Warszawa</h3>
+        <h3>telefon: 123456789</h3>
+        <h3>e-mail: mail@mail.pl</h3>
 
 
     </div>

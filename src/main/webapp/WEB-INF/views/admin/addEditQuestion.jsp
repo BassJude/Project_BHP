@@ -16,18 +16,19 @@
     <div id="content">
 
         <h1>Dodaj lub edytuj pytanie</h1>
-        <p>Id zmienianego pytania: ${question.id}</p>
+        <c:if test="${question.id != null}"> <p>Id zmienianego pytania: ${question.id}</p></c:if>
 
         <div>
 
             <form:form method="post" modelAttribute="question">
+                <div><input class="defaultSubmitSettings" type="submit" value="Zapisz"></div>
 
                 <div><label class="formAddQuestion">Wybierz prawidłową odpowiedź:
                     <form:select path="good_answer" class="defaultSelectSettings">
-                        <%--<form:option value="0" label="--Wybierz odpowiedź--"/>--%>
+                        <form:option value="" label="--"/>
                         <form:options items="${abcd}"/>
                     </form:select></label>
-                    <form:errors path="good_answer" cssClass="error"/> <input class="defaultSubmitSettings" type="submit" value="Zapisz"></div>
+                    <form:errors path="good_answer" cssClass="error"/></div>
 
                 <div>Wpisz pytanie:</div>
                 <div><label class="formAddQuestion"> <form:textarea rows="5" cols="80"

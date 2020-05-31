@@ -36,7 +36,7 @@
     </c:if>
 
     <c:if test="${admin==true}">
-        <div class="optionL buttonTest"><a href="${pageContext.request.contextPath}/admin">Panel administratora</a>
+        <div class="optionL buttonTest"><a href="${pageContext.request.contextPath}/admin/">Panel administratora</a>
         </div>
     </c:if>
 

@@ -59,8 +59,7 @@ public class AdminService {
             user.setSuperUser(true);
         }
 
-        // user, ktorego chcemy zaktualizować nie ma loginu, hasla i daty zaliczenia testu
-        // dlatego musimy uzupełnić te dane
+        // uzupełniamy dane, które nie przyszły z formularza
         User userFromDB = userService.findUserById(user.getId());
         user.setLogin(userFromDB.getLogin());
         user.setPassword(userFromDB.getPassword());
@@ -76,8 +75,7 @@ public class AdminService {
     }
 
     public String deleteUser(Model model, Long id) {
-        // sprawdzamy, czy taki user istnieje, bo mógł chwilę temu zostać usunięty, kiedy ktoś dał w przeglądarce
-        // wstecz, a potem dalej i wtedy mamy java.lang.NullPointerException
+        // sprawdzamy, czy taki user istnieje, ponieważ mógł wcześniej zostać usunięty
         if (userService.findUserById(id) == null) {
             model.addAttribute("lackOfUserInDB", true);
             model.addAttribute("ID", id);
@@ -105,7 +103,7 @@ public class AdminService {
 
     public String searchUser(String search, String examResult, Model model) {
         List<User> users = null;
-        // trim() bo do inputa dodawana jest spacja po każdym wyszukaniu ... nie wiem dlaczego
+        // trim() bo do inputa dodawana jest spacja po każdym wyszukaniu
         search = search.trim();
         if (search.length() == 0) {
             users = userService.findAll();

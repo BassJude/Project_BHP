@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 public class Question {
 
     private static final String MESSAGE_NOT_BLANK = "Pole nie może być puste";
+    private static final String MESSAGE_SIZE = "Treść pytania nie może mieć więcej niż 300 znaków";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,27 +19,27 @@ public class Question {
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank(message = MESSAGE_NOT_BLANK)
-    @Size(max = 300, message = "Treść pytania nie moze mieć więcej niż 300 znaków")
+    @Size(max = 300, message = MESSAGE_SIZE)
     private String question;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank(message = MESSAGE_NOT_BLANK)
-    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
+    @Size(max = 300, message = MESSAGE_SIZE)
     private String answer1;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank(message = MESSAGE_NOT_BLANK)
-    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
+    @Size(max = 300, message = MESSAGE_SIZE)
     private String answer2;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank(message = MESSAGE_NOT_BLANK)
-    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
+    @Size(max = 300, message = MESSAGE_SIZE)
     private String answer3;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
     @NotBlank(message = MESSAGE_NOT_BLANK)
-    @Size(max = 300, message = "Treść odpowiedzi nie moze mieć więcej niż 300 znaków")
+    @Size(max = 300, message = MESSAGE_SIZE)
     private String answer4;
 
     @Column(length = 1, nullable = false, columnDefinition = "VARCHAR(1) NOT NULL")
@@ -101,19 +102,5 @@ public class Question {
 
     public void setGood_answer(String good_answer) {
         this.good_answer = good_answer;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", answer1='" + answer1 + '\'' +
-                ", answer2='" + answer2 + '\'' +
-                ", answer3='" + answer3 + '\'' +
-                ", answer4='" + answer4 + '\'' +
-                ", good_answer='" + good_answer + '\'' +
-                '}';
     }
 }

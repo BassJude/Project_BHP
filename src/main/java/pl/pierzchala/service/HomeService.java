@@ -1,5 +1,6 @@
 package pl.pierzchala.service;
 
+import io.sentry.Sentry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -51,6 +52,7 @@ public class HomeService {
             }
             return Objects.requireNonNull(folder.listFiles()).length;
         } catch (Exception e) {
+            Sentry.capture(e);
             System.out.print("e");
             return 37;
         }

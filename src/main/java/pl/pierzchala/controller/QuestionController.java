@@ -17,9 +17,12 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes({"questionNumber", "size", "points", "goodAnswers", "loggedUser", "firstName", "admin"})
 public class QuestionController {
 
+    private QuestionService questionService;
 
     @Autowired
-    private QuestionService questionService;
+    public QuestionController(QuestionService questionService) {
+        this.questionService = questionService;
+    }
 
     @GetMapping("/test")
     public String beforeStartTest(Model model) {
@@ -38,6 +41,4 @@ public class QuestionController {
         questionService.finishTest(session, model);
         return "/questions/testResult";
     }
-
-
 }

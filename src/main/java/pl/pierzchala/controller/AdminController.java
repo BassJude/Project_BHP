@@ -33,9 +33,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    /////////////////// users///////////////////
-
-    @RequestMapping("")
+    @RequestMapping("/")
     public String homeAdmin(Model model) {
         return adminService.homeAdmin(model);
     }
@@ -45,13 +43,11 @@ public class AdminController {
         return adminService.allUsers(model);
     }
 
-    //details user
     @GetMapping("/detailsUser/{id}")
     public String detailsUser(Model model, @PathVariable Long id) {
         return adminService.detailsUser(model, id);
     }
 
-    //edit user
     @GetMapping("/editUser/{id}")
     public String getEditUser(Model model, @PathVariable Long id) {
         model.addAttribute("user", userService.findUserById(id));
@@ -63,22 +59,18 @@ public class AdminController {
         return adminService.saveEditUser(user, result, model);
     }
 
-    // delete user
     @RequestMapping("/deleteUser/{id}")
     public String deleteUser(Model model, @PathVariable Long id) {
         return adminService.deleteUser(model, id);
     }
 
-    // search user
-    @RequestMapping("/search")
+    @RequestMapping("/searchUser")
     public String searchUser(@RequestParam(name = "search") String search,
                              @RequestParam(name = "examResult", defaultValue = "all") String examResult,
                              Model model) {
 
         return adminService.searchUser(search, examResult, model);
     }
-
-////////////// questions /////////////////////
 
     @ModelAttribute("abcd")
     public List<String> forSelect() {
@@ -92,7 +84,6 @@ public class AdminController {
         return "admin/allQuestions";
     }
 
-    // add question
     @GetMapping("/addQuestion")
     public String editQuestion(Model model) {
         model.addAttribute("question", new Question());
@@ -108,8 +99,6 @@ public class AdminController {
         return "forward:/admin/allQuestions";
     }
 
-
-    //edit question
     @GetMapping("/editQuestion/{id}")
     public String editQuestion(Model model, @PathVariable Long id) {
         model.addAttribute("question", questionService.findQuestionById(id));
@@ -125,14 +114,12 @@ public class AdminController {
         return "forward:/admin/allQuestions";
     }
 
-    // delete question
     @RequestMapping("/deleteQuestion/{id}")
     public String deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestionById(id);
         return "forward:/admin/allQuestions";
     }
 
-    // search question
     @RequestMapping("/searchQuestion")
     public String searchQuestion(@RequestParam(name = "search") String search, Model model) {
         return adminService.searchQuestion(search, model);
@@ -152,6 +139,4 @@ public class AdminController {
         }
         return "All passwords hashed";
     }
-
-
 }

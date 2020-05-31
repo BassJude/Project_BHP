@@ -28,7 +28,6 @@ public class UserController {
         this.userSession = userSession;
     }
 
-    //edit user
     @GetMapping("/edit")
     public String editUser(Model model) {
         User user = userService.getUserSession();
@@ -42,7 +41,6 @@ public class UserController {
         return userService.saveEditUser(user, result, model);
     }
 
-    // status
     @RequestMapping("/status")
     public String status(Model model) {
         return userService.status(model);

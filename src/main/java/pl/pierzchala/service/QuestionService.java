@@ -55,14 +55,14 @@ public class QuestionService {
         return questionList.get(number);
     }
 
-    // starting settings
+    // ustawienia początkowe testu
     public void settingsBeforeStartTest(Model model) {
-        // how many questions we have
+        // zliczenie ilości pytań
         List<Question> questionList = questionRepository.findAll();
         int size = questionList.size();
         model.addAttribute("size", size);
 
-        // table of answers
+        // zbudowanie tabeli z poprawnymi odpowiedziami
         String[] goodAnswer = new String[size];
         for (int i = 0; i < size; i++) {
             goodAnswer[i] = questionList.get(i).getGood_answer();
@@ -82,7 +82,7 @@ public class QuestionService {
 
         // zliczanie punktów
         if (answer != null) {
-            if (goodAnswer[number - 1].equals(answer)) { // -1, bo pierwsze wejscie ma number=0 i nie wchodzi do ifa, bo answer jest nullem
+            if (goodAnswer[number - 1].equals(answer)) { // number -1, bo pierwsze wejscie ma number=0 i nie wchodzi do ifa, bo answer jest nullem
                 int points = (int) session.getAttribute("points");
                 points++;
                 model.addAttribute("points", points);
@@ -120,10 +120,8 @@ public class QuestionService {
         }
     }
 
-    // search
+    // wyszukiwanie pytania
     public List<Question> searchQuestion(String search) {
         return questionRepository.findQuestionByQuestionContaining(search);
     }
-
-
 }
