@@ -31,13 +31,13 @@ public class HomeController {
 
     @GetMapping("/course/{number}")
     public String course(@PathVariable int number, Model model) {
-        homeService.setSlide(number, model);
+        homeService.getSlide(number, model);
         return "/course";
     }
 
     @PostMapping("/course/number")
     public String getSlide(@RequestParam int number, Model model) {
-        homeService.setSlide(number, model);
+        homeService.getSlide(number, model);
         return "/course";
     }
 
@@ -49,7 +49,7 @@ public class HomeController {
     @GetMapping("/registration")
     public String registrationUser(Model model) {
         model.addAttribute("user", new User());
-        return "/users/registration";
+        return "/registration";
     }
 
     @PostMapping("/registration")

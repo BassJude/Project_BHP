@@ -13,13 +13,12 @@
 <div id="container">
     <%@ include file="../fragments/header.jspf" %>
     <%@ include file="../fragments/sidebarAdmin.jspf" %>
-    <div id="content">
 
+    <div id="content">
         <h1>Dodaj lub edytuj pytanie</h1>
         <c:if test="${question.id != null}"> <p>Id zmienianego pytania: ${question.id}</p></c:if>
 
         <div>
-
             <form:form method="post" modelAttribute="question">
                 <div><input class="defaultSubmitSettings" type="submit" value="Zapisz"></div>
 
@@ -60,10 +59,8 @@
                 </label></div>
                 <div><form:errors path="answer4" cssClass="error"/></div>
 
-
             </form:form>
         </div>
-
     </div>
 
     <%@ include file="../fragments/footer.jspf" %>

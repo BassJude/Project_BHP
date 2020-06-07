@@ -51,7 +51,7 @@ public class AdminController {
     @GetMapping("/editUser/{id}")
     public String getEditUser(Model model, @PathVariable Long id) {
         model.addAttribute("user", userService.findUserById(id));
-        return "admin/addEditUser";
+        return "admin/editUser";
     }
 
     @PostMapping("/editUser/{id}")
@@ -85,7 +85,7 @@ public class AdminController {
     }
 
     @GetMapping("/addQuestion")
-    public String editQuestion(Model model) {
+    public String addQuestion(Model model) {
         model.addAttribute("question", new Question());
         return "admin/addEditQuestion";
     }

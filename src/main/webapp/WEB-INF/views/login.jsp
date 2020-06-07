@@ -11,7 +11,6 @@
 
     <div id="content">
         <h1>Logowanie</h1>
-
         <form action="${pageContext.request.contextPath}/login" method="post">
 
             <div><label class="formAddQuestion">
@@ -26,10 +25,7 @@
             </label></div>
             <div><input type="submit" value="Zaloguj się"></div>
 
-
         </form>
-
-
     </div>
 
     <div style="clear:both;"></div>

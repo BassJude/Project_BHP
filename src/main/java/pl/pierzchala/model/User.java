@@ -21,7 +21,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
+    @Column(length = 100, nullable = false, unique = true, columnDefinition = "VARCHAR(100) NOT NULL UNIQUE")
     @NotBlank(groups = {RegistrationValidator.class}, message = "Podaj login")
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class})
     private String login;

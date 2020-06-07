@@ -32,7 +32,7 @@ public class UserController {
     public String editUser(Model model) {
         User user = userService.getUserSession();
         model.addAttribute("user", user);
-        return "users/addEdit";
+        return "users/edit";
     }
 
     @PostMapping("/edit")

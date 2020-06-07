@@ -9,10 +9,9 @@
     <div id="container">
         <%@ include file="../fragments/header.jspf" %>
         <%@ include file="../fragments/sidebarAdmin.jspf" %>
+
         <div id="content">
-
-            <h1>Dodaj lub edytuj użytkownika</h1>
-
+            <h1>Edytuj użytkownika</h1>
             <p>Id zmienianego usera: ${user.id}</p>
 
             <form:form method="post" modelAttribute="user">
@@ -41,12 +40,8 @@
                 <div><label class="formAddQuestion">Czy jest superUserem <form:checkbox path="superUser"/></label>
                     <form:errors path="superUser" cssClass="error"/></div>
 
-
                 <input type="submit" value="Zapisz">
-
-
             </form:form>
-
 
             <div style="clear:both;"></div>
         </div>

@@ -28,7 +28,7 @@ public class HomeService {
     }
 
 
-    public void setSlide(int number, Model model) {
+    public void getSlide(int number, Model model) {
         Integer numberOfSlides = getNumberOfSlides();
         if (number < 1) {
             number = 1;
@@ -64,10 +64,10 @@ public class HomeService {
         if (!"registrationSuccess".equals(message)) {
             model.addAttribute("invalid", true);
             model.addAttribute("message", message);
-            return "/users/registration";
+            return "/registration";
         }
         if (result.hasErrors()) {
-            return "/users/registration";
+            return "/registration";
         }
 
         String passToHash = user.getPassword(); // hash password

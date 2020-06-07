@@ -31,7 +31,7 @@ public class AdminService {
         model.addAttribute("numberOfUsers", userService.findAll().size());
         model.addAttribute("numberOfQuestions", questionService.findAll().size());
         model.addAttribute("percentageOfPassedExams", userService.percentageOfPassedExams());
-        return "/admin";
+        return "/admin/homeAdmin";
     }
 
     public String allUsers(Model model) {
@@ -51,7 +51,7 @@ public class AdminService {
     public String saveEditUser(User user, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            return "admin/addEditUser";
+            return "admin/editUser";
         }
         // Zawsze jeden użytkownik musi być adminem
         if (userService.quantitySuperUsers() == 1 && (userService.findUserById(user.getId()).isSuperUser())) {

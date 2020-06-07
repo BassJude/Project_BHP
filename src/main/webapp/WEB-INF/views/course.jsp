@@ -21,8 +21,6 @@
                 href="${pageContext.request.contextPath}/course/${numberImage+1}">Następny</a>
         </p>
         <img width="700" height="500" src="${pageContext.request.contextPath}/slides/Slajd${numberImage}.PNG">
-
-
     </div>
 
     <div style="clear:both;"></div>

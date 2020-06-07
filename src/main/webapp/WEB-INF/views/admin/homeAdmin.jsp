@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pl">
-<%@ include file="fragments/head.jspf" %>
+<%@ include file="../fragments/head.jspf" %>
 <body>
 
 <div id="container">
-    <%@ include file="fragments/header.jspf" %>
-    <%@ include file="fragments/sidebarAdmin.jspf" %>
+    <%@ include file="../fragments/header.jspf" %>
+    <%@ include file="../fragments/sidebarAdmin.jspf" %>
 
     <div id="content">
         <c:choose>
@@ -29,7 +29,7 @@
     </div>
 
     <div style="clear:both;"></div>
-    <%@ include file="fragments/footer.jspf" %>
+    <%@ include file="../fragments/footer.jspf" %>
 
 </div>
 </body>

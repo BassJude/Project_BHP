@@ -9,22 +9,22 @@
     <div id="container">
         <%@ include file="../fragments/header.jspf" %>
         <%@ include file="../fragments/sidebarAdmin.jspf" %>
+
         <div id="content">
-
-
             <h1>Szczegółowe dane użytkownika</h1>
 
             <div class="search">
                 <h3>Wyszukiwarka użytkowników</h3>
                 <form action="${pageContext.request.contextPath}/admin/searchUser" method="post">
                     <p><label>Wpisz nazwisko, imię, login: <input type="text" name="search" placeholder="nazwisko"
-                                                     value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
+                                                                  value="<c:if test="${search!=null}">${search}</c:if> "></label>
+                    </p>
                     <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all"
                                                      <c:if test="${examResult=='all'}">checked</c:if>> | </label>
                     <label>Zaliczony test<input type="radio" name="examResult" value="passed"
-                                                   <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
+                                                <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
                     <label>Niezaliczony test<input type="radio" name="examResult" value="fail"
-                                                      <c:if test="${examResult=='fail'}">checked</c:if>></label>
+                                                   <c:if test="${examResult=='fail'}">checked</c:if>></label>
 
                     <p class="button"><input type="submit" value="szukaj"></p>
                 </form>

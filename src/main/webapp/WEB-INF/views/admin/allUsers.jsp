@@ -9,15 +9,14 @@
     <div id="container">
         <%@ include file="../fragments/header.jspf" %>
         <%@ include file="../fragments/sidebarAdmin.jspf" %>
+
         <div id="content">
             <c:choose>
                 <c:when test="${lackOfUserInDB==true}">
-
                     <p class="error">Nie możesz usunąć użytkownika, którego nie ma w bazie danych.</p>
                     <p class="error">Brak użytkownika od Id: ${ID}.</p>
                 </c:when>
                 <c:when test="${userDelete==true}">
-
                     <p class="error">Usunąłeś uzytkownika!</p>
                     <p class="error">Id: ${user.id}, email: ${user.email}, imię: ${user.firstName},
                         nazwisko: ${user.lastName}</p>
@@ -33,7 +32,6 @@
 
                 </c:otherwise>
             </c:choose>
-
 
             <h1>Lista użytkowników (<c:if test="${users!=null}">${users.size()}</c:if>)</h1>
             <div class="search">

@@ -18,7 +18,6 @@
         <div>-------------------------------------</div>
         <p>Jeżeli zaliczyłeś test, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="${pageContext.request.contextPath}/questions/test">Zacznij test</a></p>
 
-
     </div>
 
     <div style="clear:both;"></div>

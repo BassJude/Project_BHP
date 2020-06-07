@@ -157,7 +157,7 @@ public class UserService {
 
     public String saveEditUser(User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "users/addEdit";
+            return "users/edit";
         }
         // uzupełnienie pozostałych danych
         User userFromDB = findUserById(user.getId());

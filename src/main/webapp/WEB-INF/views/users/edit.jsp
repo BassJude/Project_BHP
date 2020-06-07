@@ -11,7 +11,6 @@
     <%@ include file="../fragments/sidebar.jspf" %>
 
     <div id="content">
-
         <h1>Edycja profilu</h1>
 
         <form:form method="post" modelAttribute="user">
@@ -37,11 +36,7 @@
             <form:hidden path="id"></form:hidden>
 
             <input type="submit" value="Zapisz">
-
-
         </form:form>
-
-
     </div>
 
     <div style="clear:both;"></div>

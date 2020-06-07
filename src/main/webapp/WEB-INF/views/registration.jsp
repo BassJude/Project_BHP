@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
-<%@ include file="../fragments/head.jspf" %>
+<%@ include file="fragments/head.jspf" %>
 <body>
 
 <div id="container">
-    <%@ include file="../fragments/header.jspf" %>
-    <%@ include file="../fragments/sidebar.jspf" %>
+    <%@ include file="fragments/header.jspf" %>
+    <%@ include file="fragments/sidebar.jspf" %>
 
     <div id="content">
         <h1>Rejestracja konta</h1>
@@ -71,17 +71,12 @@
                     <form:errors path="email" cssClass="error"/></div>
             </label></div>
 
-
             <input type="submit" value="Zarejestruj się">
-
-
         </form:form>
-
-
     </div>
 
     <div style="clear:both;"></div>
-    <%@ include file="../fragments/footer.jspf" %>
+    <%@ include file="fragments/footer.jspf" %>
 
 </div>
 </body>
