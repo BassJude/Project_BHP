@@ -37,7 +37,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();

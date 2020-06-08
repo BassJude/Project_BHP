@@ -198,22 +198,4 @@ public class User {
         this.password2 = password2;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", homeNumber='" + homeNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", examPassed=" + examPassed +
-                ", lastTestTime=" + lastTestTime +
-                ", superUser=" + superUser +
-                '}';
-    }
 }
