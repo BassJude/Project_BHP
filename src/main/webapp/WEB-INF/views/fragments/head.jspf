@@ -11,5 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
           rel="stylesheet">
 
-    <link href='<c:url value="/css/style.css" />' rel="stylesheet" type="text/css">
+<%--    <link href='<c:url value="/css/style.css" />' rel="stylesheet" type="text/css">--%>
+
+    <style>
+
+        <%@ include file="/css/style.css"%>
+    </style>
 </head>
