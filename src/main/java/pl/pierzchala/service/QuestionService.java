@@ -57,7 +57,7 @@ public class QuestionService {
 
     // ustawienia początkowe testu
     public void settingsBeforeStartTest(Model model) {
-        // zliczenie ilości pytań
+        // zliczenie liczby pytań
         List<Question> questionList = questionRepository.findAll();
         int size = questionList.size();
         model.addAttribute("size", size);
@@ -77,7 +77,7 @@ public class QuestionService {
         String answer = request.getParameter("answer");  // przy pierwszym wejsciu answer == null
         // pobieramy tablię dobrych odpowiedzi
         String[] goodAnswer = (String[]) session.getAttribute("goodAnswers");
-        // ilość wszystkich pytań
+        // liczba wszystkich pytań
         int size = (int) session.getAttribute("size");
 
         // zliczanie punktów
@@ -89,7 +89,7 @@ public class QuestionService {
             }
         }
 
-        // jeżeli numer pytania jest mniejszy od ilości wszystkich pytań, kontynuujemy test
+        // jeżeli numer pytania jest mniejszy od liczby wszystkich pytań, kontynuujemy test
         if (number < size) {
             model.addAttribute("question", getNumberQuestionForTest(number)); // , wysylam pytanie, lista pytan jest od index 0
             model.addAttribute("questionNumber", number);

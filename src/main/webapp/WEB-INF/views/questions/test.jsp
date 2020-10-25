@@ -12,7 +12,7 @@
     <%@ include file="../fragments/sidebar.jspf" %>
 
     <div id="content">
-        <p>Pytanie numer ${number+1}, ilość wszystkich pytań: ${size}.</p>
+        <p>Pytanie numer ${number+1}, liczba wszystkich pytań: ${size}.</p>
         <p style="border-bottom: 1px solid #4d83e7;"></p>
 
         <form action="${pageContext.request.contextPath}/questions/test/${number+1}" method="post">

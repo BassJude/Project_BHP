@@ -41,7 +41,7 @@ public class HomeService {
         model.addAttribute("images", numberOfSlides);
     }
 
-    // ilość slajdów
+    // liczba slajdów
     private Integer getNumberOfSlides() {
         File folder = null;
         try {
