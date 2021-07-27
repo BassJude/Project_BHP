@@ -12,12 +12,11 @@
     <div id="content">
 
         <h1>Wyniki testu:</h1>
-        <p>Ilość poprawnych odpowiedzi : ${points}</p>
-        <p>Ilość wszystkich pytań : ${size}</p>
-        <p>Egzamin  ${evaluation}</p>
+        <p>Liczba poprawnych odpowiedzi : ${points}</p>
+        <p>Liczba wszystkich pytań : ${size}</p>
+        <p>Test  ${evaluation}</p>
         <div>-------------------------------------</div>
-        <p>Jeżeli zaliczyłeś egzamin, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="${pageContext.request.contextPath}/questions/test">Zacznij test</a></p>
-
+        <p>Jeżeli zaliczyłeś test, możesz już się wylogować, w przeciwnym wypadku spróbuj ponownie -> <a href="${pageContext.request.contextPath}/questions/test">Zacznij test</a></p>
 
     </div>
 

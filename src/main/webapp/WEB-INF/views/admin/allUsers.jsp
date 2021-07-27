@@ -6,100 +6,90 @@
 <body>
 
 <div>
-    <%@ include file="../fragments/header.jspf" %>
-    <%@ include file="../fragments/sidebarAdmin.jspf" %>
+    <div id="container">
+        <%@ include file="../fragments/header.jspf" %>
+        <%@ include file="../fragments/sidebarAdmin.jspf" %>
 
+        <div id="content">
+            <c:choose>
+                <c:when test="${lackOfUserInDB==true}">
+                    <p class="error">Nie możesz usunąć użytkownika, którego nie ma w bazie danych.</p>
+                    <p class="error">Brak użytkownika od Id: ${ID}.</p>
+                </c:when>
+                <c:when test="${userDelete==true}">
+                    <p class="error">Usunąłeś uzytkownika!</p>
+                    <p class="error">Id: ${user.id}, email: ${user.email}, imię: ${user.firstName},
+                        nazwisko: ${user.lastName}</p>
+                </c:when>
 
-    <h1>Lista użytkowników</h1>
+                <c:when test="${AdminInvalid==true}">
+                    <p class="error">Nie możesz usunąć użytkownika, który aktualnie jest jedynym administratorem</p>
+                    <p class="error">Zawsze jeden użytkownik musi być administratorem</p>
+                    <p class="error">Nie możesz usunąć samego siebie, będąc zalogowanym</p>
+                </c:when>
 
-    <h3>Wyszukiwarka użytkowników</h3>
-    <form action="${pageContext.request.contextPath}/admin/search" method="get">
-        Wpisz nazwisko: <input type="text" name="search" placeholder="nazwisko">
+                <c:otherwise>
 
-        <input type="submit" value="szukaj" >
-    </form>
+                </c:otherwise>
+            </c:choose>
 
-    <form action="${pageContext.request.contextPath}/admin/notPassedEgzam" method="get">
-        zaliczony egzamin: <input type="checkbox" name="passed" >
+            <h1>Lista użytkowników (<c:if test="${users!=null}">${users.size()}</c:if>)</h1>
+            <div class="search">
+                <h3>Wyszukiwarka użytkowników</h3>
+                <form action="${pageContext.request.contextPath}/admin/searchUser" method="post">
+                    <p><label>Wpisz nazwisko, imię, login: <input type="text" name="search" placeholder="nazwisko"
+                                                     value="<c:if test="${search!=null}">${search}</c:if> "></label></p>
+                    <label>Wszyscy użytkownicy<input type="radio" name="examResult" value="all"
+                                                     <c:if test="${examResult=='all'}">checked</c:if>> | </label>
+                    <label>Zaliczony test<input type="radio" name="examResult" value="passed"
+                                                   <c:if test="${examResult=='passed'}">checked</c:if>> | </label>
+                    <label>Niezaliczony test<input type="radio" name="examResult" value="fail"
+                                                      <c:if test="${examResult=='fail'}">checked</c:if>></label>
 
-        <input type="submit" value="szukaj" >
-    </form>
-    <%--<a href="/admin/notPassedEgzam" >Niezaliczone</a>--%>
+                    <p class="button"><input type="submit" value="szukaj"></p>
+                </form>
+            </div>
 
-
-
-
-    <table border="1">
-        <thead>
-        <tr>
-            <td>Id</td>
-            <td>Login</td>
-            <%--<td>Hasło</td>--%>
-            <td>Imię</td>
-            <td>Nazwisko</td>
-            <td>Miasto</td>
-            <td>Ulica</td>
-            <td>Numer domu</td>
-            <td>email</td>
-            <td>Data zaliczenia egzaminu</td>
-            <td>Zaliczony test</td>
-            <td>Admin</td>
-            <td>Edytuj</td>
-            <td>Usuń</td>
-        </tr>
-
-        </thead>
-        <tbody>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.login}</td>
-                <%--<td>${user.password}</td>--%>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.city}</td>
-                <td>${user.street}</td>
-                <td>${user.homeNumber}</td>
-                <td>${user.email}</td>
-                <td>${user.lastTestTime}</td>
-                <td>
-
+            <c:forEach items="${users}" var="user">
+                <div class="border"></div>
+                <span>Id: ${user.id} | </span>
+                <span>Login: ${user.login} | </span>
+                <span>Imię: ${user.firstName} | </span>
+                <span>Nazwisko: ${user.lastName} | </span>
+                <span>Miasto: ${user.city}</span>
+                <div class="borderUsers"></div>
+                <span>E-mail: ${user.email} | </span>
+                <span>Zaliczony test:
                     <c:choose>
-                        <c:when test="${user.passedEgzam==true}">
-                            <span style="color:green;font-weight: bold;" >Zaliczony</span>
+                        <c:when test="${user.examPassed==true}">
+                            <span style="color:green;font-weight: bold;">Zaliczony</span>
                         </c:when>
 
                         <c:otherwise>
-                            <span style="color:red;font-weight: bold;" >Niezaliczony</span>
+                            <span style="color:red;font-weight: bold;">Niezaliczony</span>
                         </c:otherwise>
                     </c:choose>
+                </span>
+                <span><c:if test="${user.superUser==true}"> | Admin</c:if></span>
+                <div class="borderUsers"></div>
+                <span><a style="color: #309125"
+                         href="${pageContext.request.contextPath}/admin/detailsUser/${user.id}">Szczegóły
+                    użytkownika</a></span>
+                <span> | </span>
+                <span><a style="color: #309125"
+                         href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj
+                    użytkownika</a></span>
+                <span> | </span>
+                <span><a style="color: #309125"
+                         href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}"
+                         onclick="return confirm('Czy na pewno skasować użytkownika?')">Usuń
+                    użytkownika</a></span>
 
-                        <%--${user.passedEgzam}--%>
+            </c:forEach>
+        </div>
+        <%@ include file="../fragments/footer.jspf" %>
 
-                </td>
-                <td>${user.superUser}</td>
-
-                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/editUser/${user.id}">Edytuj użytkownika</a></td>
-                <td><a style="color: #309125" href="${pageContext.request.contextPath}/admin/deleteUser/${user.id}" onclick="return confirm('Czy na pewno skasować pytanie?')">Usuń
-                    użytkownika</a></td>
-
-
-            </tr>
-
-        </c:forEach>
-
-        </tbody>
-
-
-    </table>
-
-
-
-
-
-    <%--<div style="clear:both;"></div>--%>
-    <%@ include file="../fragments/footer.jspf" %>
-
+    </div>
 </div>
 </body>
 </html>

@@ -5,10 +5,9 @@
     <div class="optionL">2.Przeczytaj materiały szkoleniowe</div>
     <div class="optionL">3.Wykonaj test</div>
     <div class="optionL">-------------</div>
-    <div class="optionL"><a href="${pageContext.request.contextPath}/admin/allQuestions">Wszystkie pytania</a></div>
-    <div class="optionL"><a href="${pageContext.request.contextPath}/admin/addQuestion">Dodaj pytanie</a></div>
-    <div class="optionL"><a href="${pageContext.request.contextPath}/admin/allUsers">Wszyscy użytkownicy</a></div>
-    <%--optionL--%>
-    <%--sidebar--%>
+    <div class="optionL buttonTest" ><a href="${pageContext.request.contextPath}/admin/">Panel administratora</a> </div>
+    <div class="optionL buttonTest"><a href="${pageContext.request.contextPath}/admin/allUsers">Wszyscy użytkownicy</a></div>
+    <div class="optionL buttonTest"><a href="${pageContext.request.contextPath}/admin/allQuestions">Wszystkie pytania</a></div>
+    <div class="optionL buttonTest"><a href="${pageContext.request.contextPath}/admin/addQuestion">Dodaj pytanie</a></div>
 
 </div>

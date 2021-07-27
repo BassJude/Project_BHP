@@ -1,10 +1,7 @@
 # Project_BHP
-BHP
 
-Aplikacja w trakcie budowy. 
-Adres www:
-http://www.ameliaweb.pl/bhp/
+Adam Pierzchała nr. albumu 240462
 
-Apliakcja posiada dwa widoki:
-- widok dla użytkownika (rejestracja, logowanie, przeglądanie materiałów, test wiedzy, edycja profilu, status kursu)
-- widok dla administratora (tabele z użytkownikami, pytaniami, edycja danych)
+Praca inżynierska 
+
+Projekt witryny internetowej do przeprowadzania szkoleń i testów z zakresu Bezpieczeństwa i Higieny Pracy z wykorzystaniem e-learningu

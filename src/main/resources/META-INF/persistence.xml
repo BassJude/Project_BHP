@@ -3,7 +3,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-    <persistence-unit name="bookstorePersistenceUnit">
+    <persistence-unit name="bhpPersistenceUnit">
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/bassjude_bhp" />
@@ -11,7 +11,8 @@
             <property name="javax.persistence.jdbc.password" value="coderslab" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.schema-generation.database.action"
-                      value="none"/>
+                      value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
 
             <property name="hibernate.dialect"
@@ -36,7 +37,7 @@
 
 
         <!--<property name="javax.persistence.jdbc.user" value="root" />-->
-        <!--<property name="javax.persistence.jdbc.password" value="coderslab" />-->
+<!--        <property name="javax.persistence.jdbc.password" value="pierzchala" />-->
 
 <!--<property name="javax.persistence.jdbc.user" value="bassjude_bhp" />-->
 <!--<property name="javax.persistence.jdbc.password" value="wer234WER@#$" />-->
