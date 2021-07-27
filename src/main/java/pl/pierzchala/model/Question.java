@@ -1,10 +1,11 @@
 package pl.pierzchala.model;
 
-import org.hibernate.validator.constraints.NotBlank;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "questions")
@@ -18,32 +19,32 @@ public class Question {
     private Long id;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK)
+    @NotEmpty(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = MESSAGE_SIZE)
     private String question;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK)
+    @NotEmpty(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = MESSAGE_SIZE)
     private String answer1;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK)
+    @NotEmpty(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = MESSAGE_SIZE)
     private String answer2;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK)
+    @NotEmpty(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = MESSAGE_SIZE)
     private String answer3;
 
     @Column(length = 300, nullable = false, columnDefinition = "VARCHAR(300) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK)
+    @NotEmpty(message = MESSAGE_NOT_BLANK)
     @Size(max = 300, message = MESSAGE_SIZE)
     private String answer4;
 
     @Column(length = 1, nullable = false, columnDefinition = "VARCHAR(1) NOT NULL")
-    @NotBlank(message = "Wybierz odpowiedź")
+    @NotEmpty(message = "Wybierz odpowiedź")
     @NotNull(message = "Wybierz odpowiedź")
     @Size(max = 1, message = "Wybierz jedną odpowiedź")
     private String good_answer;
