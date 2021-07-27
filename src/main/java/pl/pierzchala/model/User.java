@@ -1,5 +1,6 @@
 package pl.pierzchala.model;
 
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -27,16 +28,18 @@ public class User {
 
     @Column(length = 30, nullable = false, columnDefinition = "VARCHAR(255) NOT NULL")
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
+
     @NotEmpty(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password;
 
     @Transient
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
+
     @NotEmpty(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password2;
 
     @Column(name = "first_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})   
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Imię musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String firstName;
