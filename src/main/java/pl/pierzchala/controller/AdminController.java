@@ -1,5 +1,6 @@
 package pl.pierzchala.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import pl.pierzchala.service.QuestionService;
 import pl.pierzchala.service.UserService;
 import pl.pierzchala.validator.EditValidator;
 
-import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 

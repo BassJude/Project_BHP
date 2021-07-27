@@ -1,14 +1,13 @@
 package pl.pierzchala.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import pl.pierzchala.utils.BCrypt;
 import pl.pierzchala.validator.EditValidator;
 import pl.pierzchala.validator.RegistrationValidator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,49 +21,48 @@ public class User {
     private Long id;
 
     @Column(length = 100, nullable = false, unique = true, columnDefinition = "VARCHAR(100) NOT NULL UNIQUE")
-    @NotBlank(groups = {RegistrationValidator.class}, message = "Podaj login")
+    @NotEmpty(groups = {RegistrationValidator.class}, message = "Podaj login")
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class})
     private String login;
 
     @Column(length = 30, nullable = false, columnDefinition = "VARCHAR(255) NOT NULL")
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password;
 
     @Transient
     @Size(min = 5, max = 30, message = "Hasło musi miec od 5 do 30 znaków", groups = RegistrationValidator.class)
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = RegistrationValidator.class)
     private String password2;
 
     @Column(name = "first_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Imię musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String firstName;
 
     @Column(name = "last_name", length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     @Pattern(regexp = "^[A-ZŁŚ][a-ząęółśżźćń]+$", message = "Nazwisko musi zaczynać się z dużej litery oraz nie może posiadać liczb", groups = {RegistrationValidator.class, EditValidator.class})
     private String lastName;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String city;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String street;
 
     @Column(length = 50, name = "home_number", nullable = false, columnDefinition = "VARCHAR(50) NOT NULL")
-    @NotBlank(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
+    @NotEmpty(message = MESSAGE_NOT_BLANK, groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 50, message = "Maksymalnie 50 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String homeNumber;
 
     @Column(length = 100, nullable = false, columnDefinition = "VARCHAR(100) NOT NULL")
-    @Email(message = "Wprowadź prawidłowy adres email")
     @Pattern(regexp = "^[a-zA-Z0-9]+[._\\-a-zA-Z0-9]*@[a-zA-Z0-9]+([.][a-z]+)+([.][a-z]+)?$", message = "Wprowadź prawidłowy adres email", groups = {RegistrationValidator.class, EditValidator.class})
     @Size(max = 100, message = "Maksymalnie 100 znaków", groups = {RegistrationValidator.class, EditValidator.class})
     private String email;
