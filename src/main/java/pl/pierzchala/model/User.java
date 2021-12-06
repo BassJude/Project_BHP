@@ -1,13 +1,14 @@
 package pl.pierzchala.model;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+
 import pl.pierzchala.utils.BCrypt;
 import pl.pierzchala.validator.EditValidator;
 import pl.pierzchala.validator.RegistrationValidator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
